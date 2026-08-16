@@ -1,4 +1,61 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
+
+const resend = new Resend(
+  process.env.RESEND_API_KEY
+);
+
+const RESEND_FROM_EMAIL =
+  process.env.RESEND_FROM_EMAIL ||
+  "onboarding@resend.dev";
+
+
+const sendViaResend = async ({
+  to,
+  subject,
+  text,
+  html,
+}) => {
+
+  try {
+
+    const result =
+      await resend.emails.send({
+        from: RESEND_FROM_EMAIL,
+        to: [to],
+        subject,
+        text,
+        html,
+      });
+
+    if (result.error) {
+      throw new Error(
+        result.error.message ||
+        "Resend email sending failed."
+      );
+    }
+
+    return {
+      success: true,
+      messageId:
+        result.data?.id || null,
+    };
+
+  } catch (error) {
+
+    console.error(
+      "❌ Resend Email Error:",
+      error
+    );
+
+    return {
+      success: false,
+      message:
+        error.message ||
+        "Failed to send email.",
+      messageId: null,
+    };
+  }
+};
 const crypto = require("crypto");
 
 // =====================================================
@@ -7,55 +64,6 @@ const crypto = require("crypto");
 
 const otpStore = new Map();
 
-// =====================================================
-// GMAIL SMTP TRANSPORTER
-// =====================================================
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_APP_PASSWORD,
-  },
-
-  pool: true,
-  maxConnections: 3,
-  maxMessages: 100,
-
-  connectionTimeout: 15000,
-  greetingTimeout: 15000,
-  socketTimeout: 20000,
-});
-
-// =====================================================
-// VERIFY SMTP CONNECTION
-// =====================================================
-
-const verifySMTP = async () => {
-  try {
-    await transporter.verify();
-
-    console.log(
-      "✅ Gmail SMTP connection verified successfully."
-    );
-
-    console.log(
-      `📧 OTP Email Account: ${process.env.EMAIL_USER}`
-    );
-  } catch (error) {
-    console.error(
-      "❌ Gmail SMTP verification failed."
-    );
-
-    console.error(
-      "SMTP ERROR:",
-      error
-    );
-  }
-};
-
-verifySMTP();
 
 // =====================================================
 // SEND EMAIL OTP
@@ -137,10 +145,20 @@ const sendEmailOTP = async (email) => {
       `📤 Sending OTP to: ${normalizedEmail}`
     );
 
-    const info =
-      await transporter.sendMail(
-        mailOptions
-      );
+    const emailResult =
+  await sendViaResend({
+    to: normalizedEmail,
+    subject: mailOptions.subject,
+    text: mailOptions.text,
+    html: mailOptions.html,
+  });
+
+if (!emailResult.success) {
+  throw new Error(
+    emailResult.message ||
+    "Failed to send OTP email."
+  );
+}
 
     // =============================================
     // IMPORTANT:
@@ -776,10 +794,20 @@ AI Waste-Response Intelligence System
       `🆔 Report ID: ${reportId}`
     );
 
-    const info =
-      await transporter.sendMail(
-        mailOptions
-      );
+   const emailResult =
+  await sendViaResend({
+    to: normalizedEmail,
+    subject: mailOptions.subject,
+    text: mailOptions.text,
+    html: mailOptions.html,
+  });
+
+if (!emailResult.success) {
+  throw new Error(
+    emailResult.message ||
+    "Failed to send email."
+  );
+}
 
     console.log(
       `✅ Waste report email sent successfully to ${normalizedEmail}`
