@@ -1,0 +1,502 @@
+/* =========================================================
+   🚦 SWACHHLENS — STEP GUARD
+   PREVIOUS STEP REQUIRED SCREEN
+   CONNECTED EXACTLY WITH StepGuard.jsx
+========================================================= */
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.step-guard-page {
+  min-height: calc(100vh - 90px);
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  padding: 70px 24px 50px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   STEP GUARD CARD
+========================================================= */
+
+.step-guard-card {
+  width: min(900px, 100%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   🔒 ICON
+========================================================= */
+
+.step-guard-icon {
+  width: 82px;
+  height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  font-size: 3.2rem;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  border: 2px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18),
+    inset 0 0 20px rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(8px);
+
+  animation: stepGuardFloat 3s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   MAIN TITLE
+========================================================= */
+
+.step-guard-title {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 0 18px;
+
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+
+  line-height: 1.12;
+
+  font-weight: 950;
+
+  text-align: center;
+
+  color: #062b45;
+
+  text-shadow:
+    0 2px 12px rgba(255, 255, 255, 0.65);
+}
+
+
+/* =========================================================
+   MAIN MESSAGE
+========================================================= */
+
+.step-guard-message {
+  width: min(800px, 100%);
+
+  margin: 0 auto 10px;
+
+  padding: 0;
+
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+
+  line-height: 1.65;
+
+  font-weight: 800;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 2px 9px rgba(0, 0, 0, 0.40);
+}
+
+
+/* =========================================================
+   ODIA MESSAGE
+========================================================= */
+
+.step-guard-odia {
+  width: min(850px, 100%);
+
+  margin: 4px auto 28px;
+
+  padding: 0;
+
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+
+  line-height: 1.65;
+
+  font-weight: 850;
+
+  text-align: center;
+
+  color: #fff700;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================================
+   🌈 STEP GUARD BUTTON
+========================================================= */
+
+.step-guard-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  min-width: 250px;
+
+  min-height: 56px;
+
+  margin-top: 8px;
+
+  padding: 14px 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  font-family: inherit;
+
+  font-size: 1.08rem;
+
+  font-weight: 950;
+
+  cursor: pointer;
+
+  text-align: center;
+
+  /* =====================================================
+     🌈 RAINBOW TEXT
+  ===================================================== */
+
+  background-image:
+    linear-gradient(
+      90deg,
+      #ff0000,
+      #ff7a00,
+      #ffe600,
+      #00c853,
+      #00b0ff,
+      #6a00ff,
+      #ff00c8,
+      #ff0000
+    );
+
+  background-size: 300% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    stepguardRainbowText 5s linear infinite;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+
+.step-guard-button:hover {
+  transform: translateY(-3px) scale(1.03);
+
+  box-shadow:
+    0 13px 32px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   BUTTON ACTIVE
+========================================================= */
+
+.step-guard-button:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================================================
+   🌈 RAINBOW TEXT ANIMATION
+========================================================= */
+
+@keyframes stepguardRainbowText {
+
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 300% center;
+  }
+
+}
+
+
+/* =========================================================
+   🔒 ICON FLOAT ANIMATION
+========================================================= */
+
+@keyframes stepGuardFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+
+}
+
+
+/* =========================================================
+   📱 TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .step-guard-page {
+    min-height: calc(100vh - 70px);
+
+    padding: 60px 22px 40px;
+  }
+
+
+  .step-guard-card {
+    width: 100%;
+  }
+
+
+  .step-guard-icon {
+    width: 74px;
+    height: 74px;
+
+    font-size: 2.8rem;
+
+    margin-bottom: 17px;
+  }
+
+
+  .step-guard-title {
+    font-size: clamp(2rem, 7vw, 3.2rem);
+
+    margin-bottom: 15px;
+  }
+
+
+  .step-guard-message {
+    width: 95%;
+
+    font-size: 1.1rem;
+
+    line-height: 1.6;
+  }
+
+
+  .step-guard-odia {
+    width: 95%;
+
+    font-size: 1rem;
+
+    line-height: 1.6;
+
+    margin-bottom: 24px;
+  }
+
+
+  .step-guard-button {
+    min-width: 235px;
+
+    min-height: 53px;
+
+    padding: 13px 25px;
+
+    font-size: 1.03rem;
+  }
+
+}
+
+
+/* =========================================================
+   📱 MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .step-guard-page {
+    min-height: calc(100vh - 60px);
+
+    padding: 48px 18px 30px;
+  }
+
+
+  .step-guard-icon {
+    width: 68px;
+    height: 68px;
+
+    font-size: 2.5rem;
+
+    margin-bottom: 15px;
+  }
+
+
+  .step-guard-title {
+    max-width: 95%;
+
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
+
+    line-height: 1.18;
+
+    margin-bottom: 13px;
+  }
+
+
+  .step-guard-message {
+    width: 94%;
+
+    font-size: 1rem;
+
+    line-height: 1.55;
+
+    margin-bottom: 8px;
+  }
+
+
+  .step-guard-odia {
+    width: 94%;
+
+    font-size: 0.95rem;
+
+    line-height: 1.55;
+
+    margin-bottom: 21px;
+  }
+
+
+  .step-guard-button {
+    width: min(90%, 310px);
+
+    min-width: 0;
+
+    min-height: 51px;
+
+    padding: 12px 20px;
+
+    font-size: 1rem;
+
+    border-radius: 13px;
+  }
+
+}
+
+
+/* =========================================================
+   📱 SMALL PHONE
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .step-guard-page {
+    padding: 42px 15px 25px;
+  }
+
+
+  .step-guard-icon {
+    width: 62px;
+    height: 62px;
+
+    font-size: 2.25rem;
+
+    margin-bottom: 13px;
+  }
+
+
+  .step-guard-title {
+    max-width: 96%;
+
+    font-size: 1.8rem;
+
+    line-height: 1.2;
+
+    margin-bottom: 12px;
+  }
+
+
+  .step-guard-message {
+    width: 96%;
+
+    font-size: 0.94rem;
+
+    line-height: 1.55;
+  }
+
+
+  .step-guard-odia {
+    width: 96%;
+
+    font-size: 0.88rem;
+
+    line-height: 1.55;
+
+    margin-bottom: 19px;
+  }
+
+
+  .step-guard-button {
+    width: 92%;
+
+    min-height: 48px;
+
+    padding: 11px 17px;
+
+    font-size: 0.95rem;
+  }
+
+}
+
+
+/* =========================================================
+   ♿ REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .step-guard-icon {
+    animation: none;
+  }
+
+  .step-guard-button {
+    animation: none;
+  }
+
+}

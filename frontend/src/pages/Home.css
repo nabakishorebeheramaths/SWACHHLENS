@@ -1,0 +1,1823 @@
+
+/* =========================================================
+   🌈 SWACHHLENS HOME PAGE
+   PREMIUM LIGHT RAINBOW / GLASS THEME
+   Citizen Reporting Journey First
+   ========================================================= */
+
+.home-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  color: #172033;
+
+  background:
+    radial-gradient(
+      circle at 5% 4%,
+      rgba(255, 75, 160, 0.22),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 96% 8%,
+      rgba(0, 190, 255, 0.2),
+      transparent 29%
+    ),
+    radial-gradient(
+      circle at 75% 42%,
+      rgba(145, 92, 255, 0.12),
+      transparent 31%
+    ),
+    radial-gradient(
+      circle at 12% 72%,
+      rgba(0, 210, 150, 0.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(255, 190, 55, 0.13),
+      transparent 27%
+    ),
+    linear-gradient(
+      135deg,
+      #fff5fa 0%,
+      #f3faff 38%,
+      #f8f5ff 68%,
+      #f3fff9 100%
+    );
+}
+
+/* =========================================================
+   SOFT DECORATIVE BACKGROUND
+   ========================================================= */
+
+.home-page::before {
+  content: "";
+  position: fixed;
+
+  width: 420px;
+  height: 420px;
+
+  top: 12%;
+  left: -220px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 70, 160, 0.12),
+      transparent 68%
+    );
+
+  filter: blur(30px);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-page::after {
+  content: "";
+  position: fixed;
+
+  width: 430px;
+  height: 430px;
+
+  right: -230px;
+  bottom: 8%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 205, 170, 0.12),
+      transparent 68%
+    );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================================================
+   COMMON
+   ========================================================= */
+
+.home-page main,
+.home-page section {
+  position: relative;
+  z-index: 1;
+}
+
+.home-hero,
+.home-warning-section,
+.process-section,
+.intelligence-section,
+.privacy-section,
+.services-section,
+.responsibility-section,
+.cta-section {
+  width: min(1180px, 92%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================================
+   🌈 RAINBOW TEXT
+   ========================================================= */
+
+.rainbow-heading {
+  background:
+    linear-gradient(
+      90deg,
+      #ff2f7d,
+      #ff7b35,
+      #ffc928,
+      #00b894,
+      #00a8ff,
+      #7357ff,
+      #e54cff,
+      #ff2f7d
+    );
+
+  background-size: 300% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: rainbowFlow 8s linear infinite;
+}
+
+@keyframes rainbowFlow {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 300% center;
+  }
+}
+
+/* =========================================================
+   🔵 SMALL BLUE HEADINGS
+   ========================================================= */
+
+.small-blue-heading {
+  display: inline-block;
+
+  color: #087ee8;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  letter-spacing: 1.8px;
+  line-height: 1.4;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 3px 15px rgba(0, 145, 255, 0.16);
+}
+
+/* =========================================================
+   ODIA EXPLANATION
+   ========================================================= */
+
+.odia-explanation {
+  margin-top: 10px;
+
+  color: #66758a;
+
+  font-size: 13px;
+  line-height: 1.8;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 15px;
+
+  padding: 15px 24px;
+
+  min-height: 52px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 850;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.primary-btn {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      110deg,
+      #ff347f,
+      #ff7b32,
+      #ffc928,
+      #00bf8f,
+      #00aaf5,
+      #7255ff
+    );
+
+  background-size: 250% auto;
+
+  box-shadow:
+    0 14px 35px rgba(255, 65, 145, 0.22);
+
+  animation: rainbowFlow 8s linear infinite;
+}
+
+.secondary-btn {
+  color: #233148;
+
+  background:
+    rgba(255, 255, 255, 0.78);
+
+  border:
+    1px solid rgba(80, 110, 145, 0.15);
+
+  box-shadow:
+    0 10px 30px rgba(70, 90, 125, 0.08);
+
+  backdrop-filter: blur(16px);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-4px);
+}
+
+.primary-btn:hover {
+  box-shadow:
+    0 20px 48px rgba(255, 65, 145, 0.28);
+}
+
+.secondary-btn:hover {
+  border-color:
+    rgba(0, 150, 255, 0.35);
+
+  box-shadow:
+    0 15px 35px rgba(0, 145, 255, 0.1);
+}
+
+/* =========================================================
+   🌈 HERO
+   Main purpose:
+   Explain SWACHHLENS + start reporting journey
+   ========================================================= */
+
+.home-hero {
+  width: min(1180px, 92%);
+  min-height: 90vh;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 90px 0 70px;
+
+  position: relative;
+}
+
+/* =========================================================
+   HERO GLOWS
+   ========================================================= */
+
+.hero-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(5px);
+}
+
+.hero-glow-one {
+  width: 250px;
+  height: 250px;
+
+  top: 8%;
+  left: 3%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 55, 145, 0.15),
+      transparent 70%
+    );
+}
+
+.hero-glow-two {
+  width: 280px;
+  height: 280px;
+
+  right: 3%;
+  top: 15%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 175, 255, 0.15),
+      transparent 70%
+    );
+}
+
+.hero-glow-three {
+  width: 250px;
+  height: 250px;
+
+  bottom: 2%;
+  left: 40%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 200, 145, 0.12),
+      transparent 70%
+    );
+}
+
+/* =========================================================
+   HERO CONTENT
+   ========================================================= */
+
+.hero-content {
+  width: 100%;
+  max-width: 1000px;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   HERO EYEBROW
+   ========================================================= */
+
+.hero-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 17px;
+
+  border-radius: 999px;
+
+  color: #087ee8;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.86),
+      rgba(240, 249, 255, 0.75)
+    );
+
+  border:
+    1px solid rgba(0, 150, 255, 0.15);
+
+  box-shadow:
+    0 10px 35px rgba(0, 145, 255, 0.08);
+
+  backdrop-filter: blur(15px);
+
+  font-size: 11px;
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+}
+
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+
+.home-hero h1 {
+  max-width: 1000px;
+
+  margin: 28px auto 20px;
+
+  font-size:
+    clamp(3.2rem, 7vw, 6.5rem);
+
+  line-height: 0.98;
+
+  letter-spacing: -4px;
+
+  font-weight: 950;
+
+  filter:
+    drop-shadow(
+      0 12px 25px
+      rgba(105, 85, 255, 0.1)
+    );
+}
+
+.home-hero h1 span {
+  display: inline-block;
+}
+
+/* =========================================================
+   HERO DESCRIPTION
+   ========================================================= */
+
+.hero-description {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  color: #58687c;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+
+  font-weight: 500;
+}
+
+.home-hero .odia-explanation {
+  max-width: 720px;
+
+  margin: 13px auto 0;
+
+  color: #6b7a8e;
+}
+
+/* =========================================================
+   HERO ACTIONS
+   ========================================================= */
+
+.hero-actions {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 32px;
+
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   TRUST ROW
+   ========================================================= */
+
+.hero-trust-row {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 62px auto 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 14px;
+}
+
+.trust-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  text-align: left;
+
+  padding: 18px;
+
+  border-radius: 19px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(255, 255, 255, 0.58)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 15px 40px rgba(70, 90, 125, 0.08);
+
+  backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.trust-item:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 22px 50px rgba(70, 90, 125, 0.13);
+}
+
+.trust-item > span {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 75, 160, 0.12),
+      rgba(0, 180, 255, 0.12)
+    );
+
+  font-size: 20px;
+}
+
+.trust-item strong {
+  display: block;
+
+  color: #26344a;
+
+  font-size: 13px;
+
+  margin-bottom: 4px;
+}
+
+.trust-item small {
+  display: block;
+
+  color: #778598;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   ⚠️ IMPORTANT REPORTING RULE
+   ========================================================= */
+
+.home-warning-section {
+  padding: 25px 0 80px;
+}
+
+.warning-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 25px;
+
+  padding: 30px;
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.88),
+      rgba(255, 248, 240, 0.78)
+    );
+
+  border:
+    1px solid rgba(255, 170, 70, 0.2);
+
+  box-shadow:
+    0 20px 55px rgba(100, 90, 100, 0.09);
+
+  backdrop-filter: blur(18px);
+}
+
+.warning-icon {
+  width: 65px;
+  height: 65px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 194, 45, 0.2),
+      rgba(255, 105, 90, 0.13)
+    );
+
+  font-size: 30px;
+}
+
+.warning-content {
+  flex: 1;
+}
+
+.warning-content h2 {
+  margin: 8px 0 10px;
+
+  font-size:
+    clamp(1.7rem, 4vw, 3rem);
+
+  letter-spacing: -1.5px;
+}
+
+.warning-content p {
+  color: #647286;
+
+  line-height: 1.7;
+
+  margin: 5px 0;
+}
+
+.warning-content .odia-explanation {
+  margin-top: 8px;
+}
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.section-heading {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin: 16px 0;
+
+  font-size:
+    clamp(2.5rem, 5vw, 4.4rem);
+
+  line-height: 1.05;
+
+  letter-spacing: -2px;
+
+  font-weight: 950;
+}
+
+.section-heading p {
+  color: #66758a;
+
+  line-height: 1.8;
+
+  margin: 8px auto;
+}
+
+/* =========================================================
+   📋 CITIZEN REPORTING JOURNEY
+   ========================================================= */
+
+.process-section {
+  padding: 100px 0;
+}
+
+.process-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-top: 55px;
+}
+
+.process-card {
+  position: relative;
+
+  min-height: 310px;
+
+  padding: 29px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.86),
+      rgba(255, 255, 255, 0.57)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 20px 50px rgba(75, 90, 125, 0.09);
+
+  backdrop-filter: blur(18px);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.process-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 150px;
+  height: 150px;
+
+  right: -70px;
+  top: -70px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 75, 160, 0.14),
+      rgba(0, 190, 255, 0.13)
+    );
+
+  filter: blur(25px);
+
+  pointer-events: none;
+}
+
+.process-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow:
+    0 28px 65px rgba(75, 90, 125, 0.14);
+}
+
+.process-number {
+  position: absolute;
+
+  top: 20px;
+  right: 22px;
+
+  color: #d4dcea;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+.process-icon {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 70, 150, 0.12),
+      rgba(0, 185, 255, 0.13)
+    );
+
+  font-size: 25px;
+}
+
+.process-card h3 {
+  margin: 9px 0 15px;
+
+  color: #26344a;
+
+  font-size: 22px;
+
+  font-weight: 900;
+}
+
+.process-card ul {
+  margin: 0 0 12px;
+
+  padding-left: 18px;
+}
+
+.process-card li {
+  margin-bottom: 7px;
+
+  color: #66758a;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+.process-card .odia-explanation {
+  margin-top: 12px;
+}
+
+/* =========================================================
+   🧠 HOW SWACHHLENS WORKS
+   ========================================================= */
+
+.intelligence-section {
+  padding: 100px 0;
+}
+
+.intelligence-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-top: 55px;
+}
+
+.intelligence-card {
+  position: relative;
+
+  padding: 29px;
+
+  min-height: 270px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.87),
+      rgba(255, 255, 255, 0.57)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 20px 50px rgba(75, 90, 125, 0.09);
+
+  backdrop-filter: blur(18px);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.intelligence-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow:
+    0 28px 60px rgba(75, 90, 125, 0.14);
+}
+
+.intelligence-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 145px;
+  height: 145px;
+
+  top: -75px;
+  right: -70px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 70, 160, 0.15),
+      rgba(0, 200, 180, 0.13)
+    );
+
+  filter: blur(25px);
+
+  pointer-events: none;
+}
+
+.step-number {
+  color: #087ee8;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+}
+
+.card-icon {
+  margin: 18px 0 13px;
+
+  font-size: 32px;
+}
+
+.intelligence-card h3 {
+  margin: 8px 0 10px;
+
+  color: #26344a;
+
+  font-size: 22px;
+
+  font-weight: 950;
+}
+
+.intelligence-card > p:not(.odia-explanation) {
+  color: #687789;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   🔐 PRIVACY
+   ========================================================= */
+
+.privacy-section {
+  padding: 70px 0 100px;
+}
+
+.privacy-card {
+  display: flex;
+
+  gap: 30px;
+
+  padding: 40px;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.89),
+      rgba(244, 250, 255, 0.68)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 25px 65px rgba(70, 90, 125, 0.1);
+
+  backdrop-filter: blur(20px);
+}
+
+.privacy-icon {
+  width: 70px;
+  height: 70px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 21px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 170, 255, 0.13),
+      rgba(115, 80, 255, 0.13)
+    );
+
+  font-size: 32px;
+}
+
+.privacy-content {
+  flex: 1;
+}
+
+.privacy-content h2 {
+  margin: 13px 0;
+
+  font-size:
+    clamp(2.2rem, 4vw, 3.7rem);
+
+  line-height: 1.05;
+
+  letter-spacing: -1.5px;
+}
+
+.privacy-content > p {
+  color: #647286;
+
+  line-height: 1.8;
+
+  max-width: 800px;
+}
+
+.privacy-points {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 15px;
+
+  margin-top: 28px;
+}
+
+.privacy-points > div {
+  padding: 19px;
+
+  border-radius: 17px;
+
+  background:
+    rgba(255, 255, 255, 0.64);
+
+  border:
+    1px solid rgba(100, 130, 160, 0.1);
+}
+
+.privacy-points > div > span {
+  display: inline-flex;
+
+  width: 27px;
+  height: 27px;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 9px;
+
+  border-radius: 50%;
+
+  color: #00a979;
+
+  background:
+    rgba(0, 190, 140, 0.11);
+
+  font-weight: 900;
+}
+
+.privacy-points strong {
+  display: block;
+
+  color: #2b3850;
+
+  font-size: 14px;
+
+  margin-bottom: 5px;
+}
+
+.privacy-points p {
+  margin: 0;
+
+  color: #738196;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   🚀 WHAT SWACHHLENS PROVIDES
+   ========================================================= */
+
+.services-section {
+  padding: 70px 0 100px;
+}
+
+.service-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-top: 50px;
+}
+
+.service-card {
+  padding: 28px;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.58)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 18px 45px rgba(75, 90, 125, 0.08);
+
+  backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 25px 55px rgba(75, 90, 125, 0.13);
+}
+
+.service-card > span {
+  display: block;
+
+  font-size: 30px;
+
+  margin-bottom: 16px;
+}
+
+.service-card h3 {
+  margin: 0 0 9px;
+
+  color: #26344a;
+
+  font-size: 19px;
+
+  font-weight: 900;
+}
+
+.service-card p {
+  margin: 0;
+
+  color: #6d7b8f;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   🤝 RESPONSIBILITY
+   ========================================================= */
+
+.responsibility-section {
+  padding: 50px 0 100px;
+}
+
+.responsibility-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+.responsibility-card {
+  padding: 35px;
+
+  border-radius: 27px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.87),
+      rgba(255, 255, 255, 0.59)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 22px 55px rgba(75, 90, 125, 0.09);
+
+  backdrop-filter: blur(18px);
+}
+
+.citizen-responsibility {
+  border-top: 4px solid #00b894;
+}
+
+.swachhlens-responsibility {
+  border-top: 4px solid #087ee8;
+}
+
+.responsibility-card h2 {
+  margin: 14px 0 22px;
+
+  font-size:
+    clamp(2rem, 4vw, 3.2rem);
+
+  line-height: 1.05;
+}
+
+.responsibility-card ul {
+  padding-left: 20px;
+
+  margin: 0;
+}
+
+.responsibility-card li {
+  margin-bottom: 10px;
+
+  color: #617084;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+.responsibility-card .odia-explanation {
+  margin-top: 20px;
+}
+
+/* =========================================================
+   🎯 FINAL CTA
+   ========================================================= */
+
+.cta-section {
+  padding: 20px 0 110px;
+}
+
+.cta-card {
+  position: relative;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  padding: 75px 30px;
+
+  border-radius: 32px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 65, 155, 0.16),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 15% 100%,
+      rgba(0, 185, 255, 0.13),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(0, 200, 145, 0.12),
+      transparent 40%
+    ),
+    rgba(255, 255, 255, 0.8);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 28px 75px rgba(70, 90, 125, 0.11);
+
+  backdrop-filter: blur(22px);
+}
+
+.cta-card h2 {
+  margin: 16px 0 18px;
+
+  font-size:
+    clamp(2.5rem, 5vw, 4.5rem);
+
+  line-height: 1.03;
+
+  letter-spacing: -2px;
+}
+
+.cta-card > p {
+  max-width: 680px;
+
+  margin: 0 auto 10px;
+
+  color: #647286;
+
+  line-height: 1.8;
+}
+
+.cta-button {
+  margin-top: 25px;
+}
+
+.cta-note {
+  display: block;
+
+  margin-top: 16px;
+
+  color: #758397;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .home-hero {
+    min-height: auto;
+
+    padding: 85px 0 65px;
+  }
+
+  .process-grid,
+  .intelligence-grid,
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-trust-row {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-item {
+    text-align: left;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .home-page {
+    background:
+      radial-gradient(
+        circle at 0% 0%,
+        rgba(255, 90, 170, 0.19),
+        transparent 31%
+      ),
+      radial-gradient(
+        circle at 100% 12%,
+        rgba(0, 190, 255, 0.17),
+        transparent 31%
+      ),
+      radial-gradient(
+        circle at 15% 80%,
+        rgba(0, 205, 150, 0.13),
+        transparent 30%
+      ),
+      linear-gradient(
+        155deg,
+        #fff5fa,
+        #f4f9ff,
+        #faf6ff,
+        #f3fff9
+      );
+  }
+
+  .home-hero,
+  .home-warning-section,
+  .process-section,
+  .intelligence-section,
+  .privacy-section,
+  .services-section,
+  .responsibility-section,
+  .cta-section {
+    width: 91%;
+  }
+
+  /* HERO */
+
+  .home-hero {
+    min-height: auto;
+
+    padding: 68px 0 55px;
+  }
+
+  .hero-eyebrow {
+    max-width: 94%;
+
+    padding: 9px 13px;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+  }
+
+  .home-hero h1 {
+    margin: 23px auto 18px;
+
+    font-size:
+      clamp(2.65rem, 13vw, 4rem);
+
+    line-height: 1;
+
+    letter-spacing: -2.5px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+
+    line-height: 1.72;
+  }
+
+  .home-hero .odia-explanation {
+    font-size: 12px;
+
+    line-height: 1.8;
+  }
+
+  /* BUTTONS */
+
+  .hero-actions {
+    width: 100%;
+
+    flex-direction: column;
+
+    gap: 11px;
+
+    margin-top: 27px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+
+    min-height: 54px;
+
+    padding: 14px 18px;
+  }
+
+  /* TRUST */
+
+  .hero-trust-row {
+    margin-top: 43px;
+
+    grid-template-columns: 1fr;
+
+    gap: 11px;
+  }
+
+  .trust-item {
+    padding: 16px;
+
+    border-radius: 17px;
+  }
+
+  .trust-item > span {
+    width: 39px;
+    height: 39px;
+
+    font-size: 18px;
+  }
+
+  /* WARNING */
+
+  .home-warning-section {
+    padding: 10px 0 65px;
+  }
+
+  .warning-card {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 17px;
+
+    padding: 23px;
+
+    border-radius: 22px;
+  }
+
+  .warning-icon {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 15px;
+
+    font-size: 25px;
+  }
+
+  .warning-content h2 {
+    font-size: 1.65rem;
+
+    letter-spacing: -0.8px;
+  }
+
+  .warning-content p {
+    font-size: 13px;
+  }
+
+  /* SECTION */
+
+  .process-section,
+  .intelligence-section {
+    padding: 70px 0;
+  }
+
+  .section-heading h2 {
+    font-size:
+      clamp(2.35rem, 10vw, 3rem);
+
+    letter-spacing: -1.2px;
+  }
+
+  .section-heading p {
+    font-size: 14px;
+  }
+
+  /* PROCESS */
+
+  .process-grid,
+  .intelligence-grid,
+  .service-grid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+
+    margin-top: 38px;
+  }
+
+  .process-card {
+    min-height: auto;
+
+    padding: 24px;
+
+    border-radius: 21px;
+  }
+
+  .process-card h3 {
+    font-size: 20px;
+  }
+
+  .process-card li {
+    font-size: 13px;
+  }
+
+  /* INTELLIGENCE */
+
+  .intelligence-card {
+    min-height: auto;
+
+    padding: 24px;
+
+    border-radius: 21px;
+  }
+
+  .intelligence-card h3 {
+    font-size: 21px;
+  }
+
+  /* PRIVACY */
+
+  .privacy-section {
+    padding: 45px 0 70px;
+  }
+
+  .privacy-card {
+    flex-direction: column;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    border-radius: 24px;
+  }
+
+  .privacy-icon {
+    width: 56px;
+    height: 56px;
+
+    border-radius: 16px;
+
+    font-size: 26px;
+  }
+
+  .privacy-content h2 {
+    font-size: 2.25rem;
+
+    letter-spacing: -1px;
+  }
+
+  .privacy-content > p {
+    font-size: 13px;
+  }
+
+  .privacy-points {
+    grid-template-columns: 1fr;
+
+    gap: 11px;
+
+    margin-top: 22px;
+  }
+
+  /* SERVICES */
+
+  .services-section {
+    padding: 50px 0 75px;
+  }
+
+  .service-card {
+    padding: 24px;
+
+    border-radius: 20px;
+  }
+
+  /* RESPONSIBILITY */
+
+  .responsibility-section {
+    padding: 35px 0 75px;
+  }
+
+  .responsibility-grid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .responsibility-card {
+    padding: 26px;
+
+    border-radius: 23px;
+  }
+
+  .responsibility-card h2 {
+    font-size: 2.25rem;
+  }
+
+  /* CTA */
+
+  .cta-section {
+    padding: 0 0 65px;
+  }
+
+  .cta-card {
+    padding: 55px 20px;
+
+    border-radius: 25px;
+  }
+
+  .cta-card h2 {
+    font-size:
+      clamp(2.35rem, 11vw, 3.2rem);
+
+    letter-spacing: -1px;
+  }
+
+  .cta-card > p {
+    font-size: 13px;
+
+    line-height: 1.75;
+  }
+
+  .cta-button {
+    margin-top: 21px;
+  }
+
+  /* SMALL HEADERS */
+
+  .small-blue-heading {
+    font-size: 9px;
+
+    letter-spacing: 1.3px;
+  }
+
+  .odia-explanation {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 390px) {
+  .home-hero,
+  .home-warning-section,
+  .process-section,
+  .intelligence-section,
+  .privacy-section,
+  .services-section,
+  .responsibility-section,
+  .cta-section {
+    width: 92%;
+  }
+
+  .home-hero {
+    padding-top: 55px;
+  }
+
+  .home-hero h1 {
+    font-size: 2.55rem;
+
+    letter-spacing: -2px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-eyebrow {
+    font-size: 8px;
+  }
+
+  .trust-item {
+    padding: 14px;
+  }
+
+  .trust-item strong {
+    font-size: 12px;
+  }
+
+  .trust-item small {
+    font-size: 10px;
+  }
+
+  .warning-card {
+    padding: 20px;
+  }
+
+  .warning-content h2 {
+    font-size: 1.45rem;
+  }
+
+  .section-heading h2 {
+    font-size: 2.2rem;
+  }
+
+  .process-card,
+  .intelligence-card,
+  .service-card {
+    padding: 21px;
+  }
+
+  .privacy-card {
+    padding: 21px;
+  }
+
+  .privacy-content h2 {
+    font-size: 2rem;
+  }
+
+  .responsibility-card {
+    padding: 22px;
+  }
+
+  .responsibility-card h2 {
+    font-size: 2rem;
+  }
+
+  .cta-card {
+    padding: 45px 17px;
+  }
+
+  .cta-card h2 {
+    font-size: 2.15rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) {
+  .primary-btn:hover,
+  .secondary-btn:hover,
+  .process-card:hover,
+  .intelligence-card:hover,
+  .service-card:hover,
+  .trust-item:hover {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

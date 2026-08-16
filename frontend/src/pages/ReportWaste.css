@@ -1,0 +1,3015 @@
+
+/* =========================================================
+   SWACHHLENS REPORT WASTE
+   PREMIUM DARK / BLACK THEME
+========================================================= */
+
+.report-page {
+  min-height: 100vh;
+  width: 100%;
+
+  padding: 80px 0 100px;
+
+  background:
+    radial-gradient(
+      circle at 10% 5%,
+      rgba(0, 245, 160, 0.10),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(0, 217, 255, 0.08),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(100, 50, 255, 0.06),
+      transparent 30%
+    ),
+    #020604;
+
+  color: #ffffff;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FORCE DARK PAGE
+========================================================= */
+
+.report-page,
+.report-page * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #020604;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.report-header {
+  width: min(900px, 92%);
+  margin: 0 auto 45px;
+
+  text-align: center;
+}
+
+.report-badge {
+  display: inline-block;
+
+  padding: 9px 16px;
+
+  border-radius: 999px;
+
+  background: rgba(0, 245, 160, 0.08);
+
+  border: 1px solid rgba(0, 245, 160, 0.28);
+
+  color: #6dffc5;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  box-shadow:
+    0 0 25px rgba(0, 245, 160, 0.05);
+}
+
+.report-header h1 {
+  margin: 24px 0 18px;
+
+  font-size: clamp(3rem, 7vw, 5.5rem);
+
+  line-height: 0.95;
+
+  letter-spacing: -4px;
+
+  font-weight: 950;
+
+  background:
+    linear-gradient(
+      110deg,
+      #ffffff,
+      #79ffd0,
+      #6eeeff,
+      #ffffff
+    );
+
+  background-size: 220% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  animation: titleGlow 7s linear infinite;
+}
+
+@keyframes titleGlow {
+  to {
+    background-position: 220% center;
+  }
+}
+
+.report-header p {
+  width: min(680px, 100%);
+
+  margin: auto;
+
+  color: #879a91;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.report-card {
+  width: min(900px, 92%);
+
+  margin: auto;
+
+  padding: 40px;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 25, 21, 0.96),
+      rgba(5, 12, 9, 0.98)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 35px 100px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(0, 245, 160, 0.025);
+
+  backdrop-filter: blur(20px);
+}
+
+
+/* =========================================================
+   FORM SECTION
+========================================================= */
+
+.form-section {
+  margin-bottom: 28px;
+}
+
+.form-section > label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #dcebe4;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+}
+
+
+/* =========================================================
+   SELECT / INPUT / TEXTAREA
+========================================================= */
+
+select,
+textarea,
+.location-field input {
+  width: 100%;
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+
+  border-radius: 14px;
+
+  outline: none;
+
+  background: #07100c;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  transition: 0.25s ease;
+}
+
+select {
+  height: 53px;
+
+  padding: 0 15px;
+
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 135px;
+
+  padding: 15px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+select:hover,
+textarea:hover,
+.location-field input:hover {
+  border-color: rgba(0, 245, 160, 0.25);
+}
+
+select:focus,
+textarea:focus,
+.location-field input:focus {
+  border-color: #00f5a0;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 245, 160, 0.08),
+    0 0 25px rgba(0, 245, 160, 0.04);
+}
+
+select option {
+  background: #050b08;
+
+  color: #ffffff;
+}
+
+textarea::placeholder,
+.location-field input::placeholder {
+  color: #60736a;
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.location-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+}
+
+.location-field {
+  width: 100%;
+}
+
+.location-field > label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #9eb2a9;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.location-field select,
+.location-field input {
+  height: 53px;
+
+  padding: 0 15px;
+}
+
+.location-field select:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+.locality-field {
+  margin-top: 18px;
+}
+
+
+/* =========================================================
+   LOCATION LOADING
+========================================================= */
+
+.location-loading {
+  margin-top: 12px;
+
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
+  background: rgba(0, 217, 255, 0.05);
+
+  border: 1px solid rgba(0, 217, 255, 0.12);
+
+  color: #6eeeff;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CURRENT LOCATION
+========================================================= */
+
+.current-location-btn {
+  width: 100%;
+
+  min-height: 53px;
+
+  margin-top: 18px;
+
+  padding: 14px;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(0, 217, 255, 0.25);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 217, 255, 0.07),
+      rgba(0, 245, 160, 0.05)
+    );
+
+  color: #74eaff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.current-location-btn:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(0, 217, 255, 0.5);
+
+  box-shadow:
+    0 10px 30px rgba(0, 217, 255, 0.08);
+}
+
+.current-location-btn:disabled {
+  opacity: 0.55;
+
+  cursor: wait;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   GPS
+========================================================= */
+
+.coordinates-box {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 14px;
+
+  padding: 14px 16px;
+
+  border-radius: 12px;
+
+  background: rgba(0, 245, 160, 0.05);
+
+  border: 1px solid rgba(0, 245, 160, 0.14);
+
+  color: #72ffc7;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.coordinates-box span {
+  color: #7f9189;
+
+  font-weight: 500;
+
+  word-break: break-all;
+}
+
+
+/* =========================================================
+   IMAGE UPLOAD
+========================================================= */
+
+.upload-box {
+  min-height: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+
+  text-align: center;
+
+  border: 1.5px dashed rgba(0, 245, 160, 0.28);
+
+  border-radius: 20px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 245, 160, 0.07),
+      transparent 60%
+    );
+
+  transition: 0.25s ease;
+}
+
+.upload-box:hover {
+  border-color: rgba(0, 245, 160, 0.45);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 245, 160, 0.10),
+      transparent 65%
+    );
+}
+
+.upload-icon {
+  font-size: 48px;
+
+  margin-bottom: 10px;
+}
+
+.upload-box h3 {
+  margin: 0 0 7px;
+
+  color: #f0fff8;
+
+  font-size: 19px;
+}
+
+.upload-box p {
+  margin: 0 0 20px;
+
+  color: #70847a;
+
+  font-size: 13px;
+}
+
+.upload-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 11px 20px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 160, 0.12),
+      rgba(0, 217, 255, 0.06)
+    );
+
+  border: 1px solid rgba(0, 245, 160, 0.27);
+
+  color: #72ffc7;
+
+  font-size: 13px;
+
+  font-weight: 850;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 160, 0.20),
+      rgba(0, 217, 255, 0.10)
+    );
+}
+
+.image-preview {
+  width: 100%;
+
+  max-height: 320px;
+
+  object-fit: cover;
+
+  border-radius: 16px;
+
+  margin-bottom: 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   AI BOX
+========================================================= */
+
+.ai-analysis-box {
+  display: flex;
+
+  gap: 15px;
+
+  align-items: flex-start;
+
+  padding: 20px;
+
+  margin-bottom: 25px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 160, 0.08),
+      rgba(0, 217, 255, 0.04)
+    );
+
+  border: 1px solid rgba(0, 245, 160, 0.14);
+}
+
+.ai-icon {
+  width: 45px;
+  height: 45px;
+
+  display: grid;
+
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background: rgba(0, 245, 160, 0.10);
+
+  font-size: 22px;
+}
+
+.ai-analysis-box h3 {
+  margin: 0 0 6px;
+
+  color: #effff8;
+
+  font-size: 15px;
+}
+
+.ai-analysis-box p {
+  margin: 0;
+
+  color: #82968c;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   SUCCESS / ERROR
+========================================================= */
+
+.success-message,
+.error-message {
+  padding: 14px 16px;
+
+  margin-bottom: 16px;
+
+  border-radius: 13px;
+
+  font-size: 13px;
+
+  font-weight: 750;
+}
+
+.success-message {
+  background: rgba(0, 245, 160, 0.08);
+
+  border: 1px solid rgba(0, 245, 160, 0.20);
+
+  color: #75ffc8;
+}
+
+.error-message {
+  background: rgba(255, 70, 70, 0.08);
+
+  border: 1px solid rgba(255, 70, 70, 0.20);
+
+  color: #ff9b9b;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.submit-report-btn {
+  width: 100%;
+
+  min-height: 58px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  padding: 16px;
+
+  background:
+    linear-gradient(
+      110deg,
+      #00f5a0,
+      #00d9ff,
+      #00f5a0
+    );
+
+  background-size: 200% auto;
+
+  color: #02130c;
+
+  font-size: 15px;
+
+  font-weight: 950;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 35px rgba(0, 245, 160, 0.18);
+
+  transition: 0.3s ease;
+
+  animation: submitGlow 5s linear infinite;
+}
+
+@keyframes submitGlow {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.submit-report-btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 18px 50px rgba(0, 245, 160, 0.28);
+}
+
+.submit-report-btn:disabled {
+  opacity: 0.6;
+
+  cursor: wait;
+
+  transform: none;
+
+  animation: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+  .report-page {
+    padding: 60px 0 80px;
+  }
+
+  .report-card {
+    width: 94%;
+
+    padding: 32px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .report-page {
+    padding: 40px 0 60px;
+
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(0, 245, 160, 0.08),
+        transparent 30%
+      ),
+      #020604;
+  }
+
+  .report-header {
+    width: 92%;
+
+    margin-bottom: 30px;
+  }
+
+  .report-header h1 {
+    font-size: clamp(2.7rem, 14vw, 4rem);
+
+    letter-spacing: -2.5px;
+  }
+
+  .report-header p {
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+  .report-card {
+    width: 94%;
+
+    padding: 23px 17px;
+
+    border-radius: 23px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(10, 19, 15, 0.98),
+        rgba(3, 8, 6, 0.99)
+      );
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .location-grid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .upload-box {
+    min-height: 235px;
+
+    padding: 22px 15px;
+  }
+
+  .image-preview {
+    max-height: 240px;
+  }
+
+  .ai-analysis-box {
+    padding: 15px;
+
+    gap: 12px;
+  }
+
+  .ai-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 19px;
+  }
+
+  .coordinates-box {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .current-location-btn {
+    min-height: 53px;
+  }
+
+  .submit-report-btn {
+    min-height: 56px;
+
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 390px) {
+  .report-card {
+    width: 95%;
+
+    padding: 20px 14px;
+  }
+
+  .report-header h1 {
+    font-size: 2.55rem;
+
+    letter-spacing: -2px;
+  }
+
+  select,
+  .location-field select {
+    height: 50px;
+
+    font-size: 13px;
+  }
+
+  .upload-box {
+    min-height: 220px;
+  }
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+
+    transition: none !important;
+  }
+}
+/* =========================================================
+   FINAL SWACHHLENS DARK + RAINBOW OVERRIDE
+========================================================= */
+
+/* FULL PAGE BLACK */
+/* =========================================================
+GLOBAL BROWSER BACKGROUND — LIGHT PINK ONLY
+========================================================= */
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #ffeef5 !important;
+}
+
+body {
+  background: #ffeef5 !important;
+  color: #ffffff;
+
+}
+
+body {
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(0, 245, 160, 0.06),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(0, 217, 255, 0.05),
+      transparent 25%
+    ),
+    #000000 !important;
+}
+
+
+/* =========================================================
+   REPORT PAGE
+========================================================= */
+
+.report-page {
+  min-height: 100vh !important;
+  width: 100%;
+
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(0, 245, 160, 0.07),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(0, 217, 255, 0.06),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(160, 80, 255, 0.05),
+      transparent 30%
+    ),
+    #000000 !important;
+
+  color: #ffffff;
+
+  padding: 80px 0 120px;
+}
+
+
+/* =========================================================
+   RAINBOW HERO
+========================================================= */
+
+.report-header h1 {
+  background:
+    linear-gradient(
+      90deg,
+      #ff3b81,
+      #ff8a00,
+      #ffe600,
+      #00f5a0,
+      #00d9ff,
+      #7c5cff,
+      #ff3b81
+    );
+
+  background-size: 300% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  animation: rainbowText 7s linear infinite;
+
+  text-shadow:
+    0 0 35px rgba(0, 245, 160, 0.08);
+}
+
+@keyframes rainbowText {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 300% center;
+  }
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.report-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 20, 18, 0.98),
+      rgba(3, 7, 5, 0.99)
+    ) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.85),
+    0 0 80px rgba(0, 245, 160, 0.025);
+}
+
+
+/* =========================================================
+   ALL FORM LABELS = RAINBOW
+========================================================= */
+
+.report-card label,
+.report-card .form-section > label,
+.report-card .location-field > label {
+  background:
+    linear-gradient(
+      90deg,
+      #ff4f9a,
+      #ff9d00,
+      #ffe600,
+      #00f5a0,
+      #00d9ff,
+      #8b5cf6
+    );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: rainbowText 8s linear infinite;
+
+  font-weight: 850;
+}
+
+
+/* =========================================================
+   FORM INPUTS
+========================================================= */
+
+.report-card select,
+.report-card input,
+.report-card textarea {
+  background: #050807 !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.35);
+
+  transition: 0.3s ease;
+}
+
+.report-card select:hover,
+.report-card input:hover,
+.report-card textarea:hover {
+  border-color: rgba(0, 245, 160, 0.35);
+}
+
+.report-card select:focus,
+.report-card input:focus,
+.report-card textarea:focus {
+  border-color: transparent;
+
+  background:
+    linear-gradient(#050807, #050807) padding-box,
+    linear-gradient(
+      90deg,
+      #ff3b81,
+      #ff9d00,
+      #ffe600,
+      #00f5a0,
+      #00d9ff,
+      #8b5cf6
+    ) border-box;
+
+  border: 1px solid transparent;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 245, 160, 0.05),
+    0 0 25px rgba(0, 245, 160, 0.06);
+}
+
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+.report-card select option {
+  background: #050807 !important;
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   IMAGE UPLOAD
+========================================================= */
+
+.upload-box {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 245, 160, 0.06),
+      transparent 60%
+    ),
+    #030605;
+
+  border:
+    1px dashed rgba(0, 245, 160, 0.30);
+
+  box-shadow:
+    inset 0 0 40px rgba(0, 245, 160, 0.015);
+}
+
+
+/* =========================================================
+   UPLOAD TITLE = RAINBOW
+========================================================= */
+
+.upload-box h3 {
+  background:
+    linear-gradient(
+      90deg,
+      #ff4f9a,
+      #ff9d00,
+      #ffe600,
+      #00f5a0,
+      #00d9ff,
+      #8b5cf6
+    );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: rainbowText 8s linear infinite;
+}
+
+
+/* =========================================================
+   UPLOAD BUTTON
+========================================================= */
+
+.upload-btn {
+  background:
+    linear-gradient(#07110d, #07110d) padding-box,
+    linear-gradient(
+      90deg,
+      #ff3b81,
+      #ff9d00,
+      #ffe600,
+      #00f5a0,
+      #00d9ff,
+      #8b5cf6
+    ) border-box;
+
+  border: 1px solid transparent;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 25px rgba(0, 245, 160, 0.05);
+}
+
+
+/* =========================================================
+   CURRENT LOCATION BUTTON
+========================================================= */
+
+.current-location-btn {
+  background:
+    linear-gradient(#06100c, #06100c) padding-box,
+    linear-gradient(
+      90deg,
+      #00f5a0,
+      #00d9ff,
+      #7c5cff,
+      #ff3b81
+    ) border-box;
+
+  border: 1px solid transparent;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   GPS BOX
+========================================================= */
+
+.coordinates-box {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 160, 0.05),
+      rgba(0, 217, 255, 0.04)
+    );
+
+  border:
+    1px solid rgba(0, 245, 160, 0.18);
+}
+
+
+/* =========================================================
+   AI ANALYSIS
+========================================================= */
+
+.ai-analysis-box {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 160, 0.07),
+      rgba(0, 217, 255, 0.04),
+      rgba(139, 92, 246, 0.04)
+    );
+
+  border:
+    1px solid rgba(0, 245, 160, 0.15);
+}
+
+
+/* AI TITLE RAINBOW */
+
+.ai-analysis-box h3 {
+  background:
+    linear-gradient(
+      90deg,
+      #00f5a0,
+      #00d9ff,
+      #8b5cf6,
+      #ff4f9a
+    );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: rainbowText 8s linear infinite;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON = RAINBOW
+========================================================= */
+
+.submit-report-btn {
+  background:
+    linear-gradient(
+      90deg,
+      #ff3b81,
+      #ff8a00,
+      #ffe600,
+      #00f5a0,
+      #00d9ff,
+      #7c5cff,
+      #ff3b81
+    );
+
+  background-size: 300% auto;
+
+  color: #000000;
+
+  animation:
+    rainbowButton 7s linear infinite;
+
+  box-shadow:
+    0 12px 40px rgba(0, 245, 160, 0.12);
+}
+
+@keyframes rainbowButton {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 300% center;
+  }
+}
+
+.submit-report-btn:hover {
+  box-shadow:
+    0 18px 55px rgba(0, 245, 160, 0.22);
+
+  transform: translateY(-3px) scale(1.01);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  html,
+  body,
+  #root {
+    background: #ffeef5 !important;
+  }
+
+  /* baaki mobile CSS exactly same rahega */
+
+
+  .report-card {
+    width: 94%;
+
+    padding: 22px 17px;
+
+    border-radius: 23px;
+  }
+
+  .report-header h1 {
+    font-size: clamp(2.7rem, 14vw, 4rem);
+
+    letter-spacing: -2.5px;
+  }
+
+  .location-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coordinates-box {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   🌈 SWACHHLENS — PREMIUM LIGHT BACKGROUND OVERRIDE
+   GPS / LOCATION VISIBILITY + MOBILE RESPONSIVE
+   ========================================================= */
+
+/* PAGE BACKGROUND */
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(3, 35, 56, 0.18),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(35, 98, 192, 0.777),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(30, 9, 80, 0.12),
+      transparent 35%
+    ),
+    #20b590 !important;
+}
+
+/* MAIN REPORT PAGE */
+.report-page {
+  min-height: 100vh !important;
+
+  background:
+    radial-gradient(
+      circle at 10% 5%,
+      rgba(0, 245, 160, 0.16),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(0, 217, 255, 0.13),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(139, 92, 246, 0.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #f8fffc,
+      #eefaf6,
+      #f5f9ff
+    ) !important;
+
+  color: #15251f !important;
+}
+
+/* HERO DESCRIPTION */
+.report-header p {
+  color: #536b61 !important;
+}
+
+/* MAIN CARD — LIGHT PREMIUM GLASS */
+.report-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(52, 53, 53, 0.97),
+      rgba(16, 94, 212, 0.96)
+    ) !important;
+
+  border: 1px solid rgba(0, 120, 90, 0.12) !important;
+
+  box-shadow:
+    0 25px 80px rgba(20, 80, 60, 0.12),
+    0 5px 25px rgba(0, 0, 0, 0.05) !important;
+
+  backdrop-filter: blur(20px);
+}
+
+/* INPUTS / SELECTS / TEXTAREA */
+.report-card select,
+.report-card input,
+.report-card textarea {
+  background: #ffffff !important;
+
+  color: #17251f !important;
+
+  border: 1px solid rgba(30, 90, 70, 0.16) !important;
+
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* PLACEHOLDER */
+.report-card textarea::placeholder,
+.report-card input::placeholder {
+  color: #8a9b94 !important;
+}
+
+/* DROPDOWN OPTIONS */
+.report-card select option {
+  background: #ffffff !important;
+  color: #17251f !important;
+}
+
+/* LOCATION FIELD LABELS */
+.report-card .form-section > label,
+.report-card .location-field > label {
+  font-weight: 850;
+}
+
+/* UPLOAD AREA */
+.upload-box {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 245, 160, 0.10),
+      transparent 65%
+    ),
+    #f7fffb !important;
+
+  border: 1.5px dashed rgba(0, 150, 110, 0.30) !important;
+
+  box-shadow:
+    inset 0 0 35px rgba(0, 180, 130, 0.04) !important;
+}
+
+/* UPLOAD DESCRIPTION */
+.upload-box p {
+  color: #657b72 !important;
+}
+
+/* CURRENT LOCATION BUTTON */
+.current-location-btn {
+  background:
+    linear-gradient(
+      135deg,
+      #e9fff7,
+      #e9faff
+    ) !important;
+
+  color: #08785d !important;
+
+  border: 1px solid rgba(0, 150, 120, 0.25) !important;
+
+  box-shadow:
+    0 8px 25px rgba(0, 180, 150, 0.08);
+}
+
+/* CURRENT LOCATION BUTTON HOVER */
+.current-location-btn:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #dffff2,
+      #ddf8ff
+    ) !important;
+
+  box-shadow:
+    0 12px 35px rgba(0, 180, 150, 0.15);
+}
+
+/* =========================================================
+   📍 GPS RESULT — PREMIUM LOCATION CARD
+   ========================================================= */
+
+.current-location-result {
+  margin-top: 16px;
+
+  padding: 18px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f1fffa
+    ) !important;
+
+  border: 1px solid rgba(0, 170, 125, 0.18) !important;
+
+  color: #18352b !important;
+
+  box-shadow:
+    0 12px 35px rgba(0, 100, 75, 0.08),
+    inset 0 0 25px rgba(0, 245, 160, 0.025);
+}
+
+/* LOCATION TITLE */
+.current-location-result > strong {
+  display: block;
+
+  color: #08785d !important;
+
+  font-size: 14px;
+
+  font-weight: 900;
+}
+
+/* LOCATION DETAILS */
+.current-location-result span {
+  color: #405b51 !important;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+/* LOCATION DETAIL STRONG TEXT */
+.current-location-result span strong {
+  color: #172f26 !important;
+}
+
+/* COORDINATES */
+.current-location-result span:nth-child(4) {
+  padding: 9px 11px;
+
+  border-radius: 10px;
+
+  background: rgba(0, 190, 145, 0.07);
+
+  color: #08785d !important;
+
+  word-break: break-word;
+}
+
+/* FULL ADDRESS */
+.current-location-result span:last-child {
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  background: rgba(90, 110, 105, 0.06);
+
+  color: #61736c !important;
+
+  word-break: break-word;
+}
+
+/* AI BOX */
+.ai-analysis-box {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 160, 0.08),
+      rgba(0, 217, 255, 0.07),
+      rgba(139, 92, 246, 0.05)
+    ) !important;
+
+  border: 1px solid rgba(0, 150, 120, 0.14) !important;
+}
+
+.ai-analysis-box p {
+  color: #61766d !important;
+}
+
+/* LOADING */
+.location-loading {
+  background: rgba(0, 217, 255, 0.07) !important;
+
+  color: #087c9c !important;
+
+  border-color: rgba(0, 170, 210, 0.18) !important;
+}
+
+/* SUCCESS */
+.success-message {
+  background: rgba(0, 180, 120, 0.08) !important;
+
+  color: #08785d !important;
+
+  border-color: rgba(0, 170, 120, 0.18) !important;
+}
+
+/* ERROR */
+.error-message {
+  background: rgba(255, 70, 70, 0.07) !important;
+}
+
+/* =========================================================
+   📱 MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  html,
+  body,
+  #root {
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(0, 245, 160, 0.15),
+        transparent 30%
+      ),
+      linear-gradient(
+        180deg,
+        #f8fffc,
+        #f2f9f7
+      ) !important;
+  }
+
+  .report-page {
+    padding: 40px 0 70px !important;
+
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(0, 245, 160, 0.14),
+        transparent 28%
+      ),
+      linear-gradient(
+        180deg,
+        #f8fffc,
+        #eef8f5
+      ) !important;
+  }
+
+  .report-card {
+    width: 94% !important;
+
+    padding: 22px 17px !important;
+
+    border-radius: 23px !important;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.98),
+        rgba(245, 252, 249, 0.97)
+      ) !important;
+  }
+
+  .current-location-result {
+    padding: 15px !important;
+
+    border-radius: 16px !important;
+  }
+
+  .current-location-result span {
+    font-size: 12px !important;
+  }
+
+  .current-location-result span:last-child {
+    line-height: 1.55;
+  }
+}
+
+/* SMALL PHONES */
+@media (max-width: 390px) {
+
+  .report-card {
+    width: 95% !important;
+
+    padding: 20px 14px !important;
+  }
+
+  .current-location-result {
+    padding: 13px !important;
+  }
+}
+
+/* =========================================================
+   WASTE SITUATION SUGGESTIONS
+========================================================= */
+
+.situation-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.situation-suggestions button {
+  padding: 9px 13px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(0, 150, 120, 0.18);
+
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #f0faf6
+  );
+
+  color: #356257;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.situation-suggestions button:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(0, 180, 140, 0.40);
+
+  background: linear-gradient(
+    135deg,
+    #eafff7,
+    #eafaff
+  );
+
+  color: #08785d;
+
+  box-shadow:
+    0 7px 20px rgba(0, 150, 120, 0.10);
+}
+
+.situation-suggestions button:active {
+  transform: scale(0.97);
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+  .situation-suggestions {
+    gap: 7px;
+  }
+
+  .situation-suggestions button {
+    font-size: 11px;
+    padding: 8px 11px;
+  }
+
+}
+.upload-box {
+  min-height: 280px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px;
+  text-align: center;
+
+  border-radius: 22px;
+
+  /* PREMIUM GOLD PLATE */
+  background:
+    linear-gradient(
+      135deg,
+      #5c4308 0%,
+      #a87916 18%,
+      #e6bd4f 38%,
+      #8f6810 55%,
+      #d9aa32 72%,
+      #76530a 100%
+    );
+
+  border: 2px solid #d8ad3d;
+
+  box-shadow:
+    inset 0 2px 0 rgba(255, 235, 150, 0.55),
+    inset 0 -3px 10px rgba(55, 35, 0, 0.55),
+    0 15px 40px rgba(0, 0, 0, 0.45);
+
+  position: relative;
+  overflow: hidden;
+
+  transition: 0.3s ease;
+}
+
+/* GOLD METALLIC SHINE */
+
+.upload-box::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.22) 45%,
+      transparent 65%
+    );
+
+  transform: translateX(-100%);
+
+  transition: 0.8s ease;
+
+  pointer-events: none;
+}
+
+.upload-box:hover::before {
+  transform: translateX(100%);
+}
+
+/* KEEP CONTENT ABOVE SHINE */
+
+.upload-box > * {
+  position: relative;
+  z-index: 1;
+}
+/* =========================================================
+   👤 CITIZEN SITUATION — NEW QUESTIONS
+   KEEP EXISTING COLORS / THEME
+========================================================= */
+
+.citizen-situation-section {
+  margin-top: 10px;
+}
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.citizen-situation-section .section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+
+  margin-bottom: 25px;
+  padding: 20px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 160, 0.07),
+      rgba(0, 217, 255, 0.05),
+      rgba(139, 92, 246, 0.04)
+    );
+
+  border: 1px solid rgba(0, 150, 120, 0.14);
+}
+
+/* =========================================================
+   SECTION ICON
+========================================================= */
+
+.citizen-situation-section .section-icon {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 160, 0.12),
+      rgba(0, 217, 255, 0.08)
+    );
+
+  border: 1px solid rgba(0, 150, 120, 0.18);
+
+  font-size: 21px;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.citizen-situation-section .section-heading h2 {
+  margin: 0 0 7px;
+
+  font-size: 20px;
+  font-weight: 900;
+
+  color: #08785d;
+}
+
+.citizen-situation-section .section-heading p {
+  margin: 0;
+
+  color: #61766d;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.citizen-situation-section .section-heading .odia-section-text {
+  margin-top: 8px;
+
+  color: #71847d;
+
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   INDIVIDUAL QUESTION CARD
+========================================================= */
+
+.situation-question {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 14px;
+
+  padding: 18px 20px;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(245, 252, 249, 0.96)
+    );
+
+  border: 1px solid rgba(30, 90, 70, 0.13);
+
+  box-shadow:
+    0 7px 22px rgba(0, 80, 60, 0.05);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* QUESTION HOVER */
+
+.situation-question:hover {
+  transform: translateY(-1px);
+
+  border-color: rgba(0, 150, 120, 0.25);
+
+  box-shadow:
+    0 10px 28px rgba(0, 100, 75, 0.08);
+}
+
+/* =========================================================
+   QUESTION CONTENT
+========================================================= */
+
+.question-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.question-content h3 {
+  margin: 0 0 7px;
+
+  color: #172f26;
+
+  font-size: 14px;
+  font-weight: 850;
+
+  line-height: 1.55;
+}
+
+.question-odia {
+  margin: 0;
+
+  color: #71847d;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   YES / NO CONTAINER
+========================================================= */
+
+.yes-no-options {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   YES / NO OPTION
+   CLEAR BORDER
+========================================================= */
+
+.yes-no-option {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 72px;
+  min-height: 42px;
+
+  padding: 0 15px;
+
+  border-radius: 11px;
+
+  /* IMPORTANT: VISIBLE BORDER */
+  border: 1.5px solid rgba(30, 90, 70, 0.22);
+
+  background: #ffffff;
+
+  color: #405b51;
+
+  cursor: pointer;
+
+  transition:
+    all 0.25s ease;
+
+  font-size: 12px;
+
+  font-weight: 850;
+}
+
+/* =========================================================
+   HIDE RADIO CIRCLE
+========================================================= */
+
+.yes-no-option input {
+  position: absolute;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   YES / NO TEXT
+========================================================= */
+
+.yes-no-option span {
+  display: block;
+
+  color: inherit;
+
+  font-size: 12px;
+  font-weight: 850;
+
+  transition: 0.25s ease;
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.yes-no-option:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(0, 150, 120, 0.55);
+
+  background:
+    linear-gradient(
+      135deg,
+      #eafff7,
+      #eafaff
+    );
+
+  color: #08785d;
+
+  box-shadow:
+    0 7px 20px rgba(0, 150, 120, 0.10);
+}
+
+/* =========================================================
+   SELECTED YES / NO
+========================================================= */
+
+.yes-no-option:has(input:checked) {
+  border-color: #08785d;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eafff7,
+      #eafaff
+    );
+
+  color: #08785d;
+
+  box-shadow:
+    0 0 0 2px rgba(0, 150, 120, 0.08),
+    0 8px 22px rgba(0, 150, 120, 0.12);
+}
+
+/* =========================================================
+   SELECTED TEXT
+========================================================= */
+
+.yes-no-option input:checked + span {
+  color: #08785d;
+
+  font-weight: 950;
+}
+
+/* =========================================================
+   YES / NO FOCUS
+========================================================= */
+
+.yes-no-option:focus-within {
+  border-color: #08785d;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 150, 120, 0.10);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .citizen-situation-section .section-heading {
+    gap: 12px;
+
+    padding: 16px;
+
+    border-radius: 16px;
+  }
+
+  .citizen-situation-section .section-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 18px;
+  }
+
+  .citizen-situation-section .section-heading h2 {
+    font-size: 17px;
+  }
+
+  .citizen-situation-section .section-heading p {
+    font-size: 12px;
+  }
+
+  .citizen-situation-section .section-heading .odia-section-text {
+    font-size: 11px;
+  }
+
+  /* QUESTION */
+
+  .situation-question {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 14px;
+
+    padding: 16px;
+
+    border-radius: 15px;
+  }
+
+  .question-content h3 {
+    font-size: 13px;
+  }
+
+  .question-odia {
+    font-size: 11px;
+  }
+
+  /* YES / NO */
+
+  .yes-no-options {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 9px;
+  }
+
+  .yes-no-option {
+    width: 100%;
+
+    min-height: 44px;
+  }
+}
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .situation-question {
+    padding: 14px;
+  }
+
+  .question-content h3 {
+    font-size: 12px;
+  }
+
+  .question-odia {
+    font-size: 10.5px;
+  }
+
+  .yes-no-option {
+    min-height: 42px;
+
+    font-size: 11px;
+  }
+
+  .yes-no-option span {
+    font-size: 11px;
+  }
+}
+/* =========================================================
+   👤 CITIZEN SITUATION — QUESTION COLORS
+   English → Dark Blue
+   Odia → Light Green
+   SIZE UNCHANGED
+========================================================= */
+
+.situation-question .question-content h3 {
+  color: #062b45 !important;
+}
+
+.situation-question .question-content .question-odia {
+  color: #39d353 !important;
+}
+/* =========================================================
+   📍 LOCATION SAVE BUTTONS + SUCCESS MESSAGE
+   ALWAYS VISIBLE + CENTERED
+========================================================= */
+
+/* Location action buttons container */
+.location-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+/* CHOOSE THIS / SAVE buttons */
+.location-actions button,
+.choose-location-btn,
+.save-location-btn,
+.manual-location-save-btn {
+  width: 100%;
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 18px;
+
+  border-radius: 14px;
+
+  /* STRONG VISIBLE BORDER */
+  border: 3px solid #00d9ff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #eafff8
+    ) !important;
+
+  color: #063b52 !important;
+
+  font-size: 14px;
+  font-weight: 950;
+
+  cursor: pointer;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  box-shadow:
+    0 0 0 2px rgba(0, 217, 255, 0.12),
+    0 8px 25px rgba(0, 150, 180, 0.16);
+
+  transition: all 0.25s ease;
+}
+
+/* SECOND / ALTERNATE LOCATION BUTTON */
+.location-actions button:nth-child(2),
+.choose-location-btn:nth-child(2),
+.save-location-btn:nth-child(2),
+.manual-location-save-btn:nth-child(2) {
+  border-color: #00c878 !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #edfff7
+    ) !important;
+
+  color: #075c43 !important;
+}
+
+/* HOVER */
+.location-actions button:hover,
+.choose-location-btn:hover,
+.save-location-btn:hover,
+.manual-location-save-btn:hover {
+  transform: translateY(-2px);
+
+  border-color: #ff3b81 !important;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 59, 129, 0.12),
+    0 12px 30px rgba(0, 180, 150, 0.20);
+}
+
+/* ACTIVE */
+.location-actions button:active,
+.choose-location-btn:active,
+.save-location-btn:active,
+.manual-location-save-btn:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================================================
+   ✅ SAVE SUCCESS MESSAGE
+   EXACTLY BELOW SAVE BUTTON
+========================================================= */
+
+.location-save-message,
+.manual-location-save-message,
+.location-success-message {
+  width: 100%;
+
+  display: block;
+
+  margin: 10px auto 0;
+
+  padding: 14px 18px;
+
+  text-align: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eafff7,
+      #e8fbff
+    ) !important;
+
+  border: 2px solid #00c878 !important;
+
+  color: #056044 !important;
+
+  font-size: 14px;
+
+  font-weight: 900;
+
+  line-height: 1.5;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  box-shadow:
+    0 6px 22px rgba(0, 180, 130, 0.14);
+}
+
+
+/* =========================================================
+   CURRENT LOCATION RESULT
+   MESSAGE/DETAILS ALWAYS BELOW ITS BUTTON
+========================================================= */
+
+.current-location-result {
+  width: 100%;
+
+  margin: 10px auto 0 !important;
+
+  text-align: left;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+
+/* =========================================================
+   MANUAL LOCATION SAVE AREA
+========================================================= */
+
+.manual-location-section,
+.manual-location-actions {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .location-actions {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .location-actions button,
+  .choose-location-btn,
+  .save-location-btn,
+  .manual-location-save-btn {
+    width: 100%;
+    min-height: 55px;
+
+    font-size: 13px;
+
+    border-width: 3px !important;
+  }
+
+  .location-save-message,
+  .manual-location-save-message,
+  .location-success-message {
+    width: 100%;
+
+    margin-top: 9px;
+
+    padding: 13px 14px;
+
+    font-size: 13px;
+  }
+}
+/* =========================================================
+   👤 SAVE CITIZEN SITUATION
+   CENTER + BRIGHT + STRONG BORDER + ALWAYS VISIBLE
+========================================================= */
+
+.save-situation-btn {
+  width: 100% !important;
+  min-height: 56px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 18px auto 0 !important;
+  padding: 14px 20px !important;
+
+  border: 3px solid #00d9ff !important;
+  border-radius: 14px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #eafff8
+    ) !important;
+
+  color: #063b52 !important;
+
+  font-size: 14px !important;
+  font-weight: 950 !important;
+
+  text-align: center !important;
+
+  cursor: pointer !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  box-shadow:
+    0 0 0 2px rgba(0, 217, 255, 0.12),
+    0 8px 25px rgba(0, 150, 180, 0.16) !important;
+
+  transition: all 0.25s ease !important;
+}
+
+/* HOVER */
+.save-situation-btn:hover {
+  transform: translateY(-2px) !important;
+
+  border-color: #ff3b81 !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff5fa,
+      #eafaff
+    ) !important;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 59, 129, 0.12),
+    0 12px 30px rgba(0, 180, 150, 0.20) !important;
+}
+
+/* CLICK */
+.save-situation-btn:active {
+  transform: scale(0.98) !important;
+}
+
+/* MOBILE */
+@media (max-width: 650px) {
+  .save-situation-btn {
+    width: 100% !important;
+    min-height: 55px !important;
+    margin-top: 16px !important;
+    font-size: 13px !important;
+    border-width: 3px !important;
+  }
+}
+/* =========================================================
+   🌈 FINAL VIEW REPORT ANALYSIS BUTTON
+========================================================= */
+
+.next-report-status-btn {
+  width: 100%;
+  min-height: 60px;
+
+  margin-top: 18px;
+  padding: 15px 20px;
+
+  border-radius: 16px;
+  border: 2px solid transparent;
+
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(
+      90deg,
+      #ff3b81,
+      #ff8a00,
+      #ffe600,
+      #00f5a0,
+      #00d9ff,
+      #7c5cff,
+      #ff3b81
+    ) border-box;
+
+  background-size: 300% auto;
+
+  color: transparent;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 950;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  animation: finalRainbowText 6s linear infinite;
+
+  box-shadow:
+    0 10px 30px rgba(0, 217, 255, 0.10);
+}
+
+@keyframes finalRainbowText {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 300% center;
+  }
+}
+
+.next-report-status-btn:hover {
+  transform: translateY(-3px) scale(1.01);
+
+  box-shadow:
+    0 16px 45px rgba(0, 245, 160, 0.20);
+}
+
+.next-report-status-btn:active {
+  transform: scale(0.98);
+}
+/* =========================================================
+   REPORT ID ACTION BUTTONS
+========================================================= */
+
+.report-id-action,
+.report-analysis-action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================================================
+   CREATE REPORT ID
+========================================================= */
+
+.create-report-id-btn {
+  width: min(420px, 100%);
+  min-height: 58px;
+
+  margin-top: 18px;
+  padding: 15px 22px;
+
+  border-radius: 16px;
+  border: 3px solid transparent;
+
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(
+      90deg,
+      #ff1744,
+      #ff9800,
+      #ffee00,
+      #00e676,
+      #00e5ff,
+      #7c4dff,
+      #ff1744
+    ) border-box;
+
+  color: #111111;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 950;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18),
+    0 0 22px rgba(0, 229, 255, 0.16);
+
+  transition: all 0.3s ease;
+}
+
+.create-report-id-btn:hover {
+  transform: translateY(-3px) scale(1.01);
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.22),
+    0 0 30px rgba(0, 229, 255, 0.25);
+}
+
+/* =========================================================
+   REPORT ID SUCCESS MESSAGE
+========================================================= */
+
+.report-id-success-message {
+  width: min(700px, 100%);
+
+  margin: 16px auto 0;
+  padding: 15px 18px;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eafff5,
+      #e9fbff
+    );
+
+  border: 2px solid rgba(0, 160, 120, 0.25);
+
+  color: #08785d;
+
+  font-size: 14px;
+  font-weight: 850;
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 25px rgba(0, 120, 90, 0.10);
+}/* =====================================================
+   CONTINUE TO ANALYSIS & STATUS
+===================================================== */
+
+.report-analysis-action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   CONTINUE BUTTON
+===================================================== */
+
+.continue-analysis-btn {
+  width: min(420px, 100%);
+  min-height: 58px;
+
+  margin-top: 18px;
+  padding: 15px 22px;
+
+  border-radius: 16px;
+  border: 3px solid transparent;
+
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(
+      90deg,
+      #ff1744,
+      #ff9800,
+      #ffee00,
+      #00e676,
+      #00e5ff,
+      #7c4dff,
+      #ff1744
+    ) border-box;
+
+  color: #111111;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 950;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18),
+    0 0 22px rgba(0, 229, 255, 0.16);
+
+  transition: all 0.3s ease;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.continue-analysis-btn:hover {
+  transform: translateY(-3px) scale(1.01);
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.22),
+    0 0 30px rgba(0, 229, 255, 0.25);
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
+
+.continue-analysis-btn:active {
+  transform: scale(0.97);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .report-analysis-action {
+    margin-top: 22px;
+    margin-bottom: 18px;
+  }
+
+  .continue-analysis-btn {
+    width: 90%;
+    max-width: 420px;
+
+    min-height: 56px;
+
+    padding: 14px 18px;
+
+    border-radius: 16px;
+
+    font-size: 15px;
+  }
+}
+/* =====================================================
+   AI IMAGE ANALYSIS
+===================================================== */
+
+.ai-image-analysis {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-analyze-image-btn {
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #2563eb
+  );
+  color: white;
+  transition: 0.25s ease;
+}
+
+.ai-analyze-image-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.3);
+}
+
+.ai-analyze-image-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.ai-analysis-loading {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.ai-analysis-success {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #22c55e;
+  text-align: center;
+  font-weight: 600;
+}
+
+.ai-analysis-error {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+  text-align: center;
+  font-weight: 600;
+}
+/* =====================================================
+   AI ANALYSIS MESSAGE
+   ===================================================== */
+
+.ai-analysis-message {
+  width: 100%;
+  max-width: 720px;
+
+  margin: 22px auto;
+
+  padding: 18px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  background: #ffffff;
+
+  border: 3px solid transparent;
+  border-radius: 16px;
+
+  text-align: center;
+
+  color: #1f2937;
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+
+  position: relative;
+
+  box-sizing: border-box;
+
+  /* Rainbow border */
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(
+      90deg,
+      #ff0080,
+      #ff8a00,
+      #ffe600,
+      #00d4ff,
+      #7c3aed,
+      #ff0080
+    ) border-box;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Warning icon */
+
+.ai-analysis-message::before {
+  content: "⚠️";
+
+  font-size: 24px;
+
+  flex-shrink: 0;
+}
+
+/* Message text */
+
+.ai-analysis-message {
+  white-space: normal;
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  .ai-analysis-message {
+    max-width: 95%;
+
+    padding: 16px 18px;
+
+    font-size: 14px;
+
+    gap: 9px;
+  }
+
+  .ai-analysis-message::before {
+    font-size: 21px;
+  }
+
+}
+/* =========================================================
+   AI LONG TEXT
+========================================================= */
+
+.ai-long-text {
+  display: block;
+
+  color: #101827 !important;
+
+  font-size: 15px !important;
+
+  font-weight: 750 !important;
+
+  line-height: 1.7 !important;
+
+  white-space: normal;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+}
