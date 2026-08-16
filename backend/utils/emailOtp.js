@@ -211,7 +211,7 @@ if (!emailResult.success) {
           5 * 60 * 1000,
 
         messageId:
-          info.messageId,
+          emailResult.messageId,
 
         createdAt:
           Date.now(),
@@ -223,12 +223,12 @@ if (!emailResult.success) {
     );
 
     console.log(
-      `📨 Message ID: ${info.messageId}`
+      `📨 Message ID: ${emailResult.messageId}`
     );
 
     return {
       success: true,
-      messageId: info.messageId,
+      messageId: emailResult.messageId,
     };
   } catch (error) {
 
@@ -850,13 +850,13 @@ if (!emailResult.success) {
     );
 
     console.log(
-      `📨 Message ID: ${info.messageId}`
+      `📨 Message ID: ${emailResult.messageId}`
     );
 
     return {
       success: true,
       messageId:
-        info.messageId,
+        emailResult.messageId,
     };
 
   } catch (error) {
