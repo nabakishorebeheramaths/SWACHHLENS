@@ -1,49 +1,88 @@
-const { Resend } = require("resend");
+const crypto = require("crypto");
 
-const resend = new Resend(
-  process.env.RESEND_API_KEY
-);
+// =====================================================
+// BREVO HTTP EMAIL API
+// =====================================================
 
-const RESEND_FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL ||
-  "onboarding@resend.dev";
-
-
-const sendViaResend = async ({
+const sendViaBrevo = async ({
   to,
   subject,
   text,
   html,
 }) => {
-
   try {
-
-    const result =
-      await resend.emails.send({
-        from: RESEND_FROM_EMAIL,
-        to: [to],
-        subject,
-        text,
-        html,
-      });
-
-    if (result.error) {
+    if (!process.env.BREVO_API_KEY) {
       throw new Error(
-        result.error.message ||
-        "Resend email sending failed."
+        "BREVO_API_KEY is not configured."
       );
     }
+
+    if (!process.env.BREVO_SENDER_EMAIL) {
+      throw new Error(
+        "BREVO_SENDER_EMAIL is not configured."
+      );
+    }
+
+    const response = await fetch(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "api-key":
+            process.env.BREVO_API_KEY,
+          "content-type":
+            "application/json",
+        },
+        body: JSON.stringify({
+          sender: {
+            name:
+              process.env.BREVO_SENDER_NAME ||
+              "SWACHHLENS",
+            email:
+              process.env.BREVO_SENDER_EMAIL,
+          },
+
+          to: [
+            {
+              email: to,
+            },
+          ],
+
+          subject,
+
+          textContent:
+            text || "",
+
+          htmlContent:
+            html || "",
+        }),
+      }
+    );
+
+    const data =
+      await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data?.message ||
+        "Brevo email sending failed."
+      );
+    }
+
+    console.log(
+      `✅ Brevo email sent to: ${to}`
+    );
 
     return {
       success: true,
       messageId:
-        result.data?.id || null,
+        data?.messageId || null,
     };
 
   } catch (error) {
-
     console.error(
-      "❌ Resend Email Error:",
+      "❌ Brevo Email Error:",
       error
     );
 
@@ -56,15 +95,12 @@ const sendViaResend = async ({
     };
   }
 };
-const crypto = require("crypto");
 
 // =====================================================
 // OTP STORE
 // =====================================================
 
 const otpStore = new Map();
-
-
 // =====================================================
 // SEND EMAIL OTP
 // =====================================================
@@ -146,7 +182,7 @@ const sendEmailOTP = async (email) => {
     );
 
     const emailResult =
-  await sendViaResend({
+  await sendViaBrevo({
     to: normalizedEmail,
     subject: mailOptions.subject,
     text: mailOptions.text,
@@ -795,7 +831,7 @@ AI Waste-Response Intelligence System
     );
 
    const emailResult =
-  await sendViaResend({
+  await sendViaBrevo({
     to: normalizedEmail,
     subject: mailOptions.subject,
     text: mailOptions.text,
