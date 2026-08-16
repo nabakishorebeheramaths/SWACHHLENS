@@ -211,7 +211,9 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
 });
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://swachhlens-z6ko.onrender.com";
 // =====================================================
 // SWACHHLENS SATELLITE MAP
 // =====================================================
