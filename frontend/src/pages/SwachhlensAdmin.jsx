@@ -1,6 +1,7 @@
 import {
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -61,7 +62,7 @@ function SwachhlensAdmin() {
     setLogoutLoading,
   ] = useState(false);
 
-
+  const authCheckRequestRef = useRef(0);
   // =========================================================
   // LAST VISITED
   // =========================================================
@@ -159,81 +160,110 @@ function SwachhlensAdmin() {
   // =========================================================
 
   const checkAdminAuthentication =
-    useCallback(
-      async () => {
+  useCallback(
+    async () => {
+
+      const requestId =
+        ++authCheckRequestRef.current;
+
+      try {
+
+        setAuthChecking(true);
+
+        const response =
+          await fetch(
+            `${API_BASE_URL}/api/admin-auth/me`,
+            {
+              method: "GET",
+              credentials: "include",
+              cache: "no-store",
+            }
+          );
+
+        let data = null;
 
         try {
 
-          setAuthChecking(
-            true
-          );
+          data =
+            await response.json();
 
-          const response =
-            await fetch(
-              `${API_BASE_URL}/api/admin-auth/me`,
-              {
-                method: "GET",
-                credentials:
-                  "include",
-              }
-            );
+        } catch {
 
-
-          let data =
-            null;
-
-
-          try {
-
-            data =
-              await response.json();
-
-          } catch {
-
-            data =
-              null;
-
-          }
-
-console.log("🔐 ADMIN ME RESPONSE:", {
-  status: response.status,
-  data,
-});
-
-if (
-  response.ok &&
-  data?.success &&
-  data?.authenticated
-) {
-  setAuthenticated(true);
-} else {
-  setAuthenticated(false);
-}
-
-        } catch (error) {
-
-          console.error(
-            "❌ Admin Authentication Check Error:",
-            error
-          );
-
-          setAuthenticated(
-            false
-          );
-
-        } finally {
-
-          setAuthChecking(
-            false
-          );
+          data = null;
 
         }
 
-      },
-      []
-    );
+        console.log(
+          "🔐 ADMIN ME RESPONSE:",
+          {
+            status: response.status,
+            data,
+            requestId,
+          }
+        );
 
+        // Ignore old/stale authentication response
+        if (
+          requestId !==
+          authCheckRequestRef.current
+        ) {
 
+          console.log(
+            "⚠️ Ignoring stale admin auth response."
+          );
+
+          return;
+
+        }
+
+        if (
+          response.ok &&
+          data?.success &&
+          data?.authenticated
+        ) {
+
+          setAuthenticated(true);
+
+        } else {
+
+          setAuthenticated(false);
+
+        }
+
+      } catch (error) {
+
+        if (
+          requestId !==
+          authCheckRequestRef.current
+        ) {
+
+          return;
+
+        }
+
+        console.error(
+          "❌ Admin Authentication Check Error:",
+          error
+        );
+
+        setAuthenticated(false);
+
+      } finally {
+
+        if (
+          requestId ===
+          authCheckRequestRef.current
+        ) {
+
+          setAuthChecking(false);
+
+        }
+
+      }
+
+    },
+    []
+  );
   // =========================================================
   // INITIAL AUTH CHECK
   // =========================================================
@@ -495,14 +525,12 @@ if (
 console.log("✅ ADMIN LOGIN RESPONSE:", {
   status: response.status,
   data,
+  authenticated: data?.authenticated,
 });
 
-setAuthenticated(true);
-
-        const now =
-          new Date()
-            .toISOString();
-
+const now =
+  new Date()
+    .toISOString();
 
         localStorage.setItem(
           "swachhlens_admin_last_visited",
@@ -527,11 +555,9 @@ setAuthenticated(true);
           )
         );
 
-
         setAuthenticated(
-          true
+        true
         );
-
         setLoginPassword(
           ""
         );
