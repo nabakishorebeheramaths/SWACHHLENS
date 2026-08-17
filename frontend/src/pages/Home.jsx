@@ -6,23 +6,22 @@ function Home() {
   const navigate = useNavigate();
 
   // =====================================================
-  // START OFFICIAL SWACHHLENS REPORTING JOURNEY
-  // =====================================================
-  const startReport = () => {
-    sessionStorage.setItem(
-      "swachhlensHomeStarted",
-      "true"
-    );
+// START OFFICIAL SWACHHLENS REPORTING JOURNEY
+// =====================================================
+const startReport = () => {
+  sessionStorage.setItem(
+    "swachhlensHomeStarted",
+    "true"
+  );
 
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant",
+  });
 
-    navigate("/citizen-details");
-  };
-
+  navigate("/citizen-id");
+};
   // =====================================================
   // TRACK REPORT STATUS
   // =====================================================

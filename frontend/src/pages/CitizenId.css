@@ -1,110 +1,126 @@
 /* =========================================================
-   SWACHHLENS
-   CITIZEN ID + EMAIL VERIFICATION
-   WHITE + PINK + RAINBOW PREMIUM DESIGN
-========================================================= */
+   CITIZEN ID PAGE
+   COMPLETE RESPONSIVE CSS
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
 
 .citizen-id-page {
-  min-height: 100vh;
   width: 100%;
-
-  position: relative;
-  overflow: hidden;
-
-  display: flex;
-  justify-content: center;
-
-  padding: 35px 18px 50px;
-
-  font-family:
-    Inter,
-    "Segoe UI",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-
-  color: #7b245d;
-
-  background:
-    radial-gradient(
-      circle at 8% 8%,
-      rgba(255, 115, 188, 0.35),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 92% 10%,
-      rgba(188, 115, 255, 0.22),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 50% 90%,
-      rgba(255, 170, 215, 0.32),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #fff6fb 0%,
-      #ffffff 45%,
-      #fff0f8 100%
-    );
+  min-height: 100vh;
+  padding: 24px 20px 35px;
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
 /* =========================================================
-   CONTENT
-========================================================= */
+   TOP 5 PLATES
+   EXACTLY 5 ITEMS - HORIZONTAL
+   ========================================================= */
 
-.citizen-id-content {
-  width: min(1050px, 100%);
-
-  position: relative;
-  z-index: 5;
+.citizen-top-toys {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto 30px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  flex-wrap: nowrap;
+}
+
+
+/* =========================================================
+   TOP WHITE PLATE
+   RAINBOW BORDER
+   NO ANIMATION
+   ========================================================= */
+
+.top-toy-plate {
+  position: relative;
+
+  min-width: 145px;
+  height: 92px;
+
+  padding: 10px 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  border: 4px solid transparent;
+  border-radius: 22px;
+
+  background-image:
+    linear-gradient(#ffffff, #ffffff),
+    linear-gradient(
+      135deg,
+      #ff004c,
+      #ff8a00,
+      #ffe600,
+      #22c55e,
+      #00b7ff,
+      #635bff,
+      #d946ef,
+      #ff004c
+    );
+
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.10);
+
+  flex-shrink: 0;
+
+  /* IMPORTANT:
+     No animation / no movement */
+  transform: none;
+  animation: none;
 }
 
 
 /* =========================================================
    INDIA FLAG
-========================================================= */
+   ========================================================= */
 
-.india-flag {
-  width: 82px;
-  height: 54px;
+.top-india-flag {
+  width: 92px;
+  height: 58px;
 
   display: flex;
   flex-direction: column;
 
-  border-radius: 8px;
-
   overflow: hidden;
 
-  margin-bottom: 18px;
+  border-radius: 6px;
+
+  border: 1px solid #dddddd;
 
   box-shadow:
-    0 10px 25px rgba(190, 80, 130, 0.2);
-
-  transform: rotate(-2deg);
-
-  animation:
-    flagFloat 3.5s ease-in-out infinite;
-}
-
-.flag-saffron,
-.flag-white,
-.flag-green {
-  flex: 1;
+    0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
 .flag-saffron {
+  width: 100%;
+  height: 33.33%;
   background: #ff9933;
 }
 
 .flag-white {
-  background: white;
+  width: 100%;
+  height: 33.33%;
+
+  background: #ffffff;
 
   display: flex;
   align-items: center;
@@ -112,236 +128,133 @@
 }
 
 .flag-green {
+  width: 100%;
+  height: 33.33%;
   background: #138808;
 }
 
 .ashoka-wheel {
-  color: #1a4f9c;
+  font-size: 23px;
+  line-height: 1;
+  color: #000080;
 
-  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+
+/* =========================================================
+   TOP BRAND ITEMS
+   ========================================================= */
+
+.top-brand-item {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  text-align: center;
+}
+
+.top-brand-icon {
+  font-size: 30px;
   line-height: 1;
 }
 
+.top-brand-item strong {
+  font-size: 14px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  white-space: nowrap;
+}
+
 
 /* =========================================================
-   BRAND
-========================================================= */
+   TOP TOYS
+   ========================================================= */
 
-.citizen-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  margin-bottom: 20px;
-
-  padding: 10px 20px;
-
-  border-radius: 50px;
-
-  background:
-    rgba(255, 255, 255, 0.85);
-
-  box-shadow:
-    0 10px 35px rgba(255, 92, 167, 0.13);
-
-  border: 1px solid rgba(255, 125, 190, 0.28);
-}
-
-.brand-icon {
-  width: 46px;
-  height: 46px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff4da6,
-      #c15cff
-    );
-
-  font-size: 24px;
-
-  box-shadow:
-    0 8px 20px rgba(255, 75, 165, 0.25);
-
-  animation:
-    iconFloat 3s ease-in-out infinite;
-}
-
-.citizen-brand h2 {
-  margin: 0;
-
-  font-size: 1.1rem;
-  font-weight: 950;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ff2f91,
-      #c44fff,
-      #ff2f91
-    );
-
-  background-size: 200% auto;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  color: transparent;
-
-  animation:
-    rainbowMove 4s linear infinite;
-}
-
-.citizen-brand span {
+.top-toy-icon {
   display: block;
 
-  margin-top: 2px;
+  font-size: 38px;
+  line-height: 1;
 
-  font-size: 0.72rem;
-
-  font-weight: 700;
-
-  color: #b45a91;
+  transform: none;
+  animation: none;
 }
 
 
 /* =========================================================
-   HEADING
-========================================================= */
+   MAIN HEADING
+   ========================================================= */
 
 .citizen-heading {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto 24px;
+
   text-align: center;
-
-  max-width: 720px;
-
-  margin-bottom: 22px;
 }
 
 .heading-icon {
-  width: 65px;
-  height: 65px;
+  font-size: 45px;
+  line-height: 1;
 
-  margin: 0 auto 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 22px;
-
-  font-size: 30px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #ffe5f3
-    );
-
-  border: 3px solid transparent;
-
-  background-image:
-    linear-gradient(
-      #fff,
-      #fff
-    ),
-    linear-gradient(
-      135deg,
-      #ff3999,
-      #ff8bc8,
-      #a94dff,
-      #ff3999
-    );
-
-  background-origin: border-box;
-  background-clip:
-    padding-box,
-    border-box;
-
-  box-shadow:
-    0 12px 35px rgba(255, 73, 165, 0.18);
-
-  animation:
-    toyFloat 3.2s ease-in-out infinite;
+  margin-bottom: 8px;
 }
 
 .citizen-heading h1 {
   margin: 0;
 
-  font-size: clamp(
-    2.2rem,
-    5vw,
-    3.8rem
-  );
+  font-size: clamp(28px, 4vw, 42px);
 
-  font-weight: 950;
+  font-weight: 900;
 
-  letter-spacing: -1.5px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ff2e91,
-      #ff64b2,
-      #b34cff,
-      #ff2e91
-    );
-
-  background-size: 300% auto;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  color: transparent;
-
-  animation:
-    rainbowMove 5s linear infinite;
+  line-height: 1.15;
 }
 
 .citizen-heading h3 {
   margin: 8px 0 12px;
 
-  font-size: 1.2rem;
+  font-size: 20px;
 
-  font-weight: 850;
-
-  color: #9d3975;
+  font-weight: 700;
 }
 
 .citizen-heading p {
-  margin: 0 auto;
+  margin: 7px auto;
 
-  max-width: 650px;
+  max-width: 760px;
 
-  font-size: 1rem;
+  font-size: 15px;
 
-  line-height: 1.7;
-
-  color: #87416e;
+  line-height: 1.6;
 }
 
 .odia-main-text {
-  margin-top: 6px !important;
-
-  font-size: 0.94rem !important;
-
-  color: #ad5587 !important;
+  font-size: 14px !important;
 }
 
 
 /* =========================================================
-   CLEAN MESSAGE
-========================================================= */
+   CLEAN SOCIETY MESSAGE
+   ========================================================= */
 
 .clean-message {
-  width: min(760px, 100%);
+  width: min(850px, 100%);
+
+  margin: 0 auto 28px;
+
+  padding: 13px 20px;
 
   display: flex;
   align-items: center;
@@ -349,171 +262,111 @@
 
   gap: 18px;
 
-  padding: 14px 24px;
+  text-align: center;
 
-  margin-bottom: 28px;
+  background: rgba(255, 255, 255, 0.92);
 
-  border-radius: 22px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.95),
-      rgba(255, 235, 247, 0.95)
-    );
-
-  border: 2px solid transparent;
-
-  background-image:
-    linear-gradient(
-      white,
-      #fff1f8
-    ),
-    linear-gradient(
-      90deg,
-      #ff3d9b,
-      #ffcb56,
-      #54d67b,
-      #55bfff,
-      #b35cff,
-      #ff3d9b
-    );
-
-  background-origin: border-box;
-  background-clip:
-    padding-box,
-    border-box;
+  border-radius: 18px;
 
   box-shadow:
-    0 12px 35px rgba(255, 83, 167, 0.16);
-
-  animation:
-    messageFloat 4s ease-in-out infinite;
+    0 7px 20px rgba(0, 0, 0, 0.08);
 }
 
-.clean-message-icon {
-  font-size: 27px;
-
-  animation:
-    miniBounce 2s ease-in-out infinite;
-}
-
-.clean-message div {
-  text-align: center;
+.clean-message > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .clean-message strong {
-  display: block;
-
-  font-size: 1.05rem;
-
-  font-weight: 950;
-
-  color: #e62e89;
+  font-size: 17px;
+  font-weight: 800;
 }
 
 .clean-message span {
-  display: block;
+  font-size: 13px;
+}
 
-  margin-top: 3px;
+.clean-message-icon {
+  font-size: 28px;
 
-  font-size: 0.83rem;
-
-  font-weight: 700;
-
-  color: #a34b7e;
+  flex-shrink: 0;
 }
 
 
 /* =========================================================
-   PLATES
-========================================================= */
+   MAIN PLATES CONTAINER
+   HORIZONTAL
+   ========================================================= */
 
 .citizen-plates {
   width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
+
+  flex-direction: row;
+
+  align-items: stretch;
+  justify-content: center;
+
+  gap: 22px;
 }
 
 
 /* =========================================================
-   PREMIUM PLATE
-========================================================= */
+   MAIN WHITE PLATE
+   RAINBOW BORDER
+   ========================================================= */
 
 .citizen-plate {
-  width: min(720px, 100%);
-
   position: relative;
 
-  padding: 30px;
+  width: 100%;
+  max-width: 550px;
 
-  border-radius: 30px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.98),
-      rgba(255, 243, 250, 0.97)
-    );
-
-  border: 3px solid transparent;
+  padding: 26px;
 
   background-image:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #fff2f8
-    ),
+    linear-gradient(#ffffff, #ffffff),
     linear-gradient(
       135deg,
-      #ff2990,
-      #ff8fc8,
-      #ffd15c,
-      #5ddc88,
-      #58bfff,
-      #b151ff,
-      #ff2990
+      #ff004c,
+      #ff8a00,
+      #ffe600,
+      #22c55e,
+      #00b7ff,
+      #635bff,
+      #d946ef,
+      #ff004c
     );
 
   background-origin: border-box;
-  background-clip:
-    padding-box,
-    border-box;
+  background-clip: padding-box, border-box;
+
+  border: 4px solid transparent;
+
+  border-radius: 25px;
 
   box-shadow:
-    0 25px 55px rgba(255, 65, 157, 0.16),
-    0 8px 20px rgba(174, 78, 143, 0.08);
+    0 12px 30px rgba(0, 0, 0, 0.10);
 
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-
-  animation:
-    plateFloat 5s ease-in-out infinite;
-}
-
-.citizen-plate:hover {
-  transform:
-    translateY(-8px)
-    rotateX(2deg);
-
-  box-shadow:
-    0 35px 70px rgba(255, 55, 154, 0.22),
-    0 12px 30px rgba(174, 78, 143, 0.1);
+  flex: 1 1 0;
 }
 
 
 /* =========================================================
    PLATE TOP
-========================================================= */
+   ========================================================= */
 
 .plate-top {
   display: flex;
+
   align-items: center;
 
-  gap: 15px;
+  gap: 14px;
 
   margin-bottom: 18px;
 }
@@ -528,235 +381,126 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: 18px;
+  border-radius: 17px;
 
-  font-size: 27px;
+  background: #f3f4f6;
 
-  background:
-    linear-gradient(
-      135deg,
-      #ffe2f1,
-      #ffffff
-    );
-
-  border: 2px solid #ff9bca;
-
-  box-shadow:
-    0 8px 20px rgba(255, 75, 165, 0.16);
-
-  animation:
-    iconFloat 3.5s ease-in-out infinite;
+  font-size: 30px;
 }
 
 .new-icon {
-  background:
-    linear-gradient(
-      135deg,
-      #e9dcff,
-      #ffffff
-    );
-
-  border-color: #b58cff;
+  background: #ecfdf5;
 }
 
 .plate-top h2 {
-  margin: 0;
+  margin: 0 0 4px;
 
-  font-size: 1.35rem;
+  font-size: 21px;
 
-  font-weight: 950;
+  line-height: 1.25;
 
-  color: #76275b;
+  font-weight: 850;
 }
 
 .plate-top span {
-  display: block;
+  font-size: 13px;
 
-  margin-top: 4px;
-
-  font-size: 0.82rem;
-
-  font-weight: 750;
-
-  color: #ad5286;
+  line-height: 1.4;
 }
 
 
 /* =========================================================
-   DESCRIPTION
-========================================================= */
+   PLATE TEXT
+   ========================================================= */
 
 .plate-description {
-  margin: 0 0 7px;
+  margin: 0 0 10px;
 
-  font-size: 0.93rem;
+  font-size: 14px;
 
   line-height: 1.65;
-
-  color: #81446c;
 }
 
 .plate-odia {
   margin: 0 0 20px;
 
-  font-size: 0.84rem;
+  font-size: 13px;
 
-  line-height: 1.65;
-
-  color: #ae5c8d;
+  line-height: 1.7;
 }
 
 
 /* =========================================================
-   INPUT WRAPPER
-   CITIZEN ID
-========================================================= */
+   CITIZEN ID INPUT
+   ========================================================= */
 
-.citizen-input-wrapper {
-  width: 100%;
-
-  height: 58px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 0 16px;
-
-  border-radius: 18px;
-
-  background:
-    #ffffff;
-
-  border: 2px solid #ffc1dd;
-
-  box-shadow:
-    inset 0 2px 8px rgba(255, 100, 175, 0.08);
-
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-}
-
-.citizen-input-wrapper:focus-within {
-  transform: translateY(-2px);
-
-  border-color: #ff4ca3;
-
-  box-shadow:
-    0 0 0 5px rgba(255, 76, 163, 0.09),
-    0 12px 25px rgba(255, 76, 163, 0.12);
-}
-
-.citizen-input-wrapper > span {
-  font-size: 22px;
-}
-
-.citizen-input-wrapper input {
-  width: 100%;
-
-  height: 100%;
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-
-  font-size: 1rem;
-
-  font-weight: 750;
-
-  color: #722052;
-}
-
-.citizen-input-wrapper input::placeholder {
-  color: #c987ae;
-}
-
-
-/* =========================================================
-   NEW EMAIL INPUT
-========================================================= */
-
+.citizen-input-wrapper,
 .citizen-email-wrapper {
   width: 100%;
 
-  height: 58px;
+  min-height: 52px;
 
   display: flex;
+
   align-items: center;
 
-  gap: 12px;
+  gap: 10px;
 
-  padding: 0 16px;
+  padding: 0 14px;
 
-  margin-top: 14px;
+  margin-top: 10px;
 
-  border-radius: 18px;
+  background: #ffffff;
 
-  background:
-    #ffffff;
+  border: 2px solid #e5e7eb;
 
-  border: 2px solid #ffc1dd;
+  border-radius: 14px;
 
-  box-shadow:
-    inset 0 2px 8px rgba(255, 100, 175, 0.08);
-
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
 }
 
+.citizen-input-wrapper:focus-within,
 .citizen-email-wrapper:focus-within {
-  transform: translateY(-2px);
-
-  border-color: #c151ff;
+  border-color: #00a86b;
 
   box-shadow:
-    0 0 0 5px rgba(193, 81, 255, 0.08),
-    0 12px 25px rgba(193, 81, 255, 0.12);
+    0 0 0 3px rgba(0, 168, 107, 0.12);
 }
 
+.citizen-input-wrapper > span,
 .citizen-email-wrapper > span {
-  width: 26px;
+  font-size: 20px;
 
   flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 21px;
 }
 
+.citizen-input-wrapper input,
 .citizen-email-wrapper input {
   width: 100%;
 
-  height: 100%;
+  min-width: 0;
 
   border: none;
+
   outline: none;
 
   background: transparent;
 
-  font-size: 1rem;
+  font-size: 15px;
 
-  font-weight: 750;
-
-  color: #722052;
+  padding: 13px 0;
 }
 
+.citizen-input-wrapper input::placeholder,
 .citizen-email-wrapper input::placeholder {
-  color: #c987ae;
+  opacity: 0.65;
 }
 
 
 /* =========================================================
    EMAIL LABEL
-========================================================= */
+   ========================================================= */
 
 .citizen-email-label {
   display: flex;
@@ -765,811 +509,431 @@
 
   gap: 7px;
 
-  margin-top: 16px;
+  margin-top: 18px;
 
   margin-bottom: 7px;
 
-  font-size: 0.82rem;
-
-  font-weight: 850;
-
-  color: #9c3974;
-}
-
-.citizen-email-label span {
-  color: #d54a91;
-}
-
-
-/* =========================================================
-   VERIFICATION NOTE
-========================================================= */
-
-.verification-note {
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  margin-top: 13px;
-
-  padding: 10px 13px;
-
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff5fb,
-      #fdf5ff
-    );
-
-  border: 1px solid #f1b8da;
-
-  color: #9d4c7d;
-
-  font-size: 0.78rem;
-
-  line-height: 1.5;
+  font-size: 13px;
 
   font-weight: 700;
 }
 
-.verification-note-icon {
-  flex-shrink: 0;
-
-  font-size: 18px;
-
-  animation:
-    miniBounce 2.2s ease-in-out infinite;
-}
-
 
 /* =========================================================
-   ERROR
-========================================================= */
+   ERROR BOXES
+   ========================================================= */
 
-.citizen-id-error {
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  margin-top: 12px;
-
-  padding: 10px 14px;
-
-  border-radius: 13px;
-
-  background:
-    #fff0f6;
-
-  border: 1px solid #ff9bc8;
-
-  color: #d82b78;
-
-  font-size: 0.85rem;
-
-  font-weight: 800;
-}
-
-
-/* =========================================================
-   EMAIL ERROR
-========================================================= */
-
+.citizen-id-error,
 .citizen-email-error {
+  width: 100%;
+
   display: flex;
 
-  align-items: center;
+  align-items: flex-start;
 
   gap: 8px;
 
-  margin-top: 9px;
+  margin-top: 8px;
 
-  padding: 9px 13px;
+  padding: 10px 12px;
 
-  border-radius: 13px;
+  border-radius: 10px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #fff0f6,
-      #fff4fb
-    );
+  font-size: 13px;
 
-  border: 1px solid #ff9bc8;
+  line-height: 1.45;
 
-  color: #d82b78;
+  background: #fff5f5;
 
-  font-size: 0.82rem;
+  border: 1px solid #ffb4b4;
 
-  font-weight: 800;
-
-  animation:
-    errorShake 0.3s ease-in-out;
+  color: #b42318;
 }
 
 
 /* =========================================================
-   BUTTONS
-========================================================= */
+   PRIMARY BUTTON
+   ========================================================= */
 
 .citizen-primary-button,
 .citizen-secondary-button {
   width: 100%;
 
-  min-height: 58px;
+  min-height: 52px;
 
-  margin-top: 18px;
+  margin-top: 20px;
 
-  padding: 0 22px;
+  padding: 12px 18px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
+  gap: 10px;
 
   border: none;
 
-  border-radius: 18px;
+  border-radius: 14px;
 
   cursor: pointer;
 
-  color: white;
+  font-size: 15px;
 
-  font-size: 1rem;
-
-  font-weight: 900;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff3294,
-      #ff64b1,
-      #c251ff
-    );
-
-  box-shadow:
-    0 12px 28px rgba(255, 52, 148, 0.25);
+  font-weight: 800;
 
   transition:
-    transform 0.22s ease,
-    box-shadow 0.22s ease,
-    filter 0.22s ease;
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s ease;
+}
 
-  position: relative;
+.citizen-primary-button {
+  background: linear-gradient(
+    135deg,
+    #00a86b,
+    #16a34a
+  );
 
-  overflow: hidden;
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 18px rgba(0, 168, 107, 0.20);
 }
 
 .citizen-secondary-button {
-  background:
-    linear-gradient(
-      135deg,
-      #b14cff,
-      #d45bff,
-      #ff54b4
-    );
-}
+  background: linear-gradient(
+    135deg,
+    #00b7ff,
+    #635bff
+  );
 
-.citizen-primary-button::before,
-.citizen-secondary-button::before {
-  content: "";
+  color: #ffffff;
 
-  position: absolute;
-
-  top: 0;
-  left: -130%;
-
-  width: 70%;
-  height: 100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.6),
-      transparent
-    );
-
-  transform: skewX(-20deg);
-
-  transition:
-    left 0.65s ease;
-}
-
-.citizen-primary-button:hover::before,
-.citizen-secondary-button:hover::before {
-  left: 140%;
+  box-shadow:
+    0 8px 18px rgba(99, 91, 255, 0.18);
 }
 
 .citizen-primary-button:hover,
 .citizen-secondary-button:hover {
-  transform:
-    translateY(-5px)
-    scale(1.015);
-
-  box-shadow:
-    0 18px 38px rgba(255, 52, 148, 0.3);
-
-  filter: brightness(1.05);
+  transform: translateY(-2px);
 }
 
 .citizen-primary-button:active,
 .citizen-secondary-button:active {
-  transform:
-    translateY(2px)
-    scale(0.98);
+  transform: translateY(0);
 }
-
-
-/* =========================================================
-   DISABLED BUTTON
-========================================================= */
-
-.citizen-primary-button:disabled,
-.citizen-secondary-button:disabled {
-  cursor: not-allowed;
-
-  opacity: 0.65;
-
-  transform: none;
-
-  filter: grayscale(0.15);
-}
-
-
-/* =========================================================
-   BUTTON ODIA
-========================================================= */
 
 .button-odia {
-  margin: 8px 0 0;
+  margin: 9px 0 0;
 
   text-align: center;
 
-  font-size: 0.77rem;
+  font-size: 12px;
 
-  font-weight: 750;
-
-  color: #b15b8b;
+  line-height: 1.5;
 }
 
 
 /* =========================================================
-   OR
-========================================================= */
+   OR DIVIDER
+   ========================================================= */
 
 .citizen-or {
-  width: min(720px, 100%);
+  flex: 0 0 auto;
+
+  width: 105px;
 
   display: flex;
+
+  flex-direction: column;
+
   align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+}
+
+.citizen-or > span {
+  width: 1px;
+
+  height: 75px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #cbd5e1,
+    transparent
+  );
+}
+
+.citizen-or > div {
+  width: 100%;
+
+  text-align: center;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   NEW USER PLATE
+   ========================================================= */
+
+.new-user-plate {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-start;
+}
+
+.new-user-plate .citizen-secondary-button {
+  margin-top: auto;
+}
+
+
+/* =========================================================
+   CLEAN INDIA SECTION
+   ========================================================= */
+
+.clean-india-section {
+  width: min(800px, 100%);
+
+  margin: 30px auto 20px;
+
+  padding: 14px 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
 
   gap: 18px;
 
-  margin: 25px 0;
-}
-
-.citizen-or span {
-  flex: 1;
-
-  height: 2px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #ff9bc9,
-      transparent
-    );
-}
-
-.citizen-or div {
-  padding: 8px 16px;
-
-  border-radius: 30px;
-
-  background:
-    #fff;
-
-  border: 1px solid #ffc0dc;
-
-  color: #bb4f88;
-
-  font-size: 0.78rem;
-
-  font-weight: 900;
-
-  box-shadow:
-    0 6px 15px rgba(255, 90, 170, 0.1);
-}
-
-
-/* =========================================================
-   CLEAN INDIA
-========================================================= */
-
-.clean-india-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 16px;
-
-  margin-top: 32px;
-
-  padding: 13px 24px;
-
-  border-radius: 20px;
-
-  background:
-    rgba(255, 255, 255, 0.82);
-
-  border: 1px solid #ffd0e5;
-
-  box-shadow:
-    0 10px 28px rgba(255, 95, 168, 0.1);
-}
-
-.clean-india-icon {
-  font-size: 25px;
-
-  animation:
-    miniBounce 2.5s ease-in-out infinite;
-}
-
-.clean-india-section div:nth-child(2) {
   text-align: center;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 7px 20px rgba(0, 0, 0, 0.08);
+}
+
+.clean-india-section > div:nth-child(2) {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
 }
 
 .clean-india-section strong {
-  display: block;
+  font-size: 17px;
 
-  color: #e03a87;
-
-  font-size: 0.95rem;
-
-  font-weight: 950;
+  font-weight: 850;
 }
 
 .clean-india-section span {
-  display: block;
+  font-size: 13px;
+}
 
-  margin-top: 3px;
+.clean-india-icon {
+  font-size: 29px;
 
-  color: #a95281;
-
-  font-size: 0.77rem;
-
-  font-weight: 750;
+  flex-shrink: 0;
 }
 
 
 /* =========================================================
    SECURITY
-========================================================= */
+   ========================================================= */
 
 .citizen-security {
-  max-width: 700px;
+  width: min(850px, 100%);
 
-  margin-top: 20px;
+  margin: 0 auto 18px;
 
-  text-align: center;
+  padding: 13px 18px;
 
   display: flex;
-  flex-wrap: wrap;
+
+  align-items: center;
 
   justify-content: center;
 
-  gap: 5px;
+  flex-wrap: wrap;
 
-  font-size: 0.77rem;
+  gap: 9px;
 
-  color: #a35a85;
+  text-align: center;
 
-  line-height: 1.6;
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .security-odia {
   width: 100%;
+
+  display: block;
+
+  font-size: 11px;
 }
 
 
 /* =========================================================
    FOOTER
-========================================================= */
+   ========================================================= */
 
 .citizen-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 10px;
-
-  margin-top: 20px;
-
-  color: #bc7099;
-
-  font-size: 0.72rem;
-
-  font-weight: 750;
-}
-
-
-/* =========================================================
-   FLOATING TOY DECORATIONS
-========================================================= */
-
-.floating-decoration {
-  position: absolute;
-
-  z-index: 1;
-
-  width: 60px;
-  height: 60px;
+  width: 100%;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
-  border-radius: 20px;
+  flex-wrap: wrap;
 
-  background:
-    rgba(255, 255, 255, 0.8);
+  gap: 9px;
 
-  border: 1px solid rgba(255, 145, 199, 0.45);
+  text-align: center;
 
-  box-shadow:
-    0 12px 30px rgba(255, 75, 165, 0.13);
+  font-size: 12px;
 
-  font-size: 27px;
+  line-height: 1.5;
 
-  pointer-events: none;
-}
-
-.decoration-one {
-  top: 10%;
-  left: 4%;
-
-  animation:
-    toyFloat 4s ease-in-out infinite;
-}
-
-.decoration-two {
-  top: 22%;
-  right: 5%;
-
-  animation:
-    toyFloatReverse 5s ease-in-out infinite;
-}
-
-.decoration-three {
-  bottom: 18%;
-  left: 5%;
-
-  animation:
-    toyFloat 4.5s ease-in-out infinite;
-}
-
-.decoration-four {
-  bottom: 10%;
-  right: 7%;
-
-  animation:
-    toyFloatReverse 5.5s ease-in-out infinite;
-}
-
-.decoration-five {
-  top: 5%;
-  right: 35%;
-
-  width: 42px;
-  height: 42px;
-
-  border-radius: 50%;
-
-  font-size: 20px;
-
-  animation:
-    sparkleFloat 3s ease-in-out infinite;
+  opacity: 0.85;
 }
 
 
 /* =========================================================
-   EXTRA FLOATING BACKGROUND GLOW
-========================================================= */
+   IMPORTANT:
+   TOP TOYS MUST NEVER MOVE
+   ========================================================= */
 
-.citizen-id-page::before {
-  content: "";
-
-  position: absolute;
-
-  width: 350px;
-  height: 350px;
-
-  top: 20%;
-  left: -180px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 71, 169, 0.14),
-      transparent 70%
-    );
-
-  pointer-events: none;
-
-  animation:
-    backgroundFloatOne 8s ease-in-out infinite;
-}
-
-.citizen-id-page::after {
-  content: "";
-
-  position: absolute;
-
-  width: 400px;
-  height: 400px;
-
-  right: -200px;
-  bottom: 10%;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(176, 75, 255, 0.12),
-      transparent 70%
-    );
-
-  pointer-events: none;
-
-  animation:
-    backgroundFloatTwo 10s ease-in-out infinite;
-}
-
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes toyFloat {
-  0%,
-  100% {
-    transform:
-      translateY(0)
-      rotate(-2deg);
-  }
-
-  50% {
-    transform:
-      translateY(-12px)
-      rotate(4deg);
-  }
-}
-
-@keyframes toyFloatReverse {
-  0%,
-  100% {
-    transform:
-      translateY(0)
-      rotate(3deg);
-  }
-
-  50% {
-    transform:
-      translateY(14px)
-      rotate(-4deg);
-  }
-}
-
-@keyframes plateFloat {
-  0%,
-  100% {
-    transform:
-      translateY(0);
-  }
-
-  50% {
-    transform:
-      translateY(-4px);
-  }
-}
-
-@keyframes iconFloat {
-  0%,
-  100% {
-    transform:
-      translateY(0)
-      rotate(0deg);
-  }
-
-  50% {
-    transform:
-      translateY(-5px)
-      rotate(3deg);
-  }
-}
-
-@keyframes miniBounce {
-  0%,
-  100% {
-    transform:
-      translateY(0);
-  }
-
-  50% {
-    transform:
-      translateY(-5px)
-      scale(1.05);
-  }
-}
-
-@keyframes sparkleFloat {
-  0%,
-  100% {
-    transform:
-      translateY(0)
-      rotate(0deg)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translateY(-12px)
-      rotate(20deg)
-      scale(1.1);
-  }
-}
-
-@keyframes messageFloat {
-  0%,
-  100% {
-    transform:
-      translateY(0);
-  }
-
-  50% {
-    transform:
-      translateY(-4px);
-  }
-}
-
-@keyframes rainbowMove {
-  0% {
-    background-position: 0% center;
-  }
-
-  100% {
-    background-position: 300% center;
-  }
-}
-
-@keyframes flagFloat {
-  0%,
-  100% {
-    transform:
-      translateY(0)
-      rotate(-2deg);
-  }
-
-  50% {
-    transform:
-      translateY(-6px)
-      rotate(2deg);
-  }
-}
-
-
-/* =========================================================
-   EMAIL ERROR ANIMATION
-========================================================= */
-
-@keyframes errorShake {
-  0% {
-    transform: translateX(0);
-  }
-
-  25% {
-    transform: translateX(-4px);
-  }
-
-  50% {
-    transform: translateX(4px);
-  }
-
-  75% {
-    transform: translateX(-3px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-
-/* =========================================================
-   BACKGROUND FLOATING ANIMATIONS
-========================================================= */
-
-@keyframes backgroundFloatOne {
-  0%,
-  100% {
-    transform:
-      translate(0, 0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate(80px, -40px)
-      scale(1.15);
-  }
-}
-
-@keyframes backgroundFloatTwo {
-  0%,
-  100% {
-    transform:
-      translate(0, 0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate(-70px, 40px)
-      scale(1.12);
-  }
+.citizen-top-toys *,
+.top-toy-plate,
+.top-toy-icon {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
 }
 
 
 /* =========================================================
    TABLET
-========================================================= */
+   ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 
-  .floating-decoration {
-    opacity: 0.65;
+  .citizen-top-toys {
+    gap: 12px;
   }
 
-  .decoration-one {
-    left: -12px;
+  .top-toy-plate {
+    min-width: 130px;
+    height: 84px;
+    padding: 8px 12px;
   }
 
-  .decoration-two {
-    right: -10px;
+  .top-india-flag {
+    width: 82px;
+    height: 52px;
   }
 
-  .decoration-three,
-  .decoration-four {
-    display: none;
+  .top-brand-icon {
+    font-size: 26px;
   }
 
+  .top-brand-item strong {
+    font-size: 12px;
+  }
+
+  .top-toy-icon {
+    font-size: 33px;
+  }
+
+  .citizen-plates {
+    gap: 16px;
+  }
+
+  .citizen-plate {
+    padding: 22px;
+  }
+
+  .citizen-or {
+    width: 75px;
+  }
 }
 
 
 /* =========================================================
    MOBILE
-========================================================= */
+   ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
   .citizen-id-page {
-    padding:
-      24px
-      12px
-      35px;
+    padding: 16px 12px 28px;
   }
 
-  .india-flag {
-    width: 68px;
+
+  /* -----------------------------------------
+     TOP 5
+     Keep horizontal row
+     ----------------------------------------- */
+
+  .citizen-top-toys {
+    width: 100%;
+
+    justify-content: flex-start;
+
+    gap: 10px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 4px 3px 12px;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+  }
+
+  .citizen-top-toys::-webkit-scrollbar {
+    display: none;
+  }
+
+  .top-toy-plate {
+    min-width: 112px;
+    width: 112px;
+
+    height: 76px;
+
+    border-width: 3px;
+
+    border-radius: 17px;
+
+    padding: 7px;
+  }
+
+  .top-india-flag {
+    width: 72px;
     height: 45px;
   }
 
@@ -1577,269 +941,343 @@
     font-size: 18px;
   }
 
-  .citizen-brand {
-    padding: 8px 15px;
-
-    margin-bottom: 16px;
+  .top-brand-icon {
+    font-size: 23px;
   }
 
-  .brand-icon {
-    width: 40px;
-    height: 40px;
+  .top-brand-item strong {
+    font-size: 10px;
 
-    font-size: 21px;
+    letter-spacing: 0.2px;
   }
 
-  .citizen-brand h2 {
-    font-size: 0.95rem;
+  .top-toy-icon {
+    font-size: 29px;
   }
 
-  .citizen-brand span {
-    font-size: 0.65rem;
+
+  /* -----------------------------------------
+     HEADING
+     ----------------------------------------- */
+
+  .citizen-heading {
+    margin-bottom: 20px;
   }
 
   .heading-icon {
-    width: 55px;
-    height: 55px;
-
-    font-size: 25px;
-
-    border-radius: 18px;
+    font-size: 38px;
   }
 
   .citizen-heading h1 {
-    font-size: 2rem;
-
-    line-height: 1.15;
+    font-size: 28px;
   }
 
   .citizen-heading h3 {
-    font-size: 1rem;
+    font-size: 17px;
   }
 
   .citizen-heading p {
-    font-size: 0.88rem;
+    font-size: 13px;
 
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
   .odia-main-text {
-    font-size: 0.78rem !important;
+    font-size: 12px !important;
   }
+
+
+  /* -----------------------------------------
+     CLEAN MESSAGE
+     ----------------------------------------- */
 
   .clean-message {
     gap: 10px;
 
-    padding:
-      12px
-      14px;
+    padding: 11px 12px;
 
-    border-radius: 17px;
-  }
-
-  .clean-message-icon {
-    font-size: 21px;
+    margin-bottom: 20px;
   }
 
   .clean-message strong {
-    font-size: 0.86rem;
+    font-size: 14px;
   }
 
   .clean-message span {
-    font-size: 0.68rem;
+    font-size: 11px;
   }
 
-  .citizen-plate {
-    padding: 21px 17px;
-
-    border-radius: 23px;
-  }
-
-  .plate-top {
-    gap: 11px;
-  }
-
-  .plate-icon {
-    width: 48px;
-    height: 48px;
-
-    border-radius: 15px;
-
+  .clean-message-icon {
     font-size: 22px;
   }
 
-  .plate-top h2 {
-    font-size: 1.05rem;
-  }
 
-  .plate-top span {
-    font-size: 0.69rem;
-  }
+  /* -----------------------------------------
+     MAIN PLATES
+     ----------------------------------------- */
 
-  .plate-description {
-    font-size: 0.82rem;
-  }
+  .citizen-plates {
+    width: 100%;
 
-  .plate-odia {
-    font-size: 0.73rem;
-  }
+    display: flex;
 
-  .citizen-input-wrapper {
-    height: 53px;
+    flex-direction: column;
 
-    border-radius: 15px;
-  }
+    align-items: stretch;
 
-  .citizen-input-wrapper input {
-    font-size: 0.88rem;
-  }
-
-
-  /* =====================================================
-     MOBILE EMAIL
-  ===================================================== */
-
-  .citizen-email-label {
-    margin-top: 13px;
-
-    margin-bottom: 6px;
-
-    font-size: 0.75rem;
-  }
-
-  .citizen-email-wrapper {
-    height: 53px;
-
-    margin-top: 10px;
-
-    padding:
-      0
-      13px;
-
-    border-radius: 15px;
-
-    gap: 9px;
-  }
-
-  .citizen-email-wrapper > span {
-    width: 23px;
-
-    font-size: 19px;
-  }
-
-  .citizen-email-wrapper input {
-    font-size: 0.84rem;
-  }
-
-  .verification-note {
-    padding: 9px 11px;
-
-    font-size: 0.69rem;
-
-    border-radius: 12px;
-  }
-
-  .verification-note-icon {
-    font-size: 16px;
-  }
-
-  .citizen-id-error,
-  .citizen-email-error {
-    font-size: 0.74rem;
-
-    padding:
-      8px
-      10px;
-  }
-
-
-  .citizen-primary-button,
-  .citizen-secondary-button {
-    min-height: 53px;
-
-    border-radius: 15px;
-
-    font-size: 0.85rem;
-  }
-
-  .citizen-or {
-    gap: 10px;
-
-    margin: 20px 0;
-  }
-
-  .citizen-or div {
-    font-size: 0.68rem;
-
-    padding: 7px 11px;
-  }
-
-  .clean-india-section {
-    padding: 11px 15px;
-
-    gap: 10px;
-  }
-
-  .clean-india-section strong {
-    font-size: 0.78rem;
-  }
-
-  .clean-india-section span {
-    font-size: 0.66rem;
-  }
-
-  .floating-decoration {
-    display: none;
-  }
-
-}
-
-
-/* =========================================================
-   VERY SMALL MOBILE
-========================================================= */
-
-@media (max-width: 380px) {
-
-  .citizen-heading h1 {
-    font-size: 1.7rem;
+    gap: 14px;
   }
 
   .citizen-plate {
-    padding: 18px 14px;
+    width: 100%;
+    max-width: none;
+
+    flex: none;
+
+    padding: 19px;
+
+    border-radius: 20px;
+  }
+
+
+  /* -----------------------------------------
+     OR
+     ----------------------------------------- */
+
+  .citizen-or {
+    width: 100%;
+
+    height: 35px;
+
+    flex-direction: row;
+
+    gap: 10px;
+  }
+
+  .citizen-or > span {
+    width: 100%;
+    height: 1px;
+  }
+
+  .citizen-or > div {
+    width: auto;
+
+    flex-shrink: 0;
+
+    font-size: 11px;
+  }
+
+
+  /* -----------------------------------------
+     PLATE TOP
+     ----------------------------------------- */
+
+  .plate-top {
+    gap: 11px;
+
+    margin-bottom: 15px;
+  }
+
+  .plate-icon {
+    width: 49px;
+    height: 49px;
+
+    border-radius: 14px;
+
+    font-size: 25px;
   }
 
   .plate-top h2 {
-    font-size: 0.95rem;
+    font-size: 18px;
   }
 
-  .citizen-primary-button,
-  .citizen-secondary-button {
-    font-size: 0.78rem;
+  .plate-top span {
+    font-size: 11px;
   }
 
+  .plate-description {
+    font-size: 13px;
+
+    line-height: 1.55;
+  }
+
+  .plate-odia {
+    font-size: 12px;
+
+    line-height: 1.65;
+  }
+
+
+  /* -----------------------------------------
+     INPUTS
+     ----------------------------------------- */
+
+  .citizen-input-wrapper,
+  .citizen-email-wrapper {
+    min-height: 50px;
+
+    padding: 0 12px;
+  }
+
+  .citizen-input-wrapper input,
   .citizen-email-wrapper input {
-    font-size: 0.78rem;
+    font-size: 14px;
   }
 
   .citizen-email-label {
-    font-size: 0.7rem;
+    font-size: 12px;
   }
 
+
+  /* -----------------------------------------
+     BUTTONS
+     ----------------------------------------- */
+
+  .citizen-primary-button,
+  .citizen-secondary-button {
+    min-height: 50px;
+
+    font-size: 13px;
+
+    padding: 11px 14px;
+  }
+
+
+  /* -----------------------------------------
+     CLEAN INDIA
+     ----------------------------------------- */
+
+  .clean-india-section {
+    gap: 10px;
+
+    padding: 12px;
+
+    margin-top: 22px;
+  }
+
+  .clean-india-section strong {
+    font-size: 14px;
+  }
+
+  .clean-india-section span {
+    font-size: 11px;
+  }
+
+  .clean-india-icon {
+    font-size: 23px;
+  }
+
+
+  /* -----------------------------------------
+     SECURITY
+     ----------------------------------------- */
+
+  .citizen-security {
+    padding: 11px 12px;
+
+    font-size: 11px;
+  }
+
+  .security-odia {
+    font-size: 10px;
+  }
+
+
+  /* -----------------------------------------
+     FOOTER
+     ----------------------------------------- */
+
+  .citizen-footer {
+    font-size: 10px;
+
+    gap: 6px;
+  }
 }
 
 
 /* =========================================================
-   ACCESSIBILITY
-========================================================= */
+   SMALL PHONES
+   ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (max-width: 420px) {
 
-  .citizen-id-page *,
-  .citizen-id-page::before,
-  .citizen-id-page::after {
-    animation: none !important;
-    transition: none !important;
+  .citizen-id-page {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
+  .citizen-top-toys {
+    gap: 8px;
+  }
+
+  .top-toy-plate {
+    min-width: 100px;
+    width: 100px;
+
+    height: 70px;
+  }
+
+  .top-india-flag {
+    width: 65px;
+    height: 41px;
+  }
+
+  .top-brand-icon {
+    font-size: 21px;
+  }
+
+  .top-brand-item strong {
+    font-size: 9px;
+  }
+
+  .top-toy-icon {
+    font-size: 26px;
+  }
+
+  .citizen-heading h1 {
+    font-size: 24px;
+  }
+
+  .citizen-heading h3 {
+    font-size: 15px;
+  }
+
+  .citizen-plate {
+    padding: 16px;
+
+    border-radius: 18px;
+  }
+
+  .plate-top h2 {
+    font-size: 16px;
+  }
+
+  .plate-top span {
+    font-size: 10px;
+  }
+
+  .plate-description {
+    font-size: 12px;
+  }
+
+  .plate-odia {
+    font-size: 11px;
+  }
+
+  .citizen-primary-button,
+  .citizen-secondary-button {
+    font-size: 12px;
+  }
+
+  .clean-message {
+    gap: 7px;
+  }
+
+  .clean-message strong {
+    font-size: 12px;
+  }
+
+  .clean-message span {
+    font-size: 9px;
+  }
 }

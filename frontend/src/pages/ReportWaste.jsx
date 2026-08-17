@@ -1,3 +1,4 @@
+import CitizenId from "./CitizenId";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ReportWaste.css";
@@ -42,6 +43,10 @@ function ReportWaste() {
   // =====================================================
 
   const [citizen, setCitizen] = useState(null);
+
+const [citizenVerified, setCitizenVerified] = useState(
+  sessionStorage.getItem("swachhlens_citizen_verified") === "true"
+);
 
   // =====================================================
   // IMAGE
@@ -163,7 +168,19 @@ function ReportWaste() {
       );
     }
   }, []);
+// =====================================================
+// CITIZEN ID VERIFICATION DISPLAY
+// =====================================================
 
+const verifiedCitizenId =
+  sessionStorage.getItem(
+    "swachhlens_citizen_id"
+  )?.trim() || "";
+
+const verifiedCitizenEmail =
+  sessionStorage.getItem(
+    "swachhlens_citizen_email"
+  )?.trim() || "";
   // =====================================================
   // LOAD STATES
   // =====================================================
@@ -3061,274 +3078,286 @@ console.log(
 
 return (
   <>
-   
-    {/* =================================================
-        MAIN REPORT WASTE PAGE
-    ================================================= */}
+    {!citizenVerified ? (
+      // =================================================
+      // CITIZEN ID VERIFICATION SCREEN
+      // =================================================
+      <CitizenId
+        embedded={true}
+        onVerified={() => {
+          setCitizenVerified(true);
+        }}
+      />
+    ) : (
+      // =================================================
+      // MAIN REPORT WASTE PAGE
+      // =================================================
+      <main>
 
-    <main>
+        {/* =====================================================
+            HERO
+        ===================================================== */}
 
-      {/* =================================================
-          HERO
-      ================================================= */}
+        <section className="report-header">
 
-      <section className="report-header">
+          <span className="report-badge">
+            ♻️ CITIZEN WASTE REPORT
+          </span>
 
-        <span className="report-badge">
-          ♻️ CITIZEN WASTE REPORT
-        </span>
+          <h1 className="rainbow-heading">
+            Report a Waste
+            <br />
+            Problem
+          </h1>
 
-        <h1 className="rainbow-heading">
-          Report a Waste
-          <br />
-          Problem
-        </h1>
+          <p>
+            Give SWACHHLENS the information it needs
+            to understand, assess and prioritize the
+            waste situation.
+          </p>
 
-        <p>
-          Give SWACHHLENS the information it needs
-          to understand, assess and prioritize the
-          waste situation.
-        </p>
+        </section>
 
-      </section>
 
-      {/* =================================================
-          PAGE MESSAGE
-      ================================================= */}
+        {/* =====================================================
+            PAGE MESSAGE
+        ===================================================== */}
 
-      {message && (
-        <div className="stepguard-message">
-          {message}
-        </div>
-      )}
+        {message && (
+          <div className="stepguard-message">
+            {message}
+          </div>
+        )}
 
-      {/* =================================================
-          FORM
-      ================================================= */}
 
-      <form
-        className="report-card"
-        onSubmit={handleSubmit}
-      >
+        {/* =====================================================
+            FORM
+        ===================================================== */}
 
-        {/* =================================================
-            IMAGE UPLOAD
-        ================================================= */}
+        <form
+          className="report-card"
+          onSubmit={handleSubmit}
+        >
 
-        <div className="form-section">
+          {/* =================================================
+              IMAGE UPLOAD
+          ================================================= */}
 
-          <label>
-            Waste Image
-          </label>
+          <div className="form-section">
 
-          <div className="upload-box">
-
-            {imagePreview ? (
-              <img
-                src={imagePreview}
-                alt="Waste preview"
-                className="image-preview"
-              />
-            ) : (
-              <>
-                <div className="upload-icon">
-                  📸
-                </div>
-
-                <h3>
-                  Upload Waste Image
-                </h3>
-
-                <p>
-                  Add a clear photo of the
-                  waste location.
-                </p>
-              </>
-            )}
-
-            <label className="upload-btn">
-
-              {imagePreview
-                ? "Change Image"
-                : "Choose Image"}
-
-              <input
-                type="file"
-                accept="image/jpeg,image/png,image/webp,image/jpg"
-                onChange={handleImageChange}
-                hidden
-              />
-
+            <label>
+              Waste Image
             </label>
 
-            {/* =================================================
-                AI IMAGE ANALYSIS BUTTON
-            ================================================= */}
+            <div className="upload-box">
 
-            {imageFile && (
-              <div className="ai-image-analysis">
+              {imagePreview ? (
+                <img
+                  src={imagePreview}
+                  alt="Waste preview"
+                  className="image-preview"
+                />
+              ) : (
+                <>
+                  <div className="upload-icon">
+                    📸
+                  </div>
 
-                <button
-                  type="button"
-                  className="ai-analyze-image-btn"
-                  onClick={
-                    handleAIAnalysis
-                  }
-                  disabled={
-                    aiAnalyzing ||
-                    loading
-                  }
-                >
-                  {aiAnalyzing
-  ? "🤖 AI Analyzing... Please Wait"
-  : aiAnalysisDone
-  ? "✅ AI Analysis Completed"
-  : "🤖 Analyze Image with AI"}
-                </button>
+                  <h3>
+                    Upload Waste Image
+                  </h3>
 
-                {aiAnalyzing && (
-                  <p className="ai-analysis-loading">
-                    🔍 SWACHHLENS AI is checking whether this
-                    image contains a waste-related situation...
+                  <p>
+                    Add a clear photo of the
+                    waste location.
                   </p>
-                )}
+                </>
+              )}
 
-                {aiAnalyzing && (
-  <div className="ai-analysis-loading">
-    <strong>
-      🤖 SWACHHLENS AI is analyzing your image...
-    </strong>
+              <label className="upload-btn">
 
-    <p>
-      🔍 Checking waste presence...
-      <br />
-      🧠 Identifying waste type...
-      <br />
-      ⚠️ Estimating visible severity...
-      <br />
-      ⏳ Please wait. This may take up to 2 minutes.
-    </p>
-  </div>
-)}
-              </div>
-            )}
+                {imagePreview
+                  ? "Change Image"
+                  : "Choose Image"}
 
-          </div>
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/jpg"
+                  onChange={handleImageChange}
+                  hidden
+                />
 
-        </div>
+              </label>
 
-    {/* AI RESULT / MESSAGE */}
-    {aiAnalysisMessage && !aiAnalyzing && (
-      <div className="ai-analysis-message">
-        {aiAnalysisMessage}
-      </div>
-    )}
+              {/* =================================================
+                  AI IMAGE ANALYSIS BUTTON
+              ================================================= */}
 
-        {/* =================================================
-            WASTE TYPE + SEVERITY
-        ================================================= */}
+              {imageFile && (
+                <div className="ai-image-analysis">
 
-        <div className="form-grid">
+                  <button
+                    type="button"
+                    className="ai-analyze-image-btn"
+                    onClick={handleAIAnalysis}
+                    disabled={
+                      aiAnalyzing ||
+                      loading
+                    }
+                  >
+                    {aiAnalyzing
+                      ? "🤖 AI Analyzing... Please Wait"
+                      : aiAnalysisDone
+                      ? "✅ AI Analysis Completed"
+                      : "🤖 Analyze Image with AI"}
+                  </button>
 
-          <div className="form-section">
+                  {aiAnalyzing && (
+                    <p className="ai-analysis-loading">
+                      🔍 SWACHHLENS AI is checking whether this
+                      image contains a waste-related situation...
+                    </p>
+                  )}
 
-            <label htmlFor="wasteType">
-              Waste Type
-            </label>
+                  {aiAnalyzing && (
+                    <div className="ai-analysis-loading">
 
-            <select
-              id="wasteType"
-              value={wasteType}
-              onChange={(event) =>
-                setWasteType(
-                  event.target.value
-                )
-              }
-              disabled={loading}
-            >
+                      <strong>
+                        🤖 SWACHHLENS AI is analyzing your image...
+                      </strong>
 
-              <option value="">
-                Select waste type
-              </option>
+                      <p>
+                        🔍 Checking waste presence...
+                        <br />
+                        🧠 Identifying waste type...
+                        <br />
+                        ⚠️ Estimating visible severity...
+                        <br />
+                        ⏳ Please wait. This may take up to 2 minutes.
+                      </p>
 
-              <option value="Mixed Waste">
-                Mixed Waste
-              </option>
+                    </div>
+                  )}
 
-              <option value="Plastic Waste">
-                Plastic Waste
-              </option>
+                </div>
+              )}
 
-              <option value="Organic Waste">
-                Organic Waste
-              </option>
-
-              <option value="Construction Waste">
-                Construction Waste
-              </option>
-
-              <option value="Electronic Waste">
-                Electronic Waste
-              </option>
-
-              <option value="Hazardous Waste">
-                Hazardous Waste
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
+            </div>
 
           </div>
 
-          <div className="form-section">
 
-            <label htmlFor="severity">
-              Visible Severity
-            </label>
+          {/* =================================================
+              AI RESULT / MESSAGE
+          ================================================= */}
 
-            <select
-              id="severity"
-              value={
-                visibleSeverity
-              }
-              onChange={(event) =>
-                setVisibleSeverity(
-                  event.target.value
-                )
-              }
-              disabled={loading}
-            >
+          {aiAnalysisMessage && !aiAnalyzing && (
+            <div className="ai-analysis-message">
+              {aiAnalysisMessage}
+            </div>
+          )}
 
-              <option value="">
-                Select severity
-              </option>
 
-              <option value="Low">
-                Low
-              </option>
+          {/* =================================================
+              WASTE TYPE + SEVERITY
+          ================================================= */}
 
-              <option value="Medium">
-                Medium
-              </option>
+          <div className="form-grid">
 
-              <option value="High">
-                High
-              </option>
+            <div className="form-section">
 
-              <option value="Critical">
-                Critical
-              </option>
+              <label htmlFor="wasteType">
+                Waste Type
+              </label>
 
-            </select>
+              <select
+                id="wasteType"
+                value={wasteType}
+                onChange={(event) =>
+                  setWasteType(event.target.value)
+                }
+                disabled={loading}
+              >
+
+                <option value="">
+                  Select waste type
+                </option>
+
+                <option value="Mixed Waste">
+                  Mixed Waste
+                </option>
+
+                <option value="Plastic Waste">
+                  Plastic Waste
+                </option>
+
+                <option value="Organic Waste">
+                  Organic Waste
+                </option>
+
+                <option value="Construction Waste">
+                  Construction Waste
+                </option>
+
+                <option value="Electronic Waste">
+                  Electronic Waste
+                </option>
+
+                <option value="Hazardous Waste">
+                  Hazardous Waste
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div className="form-section">
+
+              <label htmlFor="severity">
+                Visible Severity
+              </label>
+
+              <select
+                id="severity"
+                value={visibleSeverity}
+                onChange={(event) =>
+                  setVisibleSeverity(event.target.value)
+                }
+                disabled={loading}
+              >
+
+                <option value="">
+                  Select severity
+                </option>
+
+                <option value="Low">
+                  Low
+                </option>
+
+                <option value="Medium">
+                  Medium
+                </option>
+
+                <option value="High">
+                  High
+                </option>
+
+                <option value="Critical">
+                  Critical
+                </option>
+
+              </select>
+
+            </div>
 
           </div>
 
-        </div>
-
-        {/* =================================================
+{/* =================================================
             LOCATION
         ================================================= */}
 
@@ -4300,9 +4329,13 @@ locationSaved ? (
   </button>
 
 </div>
-</form>
-</main>
+        </form>
+
+      </main>
+    )}
   </>
 );
+
 }
+
 export default ReportWaste;

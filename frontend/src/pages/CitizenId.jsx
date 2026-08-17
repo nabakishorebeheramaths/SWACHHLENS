@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CitizenId.css";
 
-function CitizenId() {
+function CitizenId({ embedded = false, onVerified }) {
   const navigate = useNavigate();
 
   const [citizenIdInput, setCitizenIdInput] = useState("");
@@ -11,24 +11,21 @@ function CitizenId() {
   const [citizenIdError, setCitizenIdError] = useState("");
   const [emailError, setEmailError] = useState("");
 
- const handleContinue = () => {
-  const enteredCitizenId =
-    citizenIdInput.trim();
+ // =====================================================
+// HANDLE CONTINUE
+// =====================================================
 
-  const enteredEmail =
-    emailInput.trim();
+const handleContinue = () => {
+  const enteredCitizenId = citizenIdInput.trim();
+  const enteredEmail = emailInput.trim();
 
   // =====================================================
   // CITIZEN ID VALIDATION
   // =====================================================
 
   if (!enteredCitizenId) {
-    setCitizenIdError(
-      "Please enter your Citizen ID."
-    );
-
+    setCitizenIdError("Please enter your Citizen ID.");
     setEmailError("");
-
     return;
   }
 
@@ -42,7 +39,6 @@ function CitizenId() {
     );
 
     setCitizenIdError("");
-
     return;
   }
 
@@ -59,7 +55,6 @@ function CitizenId() {
     );
 
     setCitizenIdError("");
-
     return;
   }
 
@@ -82,6 +77,15 @@ function CitizenId() {
   );
 
   // =====================================================
+  // MARK CITIZEN AS VERIFIED
+  // =====================================================
+
+  sessionStorage.setItem(
+    "swachhlens_citizen_verified",
+    "true"
+  );
+
+  // =====================================================
   // CLEAR ERRORS
   // =====================================================
 
@@ -89,89 +93,130 @@ function CitizenId() {
   setEmailError("");
 
   // =====================================================
-  // CONTINUE
+  // EMBEDDED MODE
+  // SHOW REPORT WASTE PAGE
+  // =====================================================
+
+  if (embedded) {
+  if (onVerified) {
+    onVerified();
+  }
+
+  return;
+}
+  // =====================================================
+  // NORMAL CITIZEN ID PAGE
   // =====================================================
 
   navigate("/citizen-details");
 };
+  // =====================================================
+// MAIN RENDER
+// =====================================================
 
-  return (
-    <div className="citizen-id-page">
+return (
+  <div className="citizen-id-page">
 
-      {/* =====================================================
-          FLOATING DECORATIONS
-      ===================================================== */}
+    {/* =================================================
+        STATIC TOP 5
+        ONLY THESE 5 ITEMS
+    ================================================= */}
 
-      <div className="floating-decoration decoration-one">
-        ♻️
-      </div>
+    <div className="citizen-top-toys">
 
-      <div className="floating-decoration decoration-two">
-        🌱
-      </div>
+      {/* =================================================
+          1. INDIA FLAG
+      ================================================= */}
 
-      <div className="floating-decoration decoration-three">
-        🧹
-      </div>
+      <div className="top-toy-plate">
 
-      <div className="floating-decoration decoration-four">
-        💚
-      </div>
+        <div className="top-india-flag">
 
-      <div className="floating-decoration decoration-five">
-        ✨
-      </div>
+          <div className="flag-saffron"></div>
 
+          <div className="flag-white">
 
-      {/* =====================================================
-          MAIN CONTENT
-      ===================================================== */}
-
-      <div className="citizen-id-content">
-
-
-        {/* =================================================
-            INDIA FLAG
-        ================================================= */}
-
-        <div className="india-flag">
-
-          <span className="flag-saffron"></span>
-
-          <span className="flag-white">
             <span className="ashoka-wheel">
-              ☸
+              ☸️
             </span>
-          </span>
 
-          <span className="flag-green"></span>
+          </div>
+
+          <div className="flag-green"></div>
 
         </div>
 
+      </div>
 
-        {/* =================================================
-            BRAND
-        ================================================= */}
 
-        <div className="citizen-brand">
+      {/* =================================================
+          2. SWACHHLENS
+      ================================================= */}
 
-          <div className="brand-icon">
+      <div className="top-toy-plate">
+
+        <div className="top-brand-item">
+
+          <div className="top-brand-icon">
             ♻️
           </div>
 
-          <div>
-
-            <h2>
-              SWACHHLENS
-            </h2>
-
-            <span>
-              AI Waste Intelligence
-            </span>
-
-          </div>
+          <strong>
+            SWACHHLENS
+          </strong>
 
         </div>
+
+      </div>
+
+
+      {/* =================================================
+          3. GREEN SOCIETY
+      ================================================= */}
+
+      <div className="top-toy-plate">
+
+        <div className="top-brand-item">
+
+          <div className="top-brand-icon">
+            🌱
+          </div>
+
+          <strong>
+            GREEN SOCIETY
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      {/* =================================================
+          4. TOY
+      ================================================= */}
+
+      <div className="top-toy-plate">
+
+        <span className="top-toy-icon">
+          🗑️
+        </span>
+
+      </div>
+
+
+      {/* =================================================
+          5. TOY
+      ================================================= */}
+
+      <div className="top-toy-plate">
+
+        <span className="top-toy-icon">
+          ✨
+        </span>
+
+      </div>
+
+    </div>
 
 
         {/* =================================================
@@ -179,7 +224,6 @@ function CitizenId() {
         ================================================= */}
 
         <div className="citizen-heading">
-
           <div className="heading-icon">
             🆔
           </div>
@@ -202,22 +246,18 @@ function CitizenId() {
             ଆପଣଙ୍କ Citizen ID ଏବଂ ପଞ୍ଜୀକୃତ
             ଇମେଲ୍ ପ୍ରବେଶ କରନ୍ତୁ।
           </p>
-
         </div>
-
 
         {/* =================================================
             CLEAN SOCIETY MESSAGE
         ================================================= */}
 
         <div className="clean-message">
-
           <span className="clean-message-icon">
             🧹
           </span>
 
           <div>
-
             <strong>
               Make Your Society Clean
             </strong>
@@ -225,22 +265,18 @@ function CitizenId() {
             <span>
               ଆପଣଙ୍କ ସମାଜକୁ ସ୍ୱଚ୍ଛ ରଖନ୍ତୁ
             </span>
-
           </div>
 
           <span className="clean-message-icon">
             🌱
           </span>
-
         </div>
-
 
         {/* =================================================
             PLATES
         ================================================= */}
 
         <div className="citizen-plates">
-
 
           {/* =================================================
               PLATE 1 — EXISTING CITIZEN
@@ -255,7 +291,6 @@ function CitizenId() {
               </div>
 
               <div>
-
                 <h2>
                   Enter Your Citizen ID
                 </h2>
@@ -263,29 +298,22 @@ function CitizenId() {
                 <span>
                   ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ
                 </span>
-
               </div>
 
             </div>
 
-
             <p className="plate-description">
-
               Already registered with
               SWACHHLENS? Enter your Citizen ID
               and registered email below to continue.
-
             </p>
 
             <p className="plate-odia">
-
               SWACHHLENS ରେ ପୂର୍ବରୁ ପଞ୍ଜୀକୃତ
               ଅଛନ୍ତି? ଜାରି ରଖିବା ପାଇଁ ତଳେ
               ଆପଣଙ୍କ Citizen ID ଏବଂ ପଞ୍ଜୀକୃତ
               ଇମେଲ୍ ପ୍ରବେଶ କରନ୍ତୁ।
-
             </p>
-
 
             {/* =================================================
                 CITIZEN ID INPUT
@@ -301,20 +329,17 @@ function CitizenId() {
                 type="text"
                 value={citizenIdInput}
                 onChange={(e) => {
-
                   setCitizenIdInput(
                     e.target.value
                   );
 
                   setCitizenIdError("");
-
                 }}
                 placeholder="Enter your Citizen ID"
                 autoComplete="off"
               />
 
             </div>
-
 
             {/* =================================================
                 CITIZEN ID ERROR
@@ -323,7 +348,9 @@ function CitizenId() {
             {citizenIdError && (
               <div className="citizen-id-error">
 
-                ⚠️
+                <span>
+                  ⚠️
+                </span>
 
                 <span>
                   {citizenIdError}
@@ -332,71 +359,66 @@ function CitizenId() {
               </div>
             )}
 
-{/* =================================================
-    EMAIL ADDRESS LABEL
-================================================= */}
+            {/* =================================================
+                EMAIL ADDRESS LABEL
+            ================================================= */}
 
-<div className="citizen-email-label">
+            <div className="citizen-email-label">
 
-  <span>
-    📧
-  </span>
+              <span>
+                📧
+              </span>
 
-  <span>
-    Email Address / ଇମେଲ୍ ଠିକଣା
-  </span>
+              <span>
+                Email Address / ଇମେଲ୍ ଠିକଣା
+              </span>
 
-</div>
+            </div>
 
+            {/* =================================================
+                EMAIL INPUT
+            ================================================= */}
 
-{/* =================================================
-    EMAIL INPUT
-================================================= */}
+            <div className="citizen-email-wrapper">
 
-<div className="citizen-email-wrapper">
+              <span>
+                📧
+              </span>
 
-  <span>
-    📧
-  </span>
+              <input
+                type="email"
+                value={emailInput}
+                onChange={(e) => {
+                  setEmailInput(
+                    e.target.value
+                  );
 
-  <input
-    type="email"
-    value={emailInput}
-    onChange={(e) => {
+                  setEmailError("");
+                }}
+                placeholder="Enter your registered email"
+                autoComplete="email"
+              />
 
-      setEmailInput(
-        e.target.value
-      );
+            </div>
 
-      setEmailError("");
+            {/* =================================================
+                EMAIL ERROR
+            ================================================= */}
 
-    }}
-    placeholder="Enter your registered email"
-    autoComplete="email"
-  />
+            {emailError && (
+              <div className="citizen-email-error">
 
-</div>
+                <span>
+                  ⚠️
+                </span>
 
+                <span>
+                  {emailError}
+                </span>
 
-{/* =================================================
-    EMAIL ERROR
-================================================= */}
+              </div>
+            )}
 
-{emailError && (
-
-  <div className="citizen-email-error">
-
-    <span>
-      ⚠️
-    </span>
-
-    <span>
-      {emailError}
-    </span>
-
-  </div>
-
-)}
             {/* =================================================
                 BUTTON
             ================================================= */}
@@ -423,7 +445,6 @@ function CitizenId() {
 
           </div>
 
-
           {/* =================================================
               OR DIVIDER
           ================================================= */}
@@ -439,7 +460,6 @@ function CitizenId() {
             <span></span>
 
           </div>
-
 
           {/* =================================================
               PLATE 2 — NEW USER
@@ -467,24 +487,17 @@ function CitizenId() {
 
             </div>
 
-
             <p className="plate-description">
-
               Don't have a Citizen ID yet?
               Verify yourself first and create
               your citizen profile.
-
             </p>
 
-
             <p className="plate-odia">
-
               ଏପର୍ଯ୍ୟନ୍ତ Citizen ID ନାହିଁ?
               ପ୍ରଥମେ ଆପଣଙ୍କୁ ଯାଞ୍ଚ କରି
               ନାଗରିକ ପ୍ରୋଫାଇଲ୍ ସୃଷ୍ଟି କରନ୍ତୁ।
-
             </p>
-
 
             <button
               type="button"
@@ -504,7 +517,6 @@ function CitizenId() {
 
             </button>
 
-
             <p className="button-odia">
               ନାଗରିକ ଯାଞ୍ଚ ପାଇଁ ଜାରି ରଖନ୍ତୁ
             </p>
@@ -512,7 +524,6 @@ function CitizenId() {
           </div>
 
         </div>
-
 
         {/* =================================================
             BOTTOM CLEAN INDIA
@@ -542,14 +553,15 @@ function CitizenId() {
 
         </div>
 
-
         {/* =================================================
             SECURITY
         ================================================= */}
 
         <div className="citizen-security">
 
-          🔐
+          <span>
+            🔐
+          </span>
 
           <span>
             Your information is securely
@@ -562,7 +574,6 @@ function CitizenId() {
           </span>
 
         </div>
-
 
         {/* =================================================
             FOOTER
@@ -585,8 +596,7 @@ function CitizenId() {
         </div>
 
       </div>
-
-    </div>
+    
   );
 }
 
