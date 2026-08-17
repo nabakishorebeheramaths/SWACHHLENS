@@ -195,24 +195,20 @@ function SwachhlensAdmin() {
 
           }
 
+console.log("🔐 ADMIN ME RESPONSE:", {
+  status: response.status,
+  data,
+});
 
-          if (
-            response.ok &&
-            data?.success &&
-            data?.authenticated
-          ) {
-
-            setAuthenticated(
-              true
-            );
-
-          } else {
-
-            setAuthenticated(
-              false
-            );
-
-          }
+if (
+  response.ok &&
+  data?.success &&
+  data?.authenticated
+) {
+  setAuthenticated(true);
+} else {
+  setAuthenticated(false);
+}
 
         } catch (error) {
 
@@ -485,20 +481,23 @@ function SwachhlensAdmin() {
 
         }
 
+if (
+  !response.ok ||
+  !data?.success ||
+  !data?.authenticated
+) {
+  throw new Error(
+    data?.message ||
+      "Invalid admin email or password."
+  );
+}
 
-        if (
-          !response.ok ||
-          !data?.success ||
-          !data?.authenticated
-        ) {
+console.log("✅ ADMIN LOGIN RESPONSE:", {
+  status: response.status,
+  data,
+});
 
-          throw new Error(
-            data?.message ||
-              "Invalid admin email or password."
-          );
-
-        }
-
+setAuthenticated(true);
 
         const now =
           new Date()

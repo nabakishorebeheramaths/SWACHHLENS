@@ -3053,22 +3053,89 @@ console.log(
 
 return (
   <>
+   {/* =====================================================
+    CITIZEN ID ENTRY GATE
+===================================================== */}
+
+{showCitizenIdModal && (
+  <div className="citizen-id-gate">
+
     {/* =================================================
-        CITIZEN ID MODAL
+        DECORATIVE GLOW
     ================================================= */}
 
-    {showCitizenIdModal && (
-      <div className="citizen-id-modal-overlay">
-        <div className="citizen-id-modal">
+    <div className="citizen-id-glow glow-one"></div>
+    <div className="citizen-id-glow glow-two"></div>
+    <div className="citizen-id-glow glow-three"></div>
 
+    <div className="citizen-id-container">
+
+      {/* =================================================
+          HEADER
+      ================================================= */}
+
+      <div className="citizen-id-header">
+
+        <div className="citizen-id-logo">
+          🆔
+        </div>
+
+        <h1>
+          Citizen Verification
+        </h1>
+
+        <p className="citizen-id-subtitle">
+          ନାଗରିକ ଯାଞ୍ଚ
+        </p>
+
+        <p className="citizen-id-description">
+          Enter your Citizen ID to continue with
+          citizen verification.
+        </p>
+
+        <p className="citizen-id-odia">
+          ନାଗରିକ ଯାଞ୍ଚ ଜାରି ରଖିବା ପାଇଁ
+          ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ।
+        </p>
+
+      </div>
+
+      {/* =================================================
+          PLATE 1 — EXISTING CITIZEN
+      ================================================= */}
+
+      <div className="citizen-id-plate">
+
+        <div className="plate-icon">
+          🆔
+        </div>
+
+        <div className="plate-heading">
           <h2>
-            🆔 Enter Citizen ID
+            Enter Your Citizen ID
           </h2>
 
-          <p>
-            Please enter your Citizen ID to continue
-            with citizen verification.
-          </p>
+          <span>
+            ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ
+          </span>
+        </div>
+
+        <p className="plate-description">
+          Already registered with SWACHHLENS?
+          Enter your Citizen ID below to continue.
+        </p>
+
+        <p className="plate-odia">
+          SWACHHLENS ରେ ପୂର୍ବରୁ ପଞ୍ଜୀକୃତ ଅଛନ୍ତି?
+          ଜାରି ରଖିବା ପାଇଁ ତଳେ ଆପଣଙ୍କ Citizen ID
+          ପ୍ରବେଶ କରନ୍ତୁ।
+        </p>
+
+        <div className="citizen-id-input-wrapper">
+
+          <span className="input-icon">
+            🆔
+          </span>
 
           <input
             type="text"
@@ -3081,30 +3148,137 @@ return (
               setCitizenIdError("");
             }}
             placeholder="Enter Citizen ID"
-            disabled={citizenIdLoading}
+            autoComplete="off"
           />
 
-          {citizenIdError && (
-            <div className="citizen-id-error">
-              ⚠️ {citizenIdError}
-            </div>
-          )}
+        </div>
+
+        {citizenIdError && (
+          <div className="citizen-id-error">
+            ⚠️ {citizenIdError}
+          </div>
+        )}
+
+        <button
+          type="button"
+          className="citizen-id-enter-btn"
+          onClick={
+            handleContinueCitizenVerification
+          }
+          disabled={citizenIdLoading}
+        >
+          <span>
+            {citizenIdLoading
+              ? "Checking..."
+              : "Enter & Continue"}
+          </span>
+
+          <span className="btn-arrow">
+            →
+          </span>
+        </button>
+
+        <p className="button-odia">
+          ପ୍ରବେଶ କରି ଜାରି ରଖନ୍ତୁ
+        </p>
+
+      </div>
+
+      {/* =================================================
+          DIVIDER
+      ================================================= */}
+
+      <div className="citizen-id-divider">
+
+        <span></span>
+
+        <strong>
+          OR / କିମ୍ବା
+        </strong>
+
+        <span></span>
+
+      </div>
+
+      {/* =================================================
+          PLATE 2 — NEW USER
+      ================================================= */}
+
+      <div className="citizen-new-user-plate">
+
+        <div className="new-user-icon">
+          👤
+        </div>
+
+        <div className="new-user-content">
+
+          <h2>
+            Are You a New User?
+          </h2>
+
+          <span className="new-user-odia">
+            ଆପଣ ଜଣେ ନୂତନ ବ୍ୟବହାରକାରୀ କି?
+          </span>
+
+          <p>
+            Don't have a Citizen ID yet?
+            Verify yourself first and create
+            your citizen profile.
+          </p>
+
+          <p className="new-user-odia-text">
+            ଏପର୍ଯ୍ୟନ୍ତ Citizen ID ନାହିଁ?
+            ପ୍ରଥମେ ଆପଣଙ୍କୁ ଯାଞ୍ଚ କରି
+            ନାଗରିକ ପ୍ରୋଫାଇଲ୍ ସୃଷ୍ଟି କରନ୍ତୁ।
+          </p>
 
           <button
             type="button"
-            onClick={
-              handleContinueCitizenVerification
-            }
-            disabled={citizenIdLoading}
+            className="new-user-verify-btn"
+            onClick={() => {
+              setShowCitizenIdModal(false);
+
+              navigate(
+                "/citizen-details"
+              );
+            }}
           >
-            {citizenIdLoading
-              ? "⏳ Please Wait..."
-              : "Continue to Verify Citizen"}
+            <span>
+              👤 Continue to Verify Citizen
+            </span>
+
+            <span>
+              →
+            </span>
           </button>
 
+          <p className="new-user-button-odia">
+            ନାଗରିକ ଯାଞ୍ଚ ପାଇଁ ଜାରି ରଖନ୍ତୁ
+          </p>
+
         </div>
+
       </div>
-    )}
+
+      {/* =================================================
+          FOOTER NOTE
+      ================================================= */}
+
+      <div className="citizen-id-footer">
+
+        🔐 Your information is securely handled
+        by SWACHHLENS.
+
+        <br />
+
+        🔐 ଆପଣଙ୍କ ସୂଚନା SWACHHLENS ଦ୍ୱାରା
+        ସୁରକ୍ଷିତ ଭାବରେ ପରିଚାଳିତ ହୁଏ।
+
+      </div>
+
+    </div>
+  </div>
+)}
 
     {/* =================================================
         MAIN REPORT WASTE PAGE

@@ -328,32 +328,29 @@ function Navbar() {
           {/* ===============================================
               CITIZEN DETAILS
           =============================================== */}
+<button
+  type="button"
+  className={`nav-btn ${
+    isCurrentPage(
+      "/citizen-details"
+    )
+      ? "active"
+      : ""
+  }`}
+  onClick={() => {
+    closeMenu();
+    scrollToTop();
+    navigate("/citizen-details");
+  }}
+>
+  <span className="nav-icon">
+    👤
+  </span>
 
-          <button
-            type="button"
-            className={`nav-btn ${
-              isCurrentPage(
-                "/citizen-details"
-              )
-                ? "active"
-                : ""
-            }`}
-            onClick={() =>
-              handleProtectedNavigation(
-                "/citizen-details",
-                "citizen"
-              )
-            }
-          >
-            <span className="nav-icon">
-              👤
-            </span>
-
-            <span>
-              Citizen Details
-            </span>
-          </button>
-
+  <span>
+    Citizen Details
+  </span>
+</button>
           {/* ===============================================
               WASTE REPORT
           =============================================== */}
