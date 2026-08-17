@@ -2356,35 +2356,7 @@ setLocationSaved(false);
       "swachhlens_incident_completed"
     );
   };
-// =====================================================
-// CITIZEN ID VERIFICATION MODAL
-// =====================================================
 
-const handleContinueCitizenVerification = () => {
-  const enteredCitizenId =
-    citizenIdInput.trim();
-
-  if (!enteredCitizenId) {
-    setCitizenIdError(
-      "Please enter your Citizen ID."
-    );
-    return;
-  }
-
-  // Save Citizen ID temporarily
-  sessionStorage.setItem(
-    "swachhlens_citizen_id",
-    enteredCitizenId
-  );
-
-  // Close modal
-  setShowCitizenIdModal(false);
-
-  // Navigate to Citizen Details
-  navigate(
-    "/citizen-details"
-  );
-};
   // =====================================================
   // SUBMIT REPORT
   // =====================================================
