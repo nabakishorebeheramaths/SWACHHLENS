@@ -6,7 +6,6 @@ import {
 
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
-import StepGuard from "./components/StepGuard";
 
 // =========================================================
 // PAGES
@@ -59,30 +58,20 @@ function App() {
         {/* ===================================================
             HOME
         =================================================== */}
-
-        <Route
-          path="/"
-          element={
-            <StepGuard requiredStep="home">
-              <Home />
-            </StepGuard>
-          }
-        />
+<Route 
+  path="/" 
+  element={<Home />} 
+/>
 
 
         {/* ===================================================
             CITIZEN DETAILS
             STEP 01
         =================================================== */}
-
-        <Route
-          path="/citizen-details"
-          element={
-            <StepGuard requiredStep="citizen">
-              <CitizenDetails />
-            </StepGuard>
-          }
-        />
+<Route 
+  path="/citizen-details" 
+  element={<CitizenDetails />} 
+/>
 
 
         {/* ===================================================
@@ -111,28 +100,19 @@ function App() {
         */}
 
         <Route
-          path="/report-waste"
-          element={
-            <StepGuard requiredStep="waste-report">
-              <ReportWaste />
-            </StepGuard>
-          }
-        />
+  path="/report-waste"
+  element={<ReportWaste />}
+/>
 
 
         {/* ===================================================
             REPORT ANALYSIS & STATUS
             AFTER WASTE REPORT SUBMISSION
         =================================================== */}
-
-        <Route
-          path="/report-analysis-status"
-          element={
-            <StepGuard requiredStep="analysis-status">
-              <ReportAnalysisStatus />
-            </StepGuard>
-          }
-        />
+<Route 
+  path="/report-analysis-status" 
+  element={<ReportAnalysisStatus />} 
+/>
 
 
         {/* ===================================================

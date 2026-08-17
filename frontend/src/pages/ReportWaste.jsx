@@ -33,349 +33,81 @@ const INITIAL_CITIZEN_SITUATION = {
 // =====================================================
 // COMPONENT
 // =====================================================
-
 function ReportWaste() {
   const navigate = useNavigate();
 
   // =====================================================
-// DIRECT ACCESS GUARD
-// MONGODB CITIZEN VERIFICATION CHECK
-// =====================================================
+  // CITIZEN ID GATE
+  // =====================================================
 
-useEffect(() => {
-  const verifyCitizenFromMongoDB = async () => {
-    try {
-      // =================================================
-      // HOME JOURNEY CHECK
-      // =================================================
+  const [citizenIdInput, setCitizenIdInput] =
+    useState("");
 
-      const homeStarted =
-        sessionStorage.getItem(
-          "swachhlensHomeStarted"
-        );
+  const [citizenIdVerified, setCitizenIdVerified] =
+    useState(false);
 
-      if (homeStarted !== "true") {
-        sessionStorage.removeItem(
-          "swachhlens_incident_completed"
-        );
+  const [citizenIdLoading, setCitizenIdLoading] =
+    useState(false);
 
-        navigate("/citizen-details", {
-          replace: true,
-        });
+  const [citizenIdError, setCitizenIdError] =
+    useState("");
 
-        return;
-      }
+  const [showCitizenIdModal, setShowCitizenIdModal] =
+    useState(true);
 
-      // =================================================
-      // GET CITIZEN EMAIL
-      // =================================================
+  // =====================================================
+  // CONTINUE TO CITIZEN VERIFICATION
+  // =====================================================
 
-      let email =
-        sessionStorage.getItem(
-          "swachhlens_citizen_email"
-        );
+  const handleContinueCitizenVerification = () => {
+    const enteredCitizenId =
+      citizenIdInput.trim();
 
-      // =================================================
-      // FALLBACK:
-      // GET EMAIL FROM SAVED CITIZEN OBJECT
-      // =================================================
+    // =================================================
+    // VALIDATION
+    // =================================================
 
-      if (!email?.trim()) {
-        const savedCitizen =
-          sessionStorage.getItem(
-            "swachhlens_citizen"
-          );
-
-        if (savedCitizen) {
-          try {
-            const parsedCitizen =
-              JSON.parse(savedCitizen);
-
-            email =
-              parsedCitizen?.email || "";
-          } catch (parseError) {
-            console.warn(
-              "⚠️ Could not parse saved citizen data:",
-              parseError
-            );
-          }
-        }
-      }
-
-      // =================================================
-      // EMAIL REQUIRED
-      // =================================================
-
-      if (!email?.trim()) {
-        console.warn(
-          "❌ No citizen email found in sessionStorage."
-        );
-
-        sessionStorage.removeItem(
-          "swachhlens_incident_completed"
-        );
-
-        navigate("/citizen-details", {
-          replace: true,
-        });
-
-        return;
-      }
-
-      // =================================================
-      // NORMALIZE EMAIL
-      // =================================================
-
-      email =
-        email.trim().toLowerCase();
-
-      // =================================================
-      // KEEP EMAIL IN SESSION STORAGE
-      // =================================================
-
-      sessionStorage.setItem(
-        "swachhlens_citizen_email",
-        email
+    if (!enteredCitizenId) {
+      setCitizenIdError(
+        "Please enter your Citizen ID."
       );
 
-      // =================================================
-      // CHECK MONGODB
-      // =================================================
-
-      console.log(
-        "========================================"
-      );
-
-      console.log(
-        "🔍 CHECKING CITIZEN VERIFICATION"
-      );
-
-      console.log(
-        "📧 Citizen Email:",
-        email
-      );
-
-      console.log(
-        "========================================"
-      );
-
-      const response =
-        await fetch(
-          `${API_BASE_URL}/api/citizen/by-email?email=${encodeURIComponent(
-            email
-          )}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-          }
-        );
-
-      // =================================================
-      // RESPONSE JSON
-      // =================================================
-
-      const data =
-        await response.json();
-
-      console.log(
-        "📥 MongoDB Citizen Verification Response:",
-        data
-      );
-
-      // =================================================
-      // SERVER ERROR
-      // =================================================
-
-      if (!response.ok) {
-        throw new Error(
-          data?.message ||
-            "Unable to verify citizen."
-        );
-      }
-
-      // =================================================
-      // CITIZEN NOT FOUND
-      // =================================================
-
-      if (
-        data?.found !== true ||
-        !data?.citizen
-      ) {
-        console.warn(
-          "❌ Citizen not found in MongoDB."
-        );
-
-        sessionStorage.removeItem(
-          "swachhlens_incident_completed"
-        );
-
-        navigate("/citizen-details", {
-          replace: true,
-        });
-
-        return;
-      }
-
-      // =================================================
-      // EMAIL VERIFICATION CHECK
-      // =================================================
-
-      if (
-        data.citizen.emailVerified !== true
-      ) {
-        console.warn(
-          "❌ Citizen email is not verified in MongoDB."
-        );
-
-        sessionStorage.removeItem(
-          "swachhlens_incident_completed"
-        );
-
-        navigate("/citizen-details", {
-          replace: true,
-        });
-
-        return;
-      }
-
-      // =================================================
-      // MONGODB EMAIL
-      // =================================================
-
-      const mongoEmail =
-        data.citizen.email
-          ?.trim()
-          .toLowerCase();
-
-      // =================================================
-      // EMAIL MATCH CHECK
-      // =================================================
-
-      if (
-        !mongoEmail ||
-        mongoEmail !== email
-      ) {
-        console.warn(
-          "❌ Citizen email mismatch."
-        );
-
-        console.log(
-          "Session Email:",
-          email
-        );
-
-        console.log(
-          "MongoDB Email:",
-          mongoEmail
-        );
-
-        sessionStorage.removeItem(
-          "swachhlens_incident_completed"
-        );
-
-        navigate("/citizen-details", {
-          replace: true,
-        });
-
-        return;
-      }
-
-      // =================================================
-      // CITIZEN VERIFIED
-      // =================================================
-
-      console.log(
-        "========================================"
-      );
-
-      console.log(
-        "✅ CITIZEN VERIFIED FROM MONGODB"
-      );
-
-      console.log(
-        "Citizen ID:",
-        data.citizen.citizenId
-      );
-
-      console.log(
-        "Citizen Email:",
-        data.citizen.email
-      );
-
-      console.log(
-        "Email Verified:",
-        data.citizen.emailVerified
-      );
-
-      console.log(
-        "========================================"
-      );
-
-      // =================================================
-      // RESTORE LATEST CITIZEN DATA
-      // =================================================
-
-      sessionStorage.setItem(
-        "swachhlens_citizen",
-        JSON.stringify(
-          data.citizen
-        )
-      );
-
-      // =================================================
-      // RESTORE VERIFIED EMAIL
-      // =================================================
-
-      sessionStorage.setItem(
-        "swachhlens_citizen_email",
-        data.citizen.email
-      );
-
-      // =================================================
-      // SYNCHRONIZE LOCAL FLAG
-      //
-      // MongoDB remains the actual source of truth.
-      // =================================================
-
-      sessionStorage.setItem(
-        "swachhlens_citizen_verified",
-        "true"
-      );
-
-      // =================================================
-      // ACCESS GRANTED
-      // =================================================
-
-      console.log(
-        "✅ ReportWaste access granted."
-      );
-
-    } catch (error) {
-      // =================================================
-      // ERROR
-      // =================================================
-
-      console.error(
-        "❌ MongoDB citizen verification failed:",
-        error
-      );
-
-      sessionStorage.removeItem(
-        "swachhlens_incident_completed"
-      );
-
-      navigate("/citizen-details", {
-        replace: true,
-      });
+      return;
     }
+
+    // =================================================
+    // SAVE CITIZEN ID
+    // =================================================
+
+    sessionStorage.setItem(
+      "swachhlens_citizen_id",
+      enteredCitizenId
+    );
+
+    console.log(
+      "🆔 Citizen ID entered:",
+      enteredCitizenId
+    );
+
+    // =================================================
+    // MARK ID ENTERED
+    // =================================================
+
+    setCitizenIdVerified(true);
+
+    setCitizenIdError("");
+
+    setShowCitizenIdModal(false);
+
+    // =================================================
+    // NAVIGATE TO CITIZEN DETAILS
+    // =================================================
+
+    navigate(
+      "/citizen-details"
+    );
   };
 
-  verifyCitizenFromMongoDB();
-
-}, [navigate]);
   // =====================================================
   // CITIZEN IDENTITY
   // =====================================================
@@ -2624,7 +2356,35 @@ setLocationSaved(false);
       "swachhlens_incident_completed"
     );
   };
+// =====================================================
+// CITIZEN ID VERIFICATION MODAL
+// =====================================================
 
+const handleContinueCitizenVerification = () => {
+  const enteredCitizenId =
+    citizenIdInput.trim();
+
+  if (!enteredCitizenId) {
+    setCitizenIdError(
+      "Please enter your Citizen ID."
+    );
+    return;
+  }
+
+  // Save Citizen ID temporarily
+  sessionStorage.setItem(
+    "swachhlens_citizen_id",
+    enteredCitizenId
+  );
+
+  // Close modal
+  setShowCitizenIdModal(false);
+
+  // Navigate to Citizen Details
+  navigate(
+    "/citizen-details"
+  );
+};
   // =====================================================
   // SUBMIT REPORT
   // =====================================================
@@ -3315,12 +3075,69 @@ console.log(
       </label>
     </div>
   );
+// =====================================================
+// RENDER
+// =====================================================
 
-  // =====================================================
-  // RENDER
-  // =====================================================
+return (
+  <>
+    {/* =================================================
+        CITIZEN ID MODAL
+    ================================================= */}
 
-  return (
+    {showCitizenIdModal && (
+      <div className="citizen-id-modal-overlay">
+        <div className="citizen-id-modal">
+
+          <h2>
+            🆔 Enter Citizen ID
+          </h2>
+
+          <p>
+            Please enter your Citizen ID to continue
+            with citizen verification.
+          </p>
+
+          <input
+            type="text"
+            value={citizenIdInput}
+            onChange={(event) => {
+              setCitizenIdInput(
+                event.target.value
+              );
+
+              setCitizenIdError("");
+            }}
+            placeholder="Enter Citizen ID"
+            disabled={citizenIdLoading}
+          />
+
+          {citizenIdError && (
+            <div className="citizen-id-error">
+              ⚠️ {citizenIdError}
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={
+              handleContinueCitizenVerification
+            }
+            disabled={citizenIdLoading}
+          >
+            {citizenIdLoading
+              ? "⏳ Please Wait..."
+              : "Continue to Verify Citizen"}
+          </button>
+
+        </div>
+      </div>
+    )}
+
+    {/* =================================================
+        MAIN REPORT WASTE PAGE
+    ================================================= */}
+
     <main>
 
       {/* =================================================
@@ -4557,6 +4374,7 @@ locationSaved ? (
 </div>
 </form>
 </main>
-  );
+  </>
+);
 }
 export default ReportWaste;

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://swachhlens-1.onrender.com//sitemap.xml
