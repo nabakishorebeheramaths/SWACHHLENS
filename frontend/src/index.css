@@ -1,0 +1,14 @@
+
+/* =========================================================
+   SWACHHLENS — ACTUAL INDIAN FLAG
+   ========================================================= */
+
+.home-india-flag {
+  width: 28px;
+  height: 19px;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  border-radius: 2px;
+}

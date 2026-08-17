@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
@@ -298,7 +298,7 @@ const getOrCreateCitizenId = async (citizen) => {
   await citizen.save();
 
   console.log(
-    "🆔 NEW CITIZEN ID GENERATED:",
+    "ðŸ†” NEW CITIZEN ID GENERATED:",
     generatedCitizenId
   );
 
@@ -431,7 +431,7 @@ router.post(
       }
 
       console.log(
-        "🔥 AI IMAGE ANALYZE ENDPOINT HIT"
+        "ðŸ”¥ AI IMAGE ANALYZE ENDPOINT HIT"
       );
 
       const aiResult =
@@ -626,11 +626,11 @@ router.post(
       );
 
       console.log(
-        "🔥 CREATE WASTE REPORT ROUTE HIT"
+        "ðŸ”¥ CREATE WASTE REPORT ROUTE HIT"
       );
 
       console.log(
-        "📦 RAW BACKEND BODY:",
+        "ðŸ“¦ RAW BACKEND BODY:",
         req.body
       );
 
@@ -683,17 +683,17 @@ router.post(
         );
 
       console.log(
-        "👤 PARSED CITIZEN:",
+        "ðŸ‘¤ PARSED CITIZEN:",
         citizen
       );
 
       console.log(
-        "📍 PARSED LOCATION:",
+        "ðŸ“ PARSED LOCATION:",
         location
       );
 
       console.log(
-        "🧑 CITIZEN SITUATION:",
+        "ðŸ§‘ CITIZEN SITUATION:",
         citizenSituation
       );
 
@@ -752,7 +752,7 @@ router.post(
         );
 
       console.log(
-        "👤 FINAL CITIZEN ID:",
+        "ðŸ‘¤ FINAL CITIZEN ID:",
         citizenCustomId
       );
 
@@ -774,7 +774,7 @@ router.post(
       // =====================================================
 
       console.log(
-        "🧠 Starting AI verification..."
+        "ðŸ§  Starting AI verification..."
       );
 
       const imageBuffer =
@@ -791,7 +791,7 @@ router.post(
         });
 
       console.log(
-        "🧠 AI RESULT:",
+        "ðŸ§  AI RESULT:",
         aiResult
       );
 
@@ -1023,7 +1023,7 @@ router.post(
       }
 
       console.log(
-        "📍 FINAL WASTE LOCATION:",
+        "ðŸ“ FINAL WASTE LOCATION:",
         {
           country:
             finalCountry,
@@ -1116,12 +1116,12 @@ router.post(
         );
 
       console.log(
-        "🆔 GENERATED CITIZEN ID:",
+        "ðŸ†” GENERATED CITIZEN ID:",
         citizenCustomId
       );
 
       console.log(
-        "🆔 GENERATED REPORT ID:",
+        "ðŸ†” GENERATED REPORT ID:",
         reportId
       );
 
@@ -1700,6 +1700,14 @@ try {
       reportId:
         report.reportId,
 
+      imagePath:
+        require("path").join(
+          process.cwd(),
+          "uploads",
+          "waste",
+          require("path").basename(report.imageUrl || "")
+        ),
+
       wasteType:
         report.wasteType,
 
@@ -1770,11 +1778,11 @@ try {
 
   if (emailResult.success) {
     console.log(
-      `📧 REPORT CONFIRMATION EMAIL SENT: ${email}`
+      `ðŸ“§ REPORT CONFIRMATION EMAIL SENT: ${email}`
     );
   } else {
     console.error(
-      `⚠️ REPORT CREATED BUT EMAIL FAILED: ${emailResult.message}`
+      `âš ï¸ REPORT CREATED BUT EMAIL FAILED: ${emailResult.message}`
     );
   }
 } catch (emailError) {
@@ -1782,7 +1790,7 @@ try {
   // Email failure must NOT delete/fail the already-created report.
 
   console.error(
-    "⚠️ REPORT EMAIL ERROR:",
+    "âš ï¸ REPORT EMAIL ERROR:",
     emailError.message
   );
 
@@ -1804,16 +1812,16 @@ try {
       );
 
       console.log(
-        "✅ WASTE REPORT CREATED"
+        "âœ… WASTE REPORT CREATED"
       );
 
       console.log(
-        "👤 CITIZEN ID:",
+        "ðŸ‘¤ CITIZEN ID:",
         citizenCustomId
       );
 
       console.log(
-        "📄 REPORT ID:",
+        "ðŸ“„ REPORT ID:",
         report.reportId
       );
 
@@ -1903,7 +1911,7 @@ try {
       );
 
       console.error(
-        "❌ CREATE WASTE REPORT ERROR:"
+        "âŒ CREATE WASTE REPORT ERROR:"
       );
 
       console.error(
@@ -2096,17 +2104,17 @@ const todayReports =
   });
 
 console.log(
-  "📅 IST TODAY REPORT COUNT:",
+  "ðŸ“… IST TODAY REPORT COUNT:",
   todayReports
 );
 
 console.log(
-  "🕐 IST DAY START UTC:",
+  "ðŸ• IST DAY START UTC:",
   todayStartUTC
 );
 
 console.log(
-  "🕐 IST DAY END UTC:",
+  "ðŸ• IST DAY END UTC:",
   todayEndUTC
 );
     // =====================================================

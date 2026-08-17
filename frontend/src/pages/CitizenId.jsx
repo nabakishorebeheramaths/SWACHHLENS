@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CitizenId.css";
 
@@ -137,7 +137,7 @@ return (
           <div className="flag-white">
 
             <span className="ashoka-wheel">
-              ☸️
+              â˜¸ï¸
             </span>
 
           </div>
@@ -158,7 +158,7 @@ return (
         <div className="top-brand-item">
 
           <div className="top-brand-icon">
-            ♻️
+            â™»ï¸
           </div>
 
           <strong>
@@ -179,7 +179,7 @@ return (
         <div className="top-brand-item">
 
           <div className="top-brand-icon">
-            🌱
+            ðŸŒ±
           </div>
 
           <strong>
@@ -198,7 +198,7 @@ return (
       <div className="top-toy-plate">
 
         <span className="top-toy-icon">
-          🗑️
+          ðŸ—‘ï¸
         </span>
 
       </div>
@@ -211,7 +211,7 @@ return (
       <div className="top-toy-plate">
 
         <span className="top-toy-icon">
-          ✨
+          âœ¨
         </span>
 
       </div>
@@ -225,7 +225,7 @@ return (
 
         <div className="citizen-heading">
           <div className="heading-icon">
-            🆔
+            ðŸ†”
           </div>
 
           <h1>
@@ -233,7 +233,7 @@ return (
           </h1>
 
           <h3>
-            ନାଗରିକ ଯାଞ୍ଚ
+            à¬¨à¬¾à¬—à¬°à¬¿à¬• à¬¯à¬¾à¬žà­à¬š
           </h3>
 
           <p>
@@ -242,9 +242,9 @@ return (
           </p>
 
           <p className="odia-main-text">
-            ନାଗରିକ ଯାଞ୍ଚ ଜାରି ରଖିବା ପାଇଁ
-            ଆପଣଙ୍କ Citizen ID ଏବଂ ପଞ୍ଜୀକୃତ
-            ଇମେଲ୍ ପ୍ରବେଶ କରନ୍ତୁ।
+            à¬¨à¬¾à¬—à¬°à¬¿à¬• à¬¯à¬¾à¬žà­à¬š à¬œà¬¾à¬°à¬¿ à¬°à¬–à¬¿à¬¬à¬¾ à¬ªà¬¾à¬‡à¬
+            à¬†à¬ªà¬£à¬™à­à¬• Citizen ID à¬à¬¬à¬‚ à¬ªà¬žà­à¬œà­€à¬•à­ƒà¬¤
+            à¬‡à¬®à­‡à¬²à­ à¬ªà­à¬°à¬¬à­‡à¬¶ à¬•à¬°à¬¨à­à¬¤à­à¥¤
           </p>
         </div>
 
@@ -254,7 +254,7 @@ return (
 
         <div className="clean-message">
           <span className="clean-message-icon">
-            🧹
+            ðŸ§¹
           </span>
 
           <div>
@@ -263,12 +263,12 @@ return (
             </strong>
 
             <span>
-              ଆପଣଙ୍କ ସମାଜକୁ ସ୍ୱଚ୍ଛ ରଖନ୍ତୁ
+              à¬†à¬ªà¬£à¬™à­à¬• à¬¸à¬®à¬¾à¬œà¬•à­ à¬¸à­à­±à¬šà­à¬› à¬°à¬–à¬¨à­à¬¤à­
             </span>
           </div>
 
           <span className="clean-message-icon">
-            🌱
+            ðŸŒ±
           </span>
         </div>
 
@@ -279,7 +279,7 @@ return (
         <div className="citizen-plates">
 
           {/* =================================================
-              PLATE 1 — EXISTING CITIZEN
+              PLATE 1 â€” EXISTING CITIZEN
           ================================================= */}
 
           <div className="citizen-plate">
@@ -287,7 +287,7 @@ return (
             <div className="plate-top">
 
               <div className="plate-icon">
-                🆔
+                ðŸ†”
               </div>
 
               <div>
@@ -296,7 +296,7 @@ return (
                 </h2>
 
                 <span>
-                  ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ
+                  à¬†à¬ªà¬£à¬™à­à¬• Citizen ID à¬ªà­à¬°à¬¬à­‡à¬¶ à¬•à¬°à¬¨à­à¬¤à­
                 </span>
               </div>
 
@@ -309,10 +309,10 @@ return (
             </p>
 
             <p className="plate-odia">
-              SWACHHLENS ରେ ପୂର୍ବରୁ ପଞ୍ଜୀକୃତ
-              ଅଛନ୍ତି? ଜାରି ରଖିବା ପାଇଁ ତଳେ
-              ଆପଣଙ୍କ Citizen ID ଏବଂ ପଞ୍ଜୀକୃତ
-              ଇମେଲ୍ ପ୍ରବେଶ କରନ୍ତୁ।
+              SWACHHLENS à¬°à­‡ à¬ªà­‚à¬°à­à¬¬à¬°à­ à¬ªà¬žà­à¬œà­€à¬•à­ƒà¬¤
+              à¬…à¬›à¬¨à­à¬¤à¬¿? à¬œà¬¾à¬°à¬¿ à¬°à¬–à¬¿à¬¬à¬¾ à¬ªà¬¾à¬‡à¬ à¬¤à¬³à­‡
+              à¬†à¬ªà¬£à¬™à­à¬• Citizen ID à¬à¬¬à¬‚ à¬ªà¬žà­à¬œà­€à¬•à­ƒà¬¤
+              à¬‡à¬®à­‡à¬²à­ à¬ªà­à¬°à¬¬à­‡à¬¶ à¬•à¬°à¬¨à­à¬¤à­à¥¤
             </p>
 
             {/* =================================================
@@ -322,7 +322,7 @@ return (
             <div className="citizen-input-wrapper">
 
               <span>
-                🆔
+                ðŸ†”
               </span>
 
               <input
@@ -349,7 +349,7 @@ return (
               <div className="citizen-id-error">
 
                 <span>
-                  ⚠️
+                  âš ï¸
                 </span>
 
                 <span>
@@ -366,11 +366,11 @@ return (
             <div className="citizen-email-label">
 
               <span>
-                📧
+                ðŸ“§
               </span>
 
               <span>
-                Email Address / ଇମେଲ୍ ଠିକଣା
+                Email Address / à¬‡à¬®à­‡à¬²à­ à¬ à¬¿à¬•à¬£à¬¾
               </span>
 
             </div>
@@ -382,7 +382,7 @@ return (
             <div className="citizen-email-wrapper">
 
               <span>
-                📧
+                ðŸ“§
               </span>
 
               <input
@@ -409,7 +409,7 @@ return (
               <div className="citizen-email-error">
 
                 <span>
-                  ⚠️
+                  âš ï¸
                 </span>
 
                 <span>
@@ -434,13 +434,13 @@ return (
               </span>
 
               <span>
-                →
+                â†’
               </span>
 
             </button>
 
             <p className="button-odia">
-              ପ୍ରବେଶ କରି ଜାରି ରଖନ୍ତୁ
+              à¬ªà­à¬°à¬¬à­‡à¬¶ à¬•à¬°à¬¿ à¬œà¬¾à¬°à¬¿ à¬°à¬–à¬¨à­à¬¤à­
             </p>
 
           </div>
@@ -454,7 +454,7 @@ return (
             <span></span>
 
             <div>
-              ✨ OR / କିମ୍ବା ✨
+              âœ¨ OR / à¬•à¬¿à¬®à­à¬¬à¬¾ âœ¨
             </div>
 
             <span></span>
@@ -462,7 +462,7 @@ return (
           </div>
 
           {/* =================================================
-              PLATE 2 — NEW USER
+              PLATE 2 â€” NEW USER
           ================================================= */}
 
           <div className="citizen-plate new-user-plate">
@@ -470,7 +470,7 @@ return (
             <div className="plate-top">
 
               <div className="plate-icon new-icon">
-                👤
+                ðŸ‘¤
               </div>
 
               <div>
@@ -480,7 +480,7 @@ return (
                 </h2>
 
                 <span>
-                  ଆପଣ ଜଣେ ନୂତନ ବ୍ୟବହାରକାରୀ କି?
+                  à¬†à¬ªà¬£ à¬œà¬£à­‡ à¬¨à­‚à¬¤à¬¨ à¬¬à­à­Ÿà¬¬à¬¹à¬¾à¬°à¬•à¬¾à¬°à­€ à¬•à¬¿?
                 </span>
 
               </div>
@@ -494,9 +494,9 @@ return (
             </p>
 
             <p className="plate-odia">
-              ଏପର୍ଯ୍ୟନ୍ତ Citizen ID ନାହିଁ?
-              ପ୍ରଥମେ ଆପଣଙ୍କୁ ଯାଞ୍ଚ କରି
-              ନାଗରିକ ପ୍ରୋଫାଇଲ୍ ସୃଷ୍ଟି କରନ୍ତୁ।
+              à¬à¬ªà¬°à­à¬¯à­à­Ÿà¬¨à­à¬¤ Citizen ID à¬¨à¬¾à¬¹à¬¿à¬?
+              à¬ªà­à¬°à¬¥à¬®à­‡ à¬†à¬ªà¬£à¬™à­à¬•à­ à¬¯à¬¾à¬žà­à¬š à¬•à¬°à¬¿
+              à¬¨à¬¾à¬—à¬°à¬¿à¬• à¬ªà­à¬°à­‹à¬«à¬¾à¬‡à¬²à­ à¬¸à­ƒà¬·à­à¬Ÿà¬¿ à¬•à¬°à¬¨à­à¬¤à­à¥¤
             </p>
 
             <button
@@ -508,17 +508,17 @@ return (
             >
 
               <span>
-                👤 Continue to Verify Citizen
+                ðŸ‘¤ Continue to Verify Citizen
               </span>
 
               <span>
-                →
+                â†’
               </span>
 
             </button>
 
             <p className="button-odia">
-              ନାଗରିକ ଯାଞ୍ଚ ପାଇଁ ଜାରି ରଖନ୍ତୁ
+              à¬¨à¬¾à¬—à¬°à¬¿à¬• à¬¯à¬¾à¬žà­à¬š à¬ªà¬¾à¬‡à¬ à¬œà¬¾à¬°à¬¿ à¬°à¬–à¬¨à­à¬¤à­
             </p>
 
           </div>
@@ -532,23 +532,23 @@ return (
         <div className="clean-india-section">
 
           <div className="clean-india-icon">
-            🇮🇳
+            ðŸ‡®ðŸ‡³
           </div>
 
           <div>
 
             <strong>
-              Clean India • Green India
+              Clean India â€¢ Green India
             </strong>
 
             <span>
-              ସ୍ୱଚ୍ଛ ଭାରତ • ସବୁଜ ଭାରତ
+              à¬¸à­à­±à¬šà­à¬› à¬­à¬¾à¬°à¬¤ â€¢ à¬¸à¬¬à­à¬œ à¬­à¬¾à¬°à¬¤
             </span>
 
           </div>
 
           <div className="clean-india-icon">
-            🌱
+            ðŸŒ±
           </div>
 
         </div>
@@ -560,7 +560,7 @@ return (
         <div className="citizen-security">
 
           <span>
-            🔐
+            ðŸ”
           </span>
 
           <span>
@@ -569,8 +569,8 @@ return (
           </span>
 
           <span className="security-odia">
-            ଆପଣଙ୍କ ସୂଚନା SWACHHLENS ଦ୍ୱାରା
-            ସୁରକ୍ଷିତ ଭାବରେ ପରିଚାଳିତ ହୁଏ।
+            à¬†à¬ªà¬£à¬™à­à¬• à¬¸à­‚à¬šà¬¨à¬¾ SWACHHLENS à¬¦à­à­±à¬¾à¬°à¬¾
+            à¬¸à­à¬°à¬•à­à¬·à¬¿à¬¤ à¬­à¬¾à¬¬à¬°à­‡ à¬ªà¬°à¬¿à¬šà¬¾à¬³à¬¿à¬¤ à¬¹à­à¬à¥¤
           </span>
 
         </div>
@@ -582,11 +582,11 @@ return (
         <div className="citizen-footer">
 
           <span>
-            ♻️ SWACHHLENS
+            â™»ï¸ SWACHHLENS
           </span>
 
           <span>
-            •
+            â€¢
           </span>
 
           <span>

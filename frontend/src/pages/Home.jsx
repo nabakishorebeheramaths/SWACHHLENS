@@ -51,10 +51,10 @@ function Home() {
         <div className="india-collaboration-strip">
 
           <div className="india-brand-block">
-            <span className="india-flag">🇮🇳</span>
+            <span className="india-flag"></span>
 
             <div>
-              <strong>INDIA</strong>
+              <strong><img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /> INDIA</strong>
               <small>स्वच्छ भारत • Clean India</small>
             </div>
           </div>
@@ -78,7 +78,7 @@ function Home() {
         <div className="hero-content">
 
           <span className="hero-eyebrow">
-            🇮🇳 SWACHH BHARAT × AI-POWERED WASTE RESPONSE
+            <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /> SWACHH BHARAT × AI-POWERED WASTE RESPONSE
           </span>
 
           <h1 className="rainbow-heading home-main-heading">
@@ -104,7 +104,7 @@ function Home() {
 
           <div className="hero-india-message">
 
-            <span>🇮🇳</span>
+            <span><img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /></span>
 
             <div>
               <strong>
@@ -224,7 +224,7 @@ function Home() {
         <div className="section-heading">
 
           <span className="small-green-heading">
-            🇮🇳 INDIAN WASTE INCIDENTS
+            <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /> INDIAN WASTE INCIDENTS
           </span>
 
           <h2 className="rainbow-heading">
@@ -257,7 +257,7 @@ function Home() {
             </span>
 
             <div className="waste-card-flag">
-              🇮🇳
+              <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" />
             </div>
 
             <h3>
@@ -283,7 +283,7 @@ function Home() {
             </span>
 
             <div className="waste-card-flag">
-              🇮🇳
+              <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" />
             </div>
 
             <h3>
@@ -309,7 +309,7 @@ function Home() {
             </span>
 
             <div className="waste-card-flag">
-              🇮🇳
+              <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" />
             </div>
 
             <h3>
@@ -335,7 +335,7 @@ function Home() {
             </span>
 
             <div className="waste-card-flag">
-              🇮🇳
+              <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" />
             </div>
 
             <h3>
@@ -361,7 +361,7 @@ function Home() {
             </span>
 
             <div className="waste-card-flag">
-              🇮🇳
+              <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" />
             </div>
 
             <h3>
@@ -387,7 +387,7 @@ function Home() {
             </span>
 
             <div className="waste-card-flag">
-              🇮🇳
+              <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" />
             </div>
 
             <h3>
@@ -421,7 +421,7 @@ function Home() {
           <div className="swachh-bharat-visual">
 
             <div className="tricolor-wheel">
-              <span>🇮🇳</span>
+              <span><img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /></span>
             </div>
 
             <div className="ashoka-ring">
@@ -434,7 +434,7 @@ function Home() {
           <div className="swachh-bharat-content">
 
             <span className="small-green-heading">
-              🇮🇳 CLEAN INDIA COLLABORATION
+              <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /> CLEAN INDIA COLLABORATION
             </span>
 
             <h2 className="rainbow-heading">
@@ -462,7 +462,7 @@ function Home() {
             <div className="collaboration-points">
 
               <div>
-                <span>🇮🇳</span>
+                <span><img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /></span>
                 <strong>
                   Citizen Participation
                 </strong>
@@ -1116,7 +1116,7 @@ function Home() {
           <article className="responsibility-card citizen-responsibility">
 
             <span className="small-green-heading">
-              🇮🇳 CITIZEN RESPONSIBILITY
+              <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /> CITIZEN RESPONSIBILITY
             </span>
 
             <h2 className="rainbow-heading">
@@ -1179,7 +1179,7 @@ function Home() {
         <div className="india-future-card">
 
           <div className="future-emblem">
-            🇮🇳
+            <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" />
           </div>
 
           <div>
@@ -1224,7 +1224,7 @@ function Home() {
         <div className="cta-card">
 
           <div className="cta-india-mark">
-            🇮🇳
+            <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" />
           </div>
 
           <span className="small-green-heading">
@@ -1261,7 +1261,7 @@ function Home() {
 
 
           <small className="cta-note">
-            🔒 Step-by-step reporting • 🇮🇳 Clean India • ♻️ SWACHHLENS
+            🔒 Step-by-step reporting • <img src="/images/india-flag.svg" alt="Indian Flag" className="home-india-flag" /> Clean India • ♻️ SWACHHLENS
           </small>
 
         </div>

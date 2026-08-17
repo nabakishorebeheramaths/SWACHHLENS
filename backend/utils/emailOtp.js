@@ -1,3 +1,4 @@
+﻿const fs = require("fs");
 const crypto = require("crypto");
 
 // =====================================================
@@ -9,6 +10,7 @@ const sendViaBrevo = async ({
   subject,
   text,
   html,
+  attachments = [],
 }) => {
   try {
     if (!process.env.BREVO_API_KEY) {
@@ -56,6 +58,9 @@ const sendViaBrevo = async ({
 
           htmlContent:
             html || "",
+
+          attachments:
+            attachments || [],
         }),
       }
     );
@@ -71,7 +76,7 @@ const sendViaBrevo = async ({
     }
 
     console.log(
-      `✅ Brevo email sent to: ${to}`
+      `âœ… Brevo email sent to: ${to}`
     );
 
     return {
@@ -82,7 +87,7 @@ const sendViaBrevo = async ({
 
   } catch (error) {
     console.error(
-      "❌ Brevo Email Error:",
+      "âŒ Brevo Email Error:",
       error
     );
 
@@ -138,7 +143,7 @@ const sendEmailOTP = async (email) => {
         border-radius: 12px;
       ">
 
-        <h2>♻️ SWACHHLENS</h2>
+        <h2>â™»ï¸ SWACHHLENS</h2>
 
         <h3>Email Verification</h3>
 
@@ -168,7 +173,7 @@ const sendEmailOTP = async (email) => {
         <hr />
 
         <small>
-          SWACHHLENS — AI Waste-Response
+          SWACHHLENS â€” AI Waste-Response
           Intelligence System
         </small>
 
@@ -178,7 +183,7 @@ const sendEmailOTP = async (email) => {
 
   try {
     console.log(
-      `📤 Sending OTP to: ${normalizedEmail}`
+      `ðŸ“¤ Sending OTP to: ${normalizedEmail}`
     );
 
     const emailResult =
@@ -219,11 +224,11 @@ if (!emailResult.success) {
     );
 
     console.log(
-      `✅ OTP sent successfully to ${normalizedEmail}`
+      `âœ… OTP sent successfully to ${normalizedEmail}`
     );
 
     console.log(
-      `📨 Message ID: ${emailResult.messageId}`
+      `ðŸ“¨ Message ID: ${emailResult.messageId}`
     );
 
     return {
@@ -238,7 +243,7 @@ if (!emailResult.success) {
     );
 
     console.error(
-      `❌ OTP SEND FAILED for ${normalizedEmail}`
+      `âŒ OTP SEND FAILED for ${normalizedEmail}`
     );
 
     console.error(
@@ -359,7 +364,7 @@ const sendWasteReportEmail = async ({
       normalizedEmail,
 
     subject:
-      `SWACHHLENS Report Confirmation — ${reportId}`,
+      `SWACHHLENS Report Confirmation â€” ${reportId}`,
   attachments: imagePath
     ? [
         {
@@ -462,7 +467,7 @@ AI Waste-Response Intelligence System
         <h2 style="
           margin-bottom: 5px;
         ">
-          ♻️ SWACHHLENS
+          â™»ï¸ SWACHHLENS
         </h2>
 
         <p style="
@@ -477,7 +482,7 @@ AI Waste-Response Intelligence System
         <!-- SUCCESS -->
 
         <h3>
-          ✅ Waste Report Successfully Registered
+          âœ… Waste Report Successfully Registered
         </h3>
 
         <p>
@@ -522,7 +527,7 @@ AI Waste-Response Intelligence System
 <!-- REPORTED WASTE IMAGE -->
 
 <h3>
-  🖼️ Reported Waste Image
+  ðŸ–¼ï¸ Reported Waste Image
 </h3>
 
 <div style="
@@ -547,7 +552,7 @@ AI Waste-Response Intelligence System
         <!-- REPORT DETAILS -->
 
         <h3>
-          📋 Report Details
+          ðŸ“‹ Report Details
         </h3>
 
         <table style="
@@ -689,7 +694,7 @@ AI Waste-Response Intelligence System
         <!-- DESCRIPTION -->
 
         <h3>
-          📝 AI Analysis Summary
+          ðŸ“ AI Analysis Summary
         </h3>
 
         <p style="
@@ -704,7 +709,7 @@ AI Waste-Response Intelligence System
         <!-- RECOMMENDED ACTION -->
 
         <h3>
-          💡 Recommended Action
+          ðŸ’¡ Recommended Action
         </h3>
 
         <p style="
@@ -722,7 +727,7 @@ AI Waste-Response Intelligence System
         <!-- LOCATION -->
 
         <h3>
-          📍 Waste Location
+          ðŸ“ Waste Location
         </h3>
 
         <p>
@@ -750,7 +755,7 @@ AI Waste-Response Intelligence System
         ">
 
           <strong>
-            🤝 Your Information Is Our Responsibility
+            ðŸ¤ Your Information Is Our Responsibility
           </strong>
 
           <p>
@@ -792,7 +797,7 @@ AI Waste-Response Intelligence System
                     font-weight: bold;
                   "
                 >
-                  🔎 Track Your Report
+                  ðŸ”Ž Track Your Report
                 </a>
 
               </div>
@@ -809,7 +814,7 @@ AI Waste-Response Intelligence System
           color: #777;
           text-align: center;
         ">
-          SWACHHLENS — AI Waste-Response Intelligence System
+          SWACHHLENS â€” AI Waste-Response Intelligence System
         </p>
 
       </div>
@@ -823,11 +828,11 @@ AI Waste-Response Intelligence System
   try {
 
     console.log(
-      `📤 Sending waste report email to: ${normalizedEmail}`
+      `ðŸ“¤ Sending waste report email to: ${normalizedEmail}`
     );
 
     console.log(
-      `🆔 Report ID: ${reportId}`
+      `ðŸ†” Report ID: ${reportId}`
     );
 
    const emailResult =
@@ -836,6 +841,16 @@ AI Waste-Response Intelligence System
     subject: mailOptions.subject,
     text: mailOptions.text,
     html: mailOptions.html,
+
+    attachments:
+      imagePath && fs.existsSync(imagePath)
+        ? [
+            {
+              name: "reported-waste-image.jpg",
+              content: fs.readFileSync(imagePath).toString("base64"),
+            },
+          ]
+        : [],
   });
 
 if (!emailResult.success) {
@@ -846,11 +861,11 @@ if (!emailResult.success) {
 }
 
     console.log(
-      `✅ Waste report email sent successfully to ${normalizedEmail}`
+      `âœ… Waste report email sent successfully to ${normalizedEmail}`
     );
 
     console.log(
-      `📨 Message ID: ${emailResult.messageId}`
+      `ðŸ“¨ Message ID: ${emailResult.messageId}`
     );
 
     return {
@@ -862,7 +877,7 @@ if (!emailResult.success) {
   } catch (error) {
 
     console.error(
-      `❌ WASTE REPORT EMAIL FAILED for ${normalizedEmail}`
+      `âŒ WASTE REPORT EMAIL FAILED for ${normalizedEmail}`
     );
 
     console.error(

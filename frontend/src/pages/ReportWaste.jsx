@@ -1,4 +1,4 @@
-import CitizenId from "./CitizenId";
+﻿import CitizenId from "./CitizenId";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ReportWaste.css";
@@ -230,7 +230,7 @@ const verifiedCitizenEmail =
   }, [imagePreview]);
 
   // =====================================================
-  // STATE → DISTRICTS
+  // STATE â†’ DISTRICTS
   // =====================================================
 
   const handleStateChange = async (event) => {
@@ -291,7 +291,7 @@ const verifiedCitizenEmail =
   };
 
   // =====================================================
-  // DISTRICT → BLOCKS
+  // DISTRICT â†’ BLOCKS
   // =====================================================
 
   const handleDistrictChange = async (event) => {
@@ -353,7 +353,7 @@ const verifiedCitizenEmail =
   };
 
   // =====================================================
-  // BLOCK → VILLAGES
+  // BLOCK â†’ VILLAGES
   // =====================================================
 
   const handleBlockChange = async (event) => {
@@ -502,7 +502,7 @@ const handleImageChange = (event) => {
   );
 
   console.log(
-    "🖼️ NEW IMAGE SELECTED"
+    "ðŸ–¼ï¸ NEW IMAGE SELECTED"
   );
 
   console.log(
@@ -556,7 +556,7 @@ const handleAIAnalysis = async () => {
     // =================================================
 
     setAiAnalysisMessage(
-      "🤖 SWACHHLENS AI is starting image analysis..."
+      "ðŸ¤– SWACHHLENS AI is starting image analysis..."
     );
 
     // =================================================
@@ -568,17 +568,17 @@ const handleAIAnalysis = async () => {
     formData.append("image", imageFile);
 
     console.log("========================================");
-    console.log("🤖 SWACHHLENS AI IMAGE ANALYSIS");
+    console.log("ðŸ¤– SWACHHLENS AI IMAGE ANALYSIS");
     console.log("========================================");
 
-    console.log("🖼️ Image:", imageFile.name);
-    console.log("📦 MIME:", imageFile.type);
-    console.log("📏 Size:", imageFile.size);
+    console.log("ðŸ–¼ï¸ Image:", imageFile.name);
+    console.log("ðŸ“¦ MIME:", imageFile.type);
+    console.log("ðŸ“ Size:", imageFile.size);
 console.log(
-  "🌐 AI URL:",
+  "ðŸŒ AI URL:",
   `${API_BASE_URL}/api/waste-reports/analyze-image`
 );
-console.log("📦 ALL FORMDATA:");
+console.log("ðŸ“¦ ALL FORMDATA:");
 
 for (const [key, value] of formData.entries()) {
   if (value instanceof File) {
@@ -612,7 +612,7 @@ for (const [key, value] of formData.entries()) {
     // =================================================
 
     setAiAnalysisMessage(
-      "🔍 AI is checking whether this image contains a real waste situation..."
+      "ðŸ” AI is checking whether this image contains a real waste situation..."
     );
 
     // =================================================
@@ -644,7 +644,7 @@ if (timeoutId) {
 const responseText = await response.text();
 
 console.log(
-  "📥 RAW AI RESPONSE:",
+  "ðŸ“¥ RAW AI RESPONSE:",
   responseText
 );
 
@@ -656,7 +656,7 @@ try {
     : {};
 } catch (parseError) {
   console.error(
-    "❌ AI RESPONSE JSON PARSE ERROR:",
+    "âŒ AI RESPONSE JSON PARSE ERROR:",
     parseError
   );
 
@@ -665,7 +665,7 @@ try {
   );
 }
     console.log(
-      "🤖 COMPLETE AI RESPONSE:",
+      "ðŸ¤– COMPLETE AI RESPONSE:",
       data
     );
 
@@ -712,32 +712,32 @@ try {
     );
 
     console.log(
-      "🖼️ Valid Image:",
+      "ðŸ–¼ï¸ Valid Image:",
       validImage
     );
 
     console.log(
-      "🗑️ Waste Detected:",
+      "ðŸ—‘ï¸ Waste Detected:",
       wasteDetected
     );
 
     console.log(
-      "🗑️ AI Waste Type:",
+      "ðŸ—‘ï¸ AI Waste Type:",
       detectedWasteType
     );
 
     console.log(
-      "⚠️ AI Severity:",
+      "âš ï¸ AI Severity:",
       detectedSeverity
     );
 
     console.log(
-      "🎯 AI Confidence:",
+      "ðŸŽ¯ AI Confidence:",
       confidence
     );
 
     console.log(
-      "💬 AI Message:",
+      "ðŸ’¬ AI Message:",
       aiMessage
     );
 
@@ -754,7 +754,7 @@ try {
       !wasteDetected
     ) {
       console.warn(
-        "❌ AI rejected image."
+        "âŒ AI rejected image."
       );
 
       // -----------------------------------------------
@@ -796,7 +796,7 @@ try {
 
       setAiAnalysisMessage(
         aiMessage ||
-          "❌ This image does not appear to show a real waste-related situation. Please upload a clear photo of the waste location."
+          "âŒ This image does not appear to show a real waste-related situation. Please upload a clear photo of the waste location."
       );
 
       setError(
@@ -912,12 +912,12 @@ try {
       );
 
       console.log(
-        "✅ Waste Type AUTO-FILLED:",
+        "âœ… Waste Type AUTO-FILLED:",
         finalWasteType
       );
     } else {
       console.warn(
-        "⚠️ AI returned invalid waste type:",
+        "âš ï¸ AI returned invalid waste type:",
         detectedWasteType
       );
     }
@@ -932,12 +932,12 @@ try {
       );
 
       console.log(
-        "✅ Severity AUTO-FILLED:",
+        "âœ… Severity AUTO-FILLED:",
         finalSeverity
       );
     } else {
       console.warn(
-        "⚠️ AI returned invalid severity:",
+        "âš ï¸ AI returned invalid severity:",
         detectedSeverity
       );
     }
@@ -957,23 +957,23 @@ try {
       finalSeverity
     ) {
       setAiAnalysisMessage(
-        `✅ AI analysis completed successfully. Detected ${finalWasteType} with ${finalSeverity} severity.`
+        `âœ… AI analysis completed successfully. Detected ${finalWasteType} with ${finalSeverity} severity.`
       );
     } else if (
       finalWasteType
     ) {
       setAiAnalysisMessage(
-        `✅ AI detected ${finalWasteType}. Please select the severity manually.`
+        `âœ… AI detected ${finalWasteType}. Please select the severity manually.`
       );
     } else if (
       finalSeverity
     ) {
       setAiAnalysisMessage(
-        `✅ AI detected ${finalSeverity} severity. Please select the waste type manually.`
+        `âœ… AI detected ${finalSeverity} severity. Please select the waste type manually.`
       );
     } else {
       setAiAnalysisMessage(
-        "✅ AI analysis completed. Please verify the waste type and severity manually."
+        "âœ… AI analysis completed. Please verify the waste type and severity manually."
       );
     }
 
@@ -982,7 +982,7 @@ try {
     // =================================================
 
     setMessage(
-      "🤖 AI image analysis completed successfully."
+      "ðŸ¤– AI image analysis completed successfully."
     );
 
     setError("");
@@ -992,7 +992,7 @@ try {
     );
 
     console.log(
-      "✅ AI ANALYSIS FINISHED SUCCESSFULLY"
+      "âœ… AI ANALYSIS FINISHED SUCCESSFULLY"
     );
 
     console.log(
@@ -1014,7 +1014,7 @@ try {
     // =================================================
 
     console.error(
-      "❌ AI IMAGE ANALYSIS ERROR:",
+      "âŒ AI IMAGE ANALYSIS ERROR:",
       error
     );
 
@@ -1029,7 +1029,7 @@ try {
       setAiAnalysisDone(false);
 
       setAiAnalysisMessage(
-        "⏱️ AI analysis is taking too long. The AI server did not respond within 2 minutes."
+        "â±ï¸ AI analysis is taking too long. The AI server did not respond within 2 minutes."
       );
 
       setError(
@@ -1084,7 +1084,7 @@ try {
       .trim()
       .replace(/\s+/g, " ")
       .replace(
-        /[.,'’"`-]/g,
+        /[.,'â€™"`-]/g,
         ""
       );
   };
@@ -1216,7 +1216,7 @@ if (type === "current") {
   setError("");
 
   // -------------------------------------------------
-  // DEBUG — GPS LOCATION CONFIRMED BY USER
+  // DEBUG â€” GPS LOCATION CONFIRMED BY USER
   // -------------------------------------------------
 
   console.log(
@@ -1224,11 +1224,11 @@ if (type === "current") {
   );
 
   console.log(
-    "✅ USER CLICKED: CHOOSE THIS CURRENT LOCATION"
+    "âœ… USER CLICKED: CHOOSE THIS CURRENT LOCATION"
   );
 
   console.log(
-    "📍 CURRENT GPS LOCATION TO SAVE:"
+    "ðŸ“ CURRENT GPS LOCATION TO SAVE:"
   );
 
   console.log(
@@ -1270,7 +1270,7 @@ if (type === "current") {
   setLocationSaved(true);
 
   setMessage(
-    "📍 Current GPS waste location saved successfully."
+    "ðŸ“ Current GPS waste location saved successfully."
   );
 
   setCurrentLocationMessage("");
@@ -1286,7 +1286,7 @@ if (type === "current") {
   );
 
   console.log(
-    "✅ CURRENT GPS LOCATION SAVED"
+    "âœ… CURRENT GPS LOCATION SAVED"
   );
 
   console.log(
@@ -1323,7 +1323,7 @@ if (type === "current") {
   };
   // =====================================================
   // CURRENT LOCATION
-  // GPS → REAL ADDRESS → LOCATION DATABASE MATCH
+  // GPS â†’ REAL ADDRESS â†’ LOCATION DATABASE MATCH
   // =====================================================
 
   const handleCurrentLocation = () => {
@@ -1345,7 +1345,7 @@ if (type === "current") {
     );
 
     console.log(
-      "📍 CURRENT LOCATION BUTTON CLICKED"
+      "ðŸ“ CURRENT LOCATION BUTTON CLICKED"
     );
 
     console.log(
@@ -1384,7 +1384,7 @@ if (type === "current") {
     setError("");
 
     setMessage(
-      "📍 Requesting your current GPS location..."
+      "ðŸ“ Requesting your current GPS location..."
     );
 
     // ===================================================
@@ -1404,7 +1404,7 @@ if (type === "current") {
         );
 
         console.log(
-          "📡 REAL GPS RECEIVED"
+          "ðŸ“¡ REAL GPS RECEIVED"
         );
 
         console.log(
@@ -1467,7 +1467,7 @@ if (type === "current") {
           );
 
           console.log(
-            "🗺️ NOMINATIM ADDRESS RESPONSE"
+            "ðŸ—ºï¸ NOMINATIM ADDRESS RESPONSE"
           );
 
           console.log(
@@ -1636,7 +1636,7 @@ if (type === "current") {
           // =================================================
 
           // =================================================
-// GPS LOCATION DETECTED — NOT SAVED YET
+// GPS LOCATION DETECTED â€” NOT SAVED YET
 // =================================================
 
 setCurrentLocation(gpsLocation);
@@ -1655,7 +1655,7 @@ setManualLocationMessage("");
 setError("");
 
 setMessage(
-  "📍 Current location detected. Click Save Location to confirm."
+  "ðŸ“ Current location detected. Click Save Location to confirm."
 );
 
           // =================================================
@@ -1667,7 +1667,7 @@ setMessage(
           );
 
           console.log(
-            "✅ COMPLETE GPS LOCATION SAVED"
+            "âœ… COMPLETE GPS LOCATION SAVED"
           );
 
           console.log(
@@ -1865,7 +1865,7 @@ setMessage(
                         );
 
                         console.log(
-                          "✅ GPS village matched:",
+                          "âœ… GPS village matched:",
                           matchedVillage
                         );
                       } else {
@@ -1881,13 +1881,13 @@ setMessage(
                         );
 
                         console.log(
-                          "ℹ️ GPS village not found in database. Using real reverse-geocoded locality:",
+                          "â„¹ï¸ GPS village not found in database. Using real reverse-geocoded locality:",
                           detectedVillage
                         );
                       }
                     } catch (villageError) {
                       console.warn(
-                        "⚠️ Village database lookup failed:",
+                        "âš ï¸ Village database lookup failed:",
                         villageError
                       );
 
@@ -1910,12 +1910,12 @@ setMessage(
                     );
 
                     console.log(
-                      "ℹ️ GPS block not matched in database. Keeping real reverse-geocoded block."
+                      "â„¹ï¸ GPS block not matched in database. Keeping real reverse-geocoded block."
                     );
                   }
                 } catch (blockError) {
                   console.warn(
-                    "⚠️ Block database lookup failed:",
+                    "âš ï¸ Block database lookup failed:",
                     blockError
                   );
 
@@ -1945,12 +1945,12 @@ setMessage(
                 );
 
                 console.log(
-                  "ℹ️ GPS district not matched in database. Keeping real reverse-geocoded district."
+                  "â„¹ï¸ GPS district not matched in database. Keeping real reverse-geocoded district."
                 );
               }
             } catch (districtError) {
               console.warn(
-                "⚠️ District database lookup failed:",
+                "âš ï¸ District database lookup failed:",
                 districtError
               );
 
@@ -1990,7 +1990,7 @@ setMessage(
             );
 
             console.log(
-              "ℹ️ GPS state not matched in database. Keeping real reverse-geocoded location."
+              "â„¹ï¸ GPS state not matched in database. Keeping real reverse-geocoded location."
             );
           }
 
@@ -2001,7 +2001,7 @@ setMessage(
 
           // =================================================
 // =================================================
-// FINAL GPS DETECTION — NOT SAVED YET
+// FINAL GPS DETECTION â€” NOT SAVED YET
 // =================================================
 
 setLocationSaved(false);
@@ -2020,20 +2020,20 @@ const detectedParts = [
 
 if (detectedParts.length > 0) {
   setMessage(
-    `📍 Current location detected: ${detectedParts.join(
-      " → "
+    `ðŸ“ Current location detected: ${detectedParts.join(
+      " â†’ "
     )}. Click "Choose This Current Location" to save.`
   );
 } else {
   setMessage(
-    `📍 GPS location detected: ${latitude.toFixed(
+    `ðŸ“ GPS location detected: ${latitude.toFixed(
       6
     )}, ${longitude.toFixed(6)}. Click "Choose This Current Location" to save.`
   );
 }
 
           // =================================================
-// GPS DETECTED — NOT SAVED YET
+// GPS DETECTED â€” NOT SAVED YET
 // =================================================
 
 setSelectedLocationType("");
@@ -2046,7 +2046,7 @@ setLocationSaved(false);
           setError("");
 
          setMessage(
-  `📍 GPS location detected: ${latitude.toFixed(
+  `ðŸ“ GPS location detected: ${latitude.toFixed(
     6
   )}, ${longitude.toFixed(
     6
@@ -2058,11 +2058,11 @@ setLocationSaved(false);
           );
 
           console.log(
-            "⚠️ REVERSE GEOCODING FAILED"
+            "âš ï¸ REVERSE GEOCODING FAILED"
           );
 
           console.log(
-            "✅ REAL GPS STILL SAVED"
+            "âœ… REAL GPS STILL SAVED"
           );
 
           console.log(
@@ -2535,7 +2535,7 @@ if (!verifiedCitizenId) {
 }
 
 console.log(
-  "🆔 FINAL CITIZEN ID:",
+  "ðŸ†” FINAL CITIZEN ID:",
   verifiedCitizenId
 );
 
@@ -2555,7 +2555,7 @@ if (!verifiedEmail) {
 }
 
 console.log(
-  "📧 FINAL VERIFIED EMAIL:",
+  "ðŸ“§ FINAL VERIFIED EMAIL:",
   verifiedEmail
 );
 
@@ -2747,7 +2747,7 @@ if (!wasteLocationData.district?.trim()) {
   return;
 }
 // -------------------------------------------------
-// DEBUG — FINAL LOCATION SENT TO BACKEND
+// DEBUG â€” FINAL LOCATION SENT TO BACKEND
 // -------------------------------------------------
 
 console.log(
@@ -2755,7 +2755,7 @@ console.log(
 );
 
 console.log(
-  "📍 FINAL WASTE INCIDENT LOCATION"
+  "ðŸ“ FINAL WASTE INCIDENT LOCATION"
 );
 
 console.log(
@@ -2835,31 +2835,31 @@ formData.append(
       // =================================================
 
       console.log(
-        "🚀 SUBMITTING WASTE REPORT"
+        "ðŸš€ SUBMITTING WASTE REPORT"
       );
 
       console.log(
-        "🖼️ IMAGE FILE:",
+        "ðŸ–¼ï¸ IMAGE FILE:",
         imageFile
       );
 
       console.log(
-        "📦 IMAGE NAME:",
+        "ðŸ“¦ IMAGE NAME:",
         imageFile?.name
       );
 
       console.log(
-        "📦 IMAGE TYPE:",
+        "ðŸ“¦ IMAGE TYPE:",
         imageFile?.type
       );
 
       console.log(
-        "📦 IMAGE SIZE:",
+        "ðŸ“¦ IMAGE SIZE:",
         imageFile?.size
       );
 
       console.log(
-        "🌐 API URL:",
+        "ðŸŒ API URL:",
         `${API_BASE_URL}/api/waste-reports`
       );
 console.log(
@@ -2867,7 +2867,7 @@ console.log(
 );
 
 console.log(
-  "📦 FORMDATA BEFORE SUBMIT"
+  "ðŸ“¦ FORMDATA BEFORE SUBMIT"
 );
 
 for (const [key, value] of formData.entries()) {
@@ -2909,7 +2909,7 @@ console.log(
       }
 
       console.log(
-        "📥 SERVER RESPONSE:",
+        "ðŸ“¥ SERVER RESPONSE:",
         data
       );
 
@@ -2989,7 +2989,7 @@ console.log(
       );
 
       setReportIdMessage(
-        `✅ Report ID ${createdReportId} created successfully. It will be sent to your registered email.`
+        `âœ… Report ID ${createdReportId} created successfully. It will be sent to your registered email.`
       );
 
       // =================================================
@@ -2997,7 +2997,7 @@ console.log(
       // =================================================
 
       setMessage(
-        `✅ Waste report ${createdReportId} submitted successfully.`
+        `âœ… Waste report ${createdReportId} submitted successfully.`
       );
 
       setError("");
@@ -3101,7 +3101,7 @@ return (
         <section className="report-header">
 
           <span className="report-badge">
-            ♻️ CITIZEN WASTE REPORT
+            â™»ï¸ CITIZEN WASTE REPORT
           </span>
 
           <h1 className="rainbow-heading">
@@ -3160,7 +3160,7 @@ return (
               ) : (
                 <>
                   <div className="upload-icon">
-                    📸
+                    ðŸ“¸
                   </div>
 
                   <h3>
@@ -3206,15 +3206,15 @@ return (
                     }
                   >
                     {aiAnalyzing
-                      ? "🤖 AI Analyzing... Please Wait"
+                      ? "ðŸ¤– AI Analyzing... Please Wait"
                       : aiAnalysisDone
-                      ? "✅ AI Analysis Completed"
-                      : "🤖 Analyze Image with AI"}
+                      ? "âœ… AI Analysis Completed"
+                      : "ðŸ¤– Analyze Image with AI"}
                   </button>
 
                   {aiAnalyzing && (
                     <p className="ai-analysis-loading">
-                      🔍 SWACHHLENS AI is checking whether this
+                      ðŸ” SWACHHLENS AI is checking whether this
                       image contains a waste-related situation...
                     </p>
                   )}
@@ -3223,17 +3223,17 @@ return (
                     <div className="ai-analysis-loading">
 
                       <strong>
-                        🤖 SWACHHLENS AI is analyzing your image...
+                        ðŸ¤– SWACHHLENS AI is analyzing your image...
                       </strong>
 
                       <p>
-                        🔍 Checking waste presence...
+                        ðŸ” Checking waste presence...
                         <br />
-                        🧠 Identifying waste type...
+                        ðŸ§  Identifying waste type...
                         <br />
-                        ⚠️ Estimating visible severity...
+                        âš ï¸ Estimating visible severity...
                         <br />
-                        ⏳ Please wait. This may take up to 2 minutes.
+                        â³ Please wait. This may take up to 2 minutes.
                       </p>
 
                     </div>
@@ -3384,7 +3384,7 @@ return (
               >
 
                 <option value="India">
-                  🇮🇳 India
+                  ðŸ‡®ðŸ‡³ India
                 </option>
 
               </select>
@@ -3617,17 +3617,17 @@ return (
               locationLoading
             }
           >
-            ✓ Choose This Location
+            âœ“ Choose This Location
           </button>
 
           {selectedLocationType ===
           "manual" ? (
             <div className="location-save-message">
-              ✅ Manual waste location saved successfully.
+              âœ… Manual waste location saved successfully.
             </div>
           ) : manualLocationMessage ? (
             <div className="location-save-message">
-              ⚠️{" "}
+              âš ï¸{" "}
               {
                 manualLocationMessage
               }
@@ -3638,7 +3638,7 @@ return (
 
           {locationDataLoading && (
             <div className="location-loading">
-              📡 Loading location data...
+              ðŸ“¡ Loading location data...
             </div>
           )}
 
@@ -3659,8 +3659,8 @@ return (
           >
 
             {locationLoading
-              ? "📡 Detecting Location..."
-              : "📍 Use Current Location"}
+              ? "ðŸ“¡ Detecting Location..."
+              : "ðŸ“ Use Current Location"}
 
           </button>
 
@@ -3672,7 +3672,7 @@ return (
             <div className="current-location-result">
 
               <strong>
-                📍 Current Location Detected
+                ðŸ“ Current Location Detected
               </strong>
 
               <div
@@ -3689,7 +3689,7 @@ return (
 
                 {currentLocation.name && (
                   <span>
-                    📌{" "}
+                    ðŸ“Œ{" "}
                     <strong>
                       Place:
                     </strong>{" "}
@@ -3701,7 +3701,7 @@ return (
 
                 {currentLocation.district && (
                   <span>
-                    🏙️{" "}
+                    ðŸ™ï¸{" "}
                     <strong>
                       District:
                     </strong>{" "}
@@ -3713,7 +3713,7 @@ return (
 
                 {currentLocation.state && (
                   <span>
-                    🏛️{" "}
+                    ðŸ›ï¸{" "}
                     <strong>
                       State:
                     </strong>{" "}
@@ -3724,7 +3724,7 @@ return (
                 )}
 
                 <span>
-                  🌐{" "}
+                  ðŸŒ{" "}
                   <strong>
                     Coordinates:
                   </strong>{" "}
@@ -3739,11 +3739,11 @@ return (
 
                 {currentLocation.accuracy && (
                   <span>
-                    📏{" "}
+                    ðŸ“{" "}
                     <strong>
                       Accuracy:
                     </strong>{" "}
-                    ±
+                    Â±
                     {Math.round(
                       currentLocation.accuracy
                     )}
@@ -3762,7 +3762,7 @@ return (
                         0.8,
                     }}
                   >
-                    📍{" "}
+                    ðŸ“{" "}
                     {
                       currentLocation.fullAddress
                     }
@@ -3792,22 +3792,22 @@ return (
       !currentLocation
     }
   >
-    ✓ Choose This Current Location
+    âœ“ Choose This Current Location
   </button>
 </div>
 
 {selectedLocationType === "current" &&
 locationSaved ? (
   <div className="location-save-message">
-    ✅ Current waste location saved successfully.
+    âœ… Current waste location saved successfully.
   </div>
 ) : currentLocation ? (
   <div className="location-save-message">
-    📍 Current location detected. Click the button above to save it.
+    ðŸ“ Current location detected. Click the button above to save it.
   </div>
 ) : currentLocationMessage ? (
   <div className="location-save-message">
-    ⚠️ {currentLocationMessage}
+    âš ï¸ {currentLocationMessage}
   </div>
 ) : null}
         {/* =================================================
@@ -3830,7 +3830,7 @@ locationSaved ? (
                 )
               }
             >
-              🗑️ Garbage accumulated
+              ðŸ—‘ï¸ Garbage accumulated
             </button>
 
             <button
@@ -3841,7 +3841,7 @@ locationSaved ? (
                 )
               }
             >
-              🧹 Waste scattered
+              ðŸ§¹ Waste scattered
             </button>
 
             <button
@@ -3852,7 +3852,7 @@ locationSaved ? (
                 )
               }
             >
-              🥤 Plastic waste
+              ðŸ¥¤ Plastic waste
             </button>
 
             <button
@@ -3863,7 +3863,7 @@ locationSaved ? (
                 )
               }
             >
-              🍃 Organic waste
+              ðŸƒ Organic waste
             </button>
 
             <button
@@ -3874,7 +3874,7 @@ locationSaved ? (
                 )
               }
             >
-              🚧 Blocking road/path
+              ðŸš§ Blocking road/path
             </button>
 
             <button
@@ -3885,7 +3885,7 @@ locationSaved ? (
                 )
               }
             >
-              📍 Open dumping
+              ðŸ“ Open dumping
             </button>
 
             <button
@@ -3896,7 +3896,7 @@ locationSaved ? (
                 )
               }
             >
-              🏗️ Construction debris
+              ðŸ—ï¸ Construction debris
             </button>
 
             <button
@@ -3907,7 +3907,7 @@ locationSaved ? (
                 )
               }
             >
-              ⚠️ Hazardous waste
+              âš ï¸ Hazardous waste
             </button>
 
           </div>
@@ -3938,7 +3938,7 @@ locationSaved ? (
           <div className="section-heading">
 
             <div className="section-icon">
-              👤
+              ðŸ‘¤
             </div>
 
             <div>
@@ -3954,10 +3954,10 @@ locationSaved ? (
               </p>
 
               <p className="odia-section-text">
-                ଏହି ଆବର୍ଜନା ସମସ୍ୟା ଆପଣଙ୍କୁ ଏବଂ ଆଖପାଖ
-                ଅଞ୍ଚଳର ଲୋକମାନଙ୍କୁ କିପରି ପ୍ରଭାବିତ
-                କରୁଛି, ତାହା ବୁଝିବା ପାଇଁ ନିମ୍ନ ପ୍ରଶ୍ନଗୁଡ଼ିକର
-                ଉତ୍ତର ଦିଅନ୍ତୁ।
+                à¬à¬¹à¬¿ à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬¸à¬®à¬¸à­à­Ÿà¬¾ à¬†à¬ªà¬£à¬™à­à¬•à­ à¬à¬¬à¬‚ à¬†à¬–à¬ªà¬¾à¬–
+                à¬…à¬žà­à¬šà¬³à¬° à¬²à­‹à¬•à¬®à¬¾à¬¨à¬™à­à¬•à­ à¬•à¬¿à¬ªà¬°à¬¿ à¬ªà­à¬°à¬­à¬¾à¬¬à¬¿à¬¤
+                à¬•à¬°à­à¬›à¬¿, à¬¤à¬¾à¬¹à¬¾ à¬¬à­à¬à¬¿à¬¬à¬¾ à¬ªà¬¾à¬‡à¬ à¬¨à¬¿à¬®à­à¬¨ à¬ªà­à¬°à¬¶à­à¬¨à¬—à­à¬¡à¬¼à¬¿à¬•à¬°
+                à¬‰à¬¤à­à¬¤à¬° à¬¦à¬¿à¬…à¬¨à­à¬¤à­à¥¤
               </p>
 
             </div>
@@ -3975,8 +3975,8 @@ locationSaved ? (
               </h3>
 
               <p className="question-odia">
-                ଆପଣ ବର୍ତ୍ତମାନ ରିପୋର୍ଟ କରାଯାଇଥିବା
-                ଆବର୍ଜନା ସ୍ଥାନ ନିକଟରେ ଅଛନ୍ତି କି?
+                à¬†à¬ªà¬£ à¬¬à¬°à­à¬¤à­à¬¤à¬®à¬¾à¬¨ à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ à¬•à¬°à¬¾à¬¯à¬¾à¬‡à¬¥à¬¿à¬¬à¬¾
+                à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬¸à­à¬¥à¬¾à¬¨ à¬¨à¬¿à¬•à¬Ÿà¬°à­‡ à¬…à¬›à¬¨à­à¬¤à¬¿ à¬•à¬¿?
               </p>
 
             </div>
@@ -4003,9 +4003,9 @@ locationSaved ? (
               </h3>
 
               <p className="question-odia">
-                ଏହି ଆବର୍ଜନା ଆପଣଙ୍କ ଦୈନନ୍ଦିନ ଜୀବନ କିମ୍ବା
-                ଆଖପାଖ ଅଞ୍ଚଳର ବାସିନ୍ଦାମାନଙ୍କୁ ପ୍ରଭାବିତ
-                କରୁଛି କି?
+                à¬à¬¹à¬¿ à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬†à¬ªà¬£à¬™à­à¬• à¬¦à­ˆà¬¨à¬¨à­à¬¦à¬¿à¬¨ à¬œà­€à¬¬à¬¨ à¬•à¬¿à¬®à­à¬¬à¬¾
+                à¬†à¬–à¬ªà¬¾à¬– à¬…à¬žà­à¬šà¬³à¬° à¬¬à¬¾à¬¸à¬¿à¬¨à­à¬¦à¬¾à¬®à¬¾à¬¨à¬™à­à¬•à­ à¬ªà­à¬°à¬­à¬¾à¬¬à¬¿à¬¤
+                à¬•à¬°à­à¬›à¬¿ à¬•à¬¿?
               </p>
 
             </div>
@@ -4032,8 +4032,8 @@ locationSaved ? (
               </h3>
 
               <p className="question-odia">
-                ଏହି ଆବର୍ଜନା ରାସ୍ତା, ପଥ, ପ୍ରବେଶ ପଥ କିମ୍ବା
-                ସାର୍ବଜନୀନ ସ୍ଥାନକୁ ଅବରୋଧ କରୁଛି କି?
+                à¬à¬¹à¬¿ à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬°à¬¾à¬¸à­à¬¤à¬¾, à¬ªà¬¥, à¬ªà­à¬°à¬¬à­‡à¬¶ à¬ªà¬¥ à¬•à¬¿à¬®à­à¬¬à¬¾
+                à¬¸à¬¾à¬°à­à¬¬à¬œà¬¨à­€à¬¨ à¬¸à­à¬¥à¬¾à¬¨à¬•à­ à¬…à¬¬à¬°à­‹à¬§ à¬•à¬°à­à¬›à¬¿ à¬•à¬¿?
               </p>
 
             </div>
@@ -4060,8 +4060,8 @@ locationSaved ? (
               </h3>
 
               <p className="question-odia">
-                ଏହି ଆବର୍ଜନା ଯୋଗୁଁ ଦୁର୍ଗନ୍ଧ କିମ୍ବା
-                ପରିମଳ ସମସ୍ୟା ହେଉଛି କି?
+                à¬à¬¹à¬¿ à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬¯à­‹à¬—à­à¬ à¬¦à­à¬°à­à¬—à¬¨à­à¬§ à¬•à¬¿à¬®à­à¬¬à¬¾
+                à¬ªà¬°à¬¿à¬®à¬³ à¬¸à¬®à¬¸à­à­Ÿà¬¾ à¬¹à­‡à¬‰à¬›à¬¿ à¬•à¬¿?
               </p>
 
             </div>
@@ -4088,8 +4088,8 @@ locationSaved ? (
               </h3>
 
               <p className="question-odia">
-                ଏହି ଆବର୍ଜନା ସମସ୍ୟା କିଛି ଦିନରୁ ଅଧିକ
-                ସମୟ ଧରି ରହିଛି କି?
+                à¬à¬¹à¬¿ à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬¸à¬®à¬¸à­à­Ÿà¬¾ à¬•à¬¿à¬›à¬¿ à¬¦à¬¿à¬¨à¬°à­ à¬…à¬§à¬¿à¬•
+                à¬¸à¬®à­Ÿ à¬§à¬°à¬¿ à¬°à¬¹à¬¿à¬›à¬¿ à¬•à¬¿?
               </p>
 
             </div>
@@ -4116,8 +4116,8 @@ locationSaved ? (
               </h3>
 
               <p className="question-odia">
-                ଆପଣଙ୍କ ମତରେ ଏହି ଆବର୍ଜନା ସମସ୍ୟା ପାଇଁ
-                ତୁରନ୍ତ ପଦକ୍ଷେପ ନେବା ଆବଶ୍ୟକ କି?
+                à¬†à¬ªà¬£à¬™à­à¬• à¬®à¬¤à¬°à­‡ à¬à¬¹à¬¿ à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬¸à¬®à¬¸à­à­Ÿà¬¾ à¬ªà¬¾à¬‡à¬
+                à¬¤à­à¬°à¬¨à­à¬¤ à¬ªà¬¦à¬•à­à¬·à­‡à¬ª à¬¨à­‡à¬¬à¬¾ à¬†à¬¬à¬¶à­à­Ÿà¬• à¬•à¬¿?
               </p>
 
             </div>
@@ -4144,8 +4144,8 @@ locationSaved ? (
               </h3>
 
               <p className="question-odia">
-                କର୍ତ୍ତୃପକ୍ଷଙ୍କୁ ଅଧିକ ସୂଚନା ଆବଶ୍ୟକ ହେଲେ
-                ଆପଣ ଅତିରିକ୍ତ ସୂଚନା ଦେଇପାରିବେ କି?
+                à¬•à¬°à­à¬¤à­à¬¤à­ƒà¬ªà¬•à­à¬·à¬™à­à¬•à­ à¬…à¬§à¬¿à¬• à¬¸à­‚à¬šà¬¨à¬¾ à¬†à¬¬à¬¶à­à­Ÿà¬• à¬¹à­‡à¬²à­‡
+                à¬†à¬ªà¬£ à¬…à¬¤à¬¿à¬°à¬¿à¬•à­à¬¤ à¬¸à­‚à¬šà¬¨à¬¾ à¬¦à­‡à¬‡à¬ªà¬¾à¬°à¬¿à¬¬à­‡ à¬•à¬¿?
               </p>
 
             </div>
@@ -4196,7 +4196,7 @@ locationSaved ? (
 
             setError("");
             setMessage(
-              "✅ Citizen Situation saved successfully."
+              "âœ… Citizen Situation saved successfully."
             );
 
             setShowPageMessage(
@@ -4206,8 +4206,8 @@ locationSaved ? (
           disabled={loading}
         >
           {citizenSituationSaved
-            ? "✅ Citizen Situation Saved"
-            : "💾 Save Citizen Situation"}
+            ? "âœ… Citizen Situation Saved"
+            : "ðŸ’¾ Save Citizen Situation"}
         </button>
 
         {/* =================================================
@@ -4216,7 +4216,7 @@ locationSaved ? (
 
         {error && (
           <div className="location-save-message">
-            ⚠️ {error}
+            âš ï¸ {error}
           </div>
         )}
 
@@ -4227,7 +4227,7 @@ locationSaved ? (
         <div className="ai-analysis-box">
 
           <div className="ai-icon">
-            🤖
+            ðŸ¤–
           </div>
 
           <div>
@@ -4277,8 +4277,8 @@ locationSaved ? (
     disabled={loading || aiAnalyzing}
   >
     {loading
-      ? "⏳ Creating Report ID..."
-      : "🆔 Create Report ID"}
+      ? "â³ Creating Report ID..."
+      : "ðŸ†” Create Report ID"}
   </button>
 </div>
 
@@ -4325,7 +4325,7 @@ locationSaved ? (
     }}
     disabled={loading}
   >
-    ➡️ Continue to Response Center
+    âž¡ï¸ Continue to Response Center
   </button>
 
 </div>
