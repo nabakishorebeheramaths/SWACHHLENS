@@ -90,7 +90,9 @@ function CitizenDetails() {
 
   const [savedCitizenFromDB, setSavedCitizenFromDB] =
     useState(null);
-
+  const [citizenId, setCitizenId] = useState("");
+  const [citizenIdCreated, setCitizenIdCreated] = useState(false);
+  const [createdCitizenId, setCreatedCitizenId] = useState("");
   // =========================================================
   // MESSAGES
   // =========================================================
@@ -428,6 +430,27 @@ const restoreSavedLocationAfterVerification = async (
     // =======================================================
 
     const citizen = data.citizen;
+    const existingCitizenId =
+  citizen.citizenId ||
+  citizen.id ||
+  citizen._id ||
+  "";
+
+setCitizenId(existingCitizenId);
+
+if (existingCitizenId) {
+  sessionStorage.setItem(
+    "swachhlens_citizen_id",
+    existingCitizenId
+  );
+
+  localStorage.setItem(
+    "swachhlens_citizen_id",
+    existingCitizenId
+  );
+
+  setCitizenIdCreated(true);
+}
 
     console.log(
       "✅ Existing citizen found in MongoDB:",
@@ -1237,6 +1260,27 @@ body: JSON.stringify({
       // -------------------------------------------------------
 
       const citizen = data.citizen;
+      const generatedCitizenId =
+  citizen.citizenId ||
+  citizen.id ||
+  citizen._id ||
+  "";
+
+setCitizenId(generatedCitizenId);
+
+if (generatedCitizenId) {
+  sessionStorage.setItem(
+    "swachhlens_citizen_id",
+    generatedCitizenId
+  );
+
+  localStorage.setItem(
+    "swachhlens_citizen_id",
+    generatedCitizenId
+  );
+}
+
+
 setIsAbove18(
   citizen.isAbove18 === true
     ? "yes"
@@ -1410,20 +1454,12 @@ showMessage(
 const proceedWithNewReport = () => {
   clearMessage();
 
-  // =======================================================
-  // EMAIL VERIFICATION REQUIRED
-  // =======================================================
-
   if (!verified) {
     showMessage(
       "Please verify your email address first."
     );
     return;
   }
-
-  // =======================================================
-  // LOCATION REQUIRED
-  // =======================================================
 
   if (!locationSubmitted) {
     showMessage(
@@ -1432,17 +1468,32 @@ const proceedWithNewReport = () => {
     return;
   }
 
-  // =======================================================
-  // STEP GUARD STATUS
-  // =======================================================
+  const finalCitizenId =
+    citizenId ||
+    savedCitizenFromDB?.citizenId ||
+    savedCitizenFromDB?.id ||
+    savedCitizenFromDB?._id ||
+    sessionStorage.getItem(
+      "swachhlens_citizen_id"
+    );
+
+  if (!finalCitizenId) {
+    showMessage(
+      "Citizen ID could not be found."
+    );
+    return;
+  }
+
+  const normalizedEmail =
+    email.trim().toLowerCase();
 
   sessionStorage.setItem(
-    "swachhlens_citizen_verified",
-    "true"
+    "swachhlens_citizen_id",
+    finalCitizenId
   );
 
   sessionStorage.setItem(
-    "swachhlens_citizen_location_saved",
+    "swachhlens_citizen_verified",
     "true"
   );
 
@@ -1453,7 +1504,7 @@ const proceedWithNewReport = () => {
 
   sessionStorage.setItem(
     "swachhlens_citizen_email",
-    email.trim().toLowerCase()
+    normalizedEmail
   );
 
   sessionStorage.setItem(
@@ -1461,13 +1512,12 @@ const proceedWithNewReport = () => {
     "yes"
   );
 
-  // =======================================================
-  // GO TO WASTE REPORT
-  // =======================================================
+  sessionStorage.setItem(
+    "swachhlens_citizen_location_saved",
+    "true"
+  );
 
-  scrollTop();
-
-  navigate("/report-waste");
+  navigate("/citizen-id");
 };
   // =========================================================
   // RENDER
@@ -2499,30 +2549,113 @@ const proceedWithNewReport = () => {
                         {/* =================================================
                             ACTION BUTTONS
                         ================================================= */}
+<div className="previous-user-actions">
 
-                        <div className="previous-user-actions">
+  {/* CREATE CITIZEN ID */}
 
-                          {/* PREVIOUS REPORT STATUS */}
+  {!citizenIdCreated && (
+    <button
+      type="button"
+      className="rainbow-action-btn"
+      onClick={() => {
+        clearMessage();
 
-                          <button
-                            type="button"
-                            className="rainbow-action-btn"
-                            onClick={openPreviousReportStatus}
-                          >
-                            📊 Previous Report Status
-                          </button>
+        if (!verified) {
+          showMessage(
+            "Please verify your email address first."
+          );
+          return;
+        }
 
-                          {/* CONTINUE TO NEW REPORT */}
+        if (!locationSubmitted) {
+          showMessage(
+            "Please complete your citizen location details first."
+          );
+          return;
+        }
 
-                          <button
-                            type="button"
-                            className="rainbow-action-btn"
-                            onClick={proceedWithNewReport}
-                          >
-                            ➕ Continue to New Report
-                          </button>
+        const generatedId =
+          savedCitizenFromDB?.citizenId ||
+          savedCitizenFromDB?.id ||
+          savedCitizenFromDB?._id ||
+          citizenId;
 
-                        </div>
+        if (!generatedId) {
+          showMessage(
+            "Citizen ID could not be found. Please save your citizen details again."
+          );
+          return;
+        }
+
+        setCitizenId(generatedId);
+
+        sessionStorage.setItem(
+          "swachhlens_citizen_id",
+          generatedId
+        );
+
+        localStorage.setItem(
+          "swachhlens_citizen_id",
+          generatedId
+        );
+
+        setCitizenIdCreated(true);
+
+        showMessage(
+          `Citizen ID created successfully: ${generatedId}. Please note this Citizen ID for future requests.`,
+          "success"
+        );
+      }}
+    >
+      🪪 Create Citizen ID
+    </button>
+  )}
+
+  {/* SUCCESS CITIZEN ID */}
+
+  {citizenIdCreated && citizenId && (
+    <div className="location-success-box">
+
+      <div className="verified-icon">
+        ✓
+      </div>
+
+      <div>
+        <strong>
+          Citizen ID Created Successfully
+        </strong>
+
+        <p>
+          Your Citizen ID is:
+          <strong> {citizenId}</strong>
+        </p>
+
+        <p>
+          Please note this Citizen ID for future requests.
+        </p>
+
+        <p className="odia-explanation">
+          (ଭବିଷ୍ୟତର ଅନୁରୋଧ ପାଇଁ ଏହି Citizen ID
+          ଟିକୁ ଲେଖି ରଖନ୍ତୁ।)
+        </p>
+      </div>
+
+    </div>
+  )}
+
+  {/* CONTINUE TO NEW REPORT */}
+
+  {citizenIdCreated && (
+    <button
+      type="button"
+      className="rainbow-action-btn"
+      onClick={proceedWithNewReport}
+    >
+      ➕ Continue to New Report
+    </button>
+  )}
+
+</div>
 
                       </div>
                     </>
