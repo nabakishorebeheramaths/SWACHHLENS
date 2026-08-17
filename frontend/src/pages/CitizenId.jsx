@@ -6,28 +6,94 @@ function CitizenId() {
   const navigate = useNavigate();
 
   const [citizenIdInput, setCitizenIdInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
+
   const [citizenIdError, setCitizenIdError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
-  const handleContinue = () => {
-    const enteredCitizenId =
-      citizenIdInput.trim();
+ const handleContinue = () => {
+  const enteredCitizenId =
+    citizenIdInput.trim();
 
-    if (!enteredCitizenId) {
-      setCitizenIdError(
-        "Please enter your Citizen ID."
-      );
-      return;
-    }
+  const enteredEmail =
+    emailInput.trim();
 
-    sessionStorage.setItem(
-      "swachhlens_citizen_id",
-      enteredCitizenId
+  // =====================================================
+  // CITIZEN ID VALIDATION
+  // =====================================================
+
+  if (!enteredCitizenId) {
+    setCitizenIdError(
+      "Please enter your Citizen ID."
+    );
+
+    setEmailError("");
+
+    return;
+  }
+
+  // =====================================================
+  // EMAIL VALIDATION
+  // =====================================================
+
+  if (!enteredEmail) {
+    setEmailError(
+      "Please enter your registered email address."
     );
 
     setCitizenIdError("");
 
-    navigate("/citizen-details");
-  };
+    return;
+  }
+
+  // =====================================================
+  // EMAIL FORMAT VALIDATION
+  // =====================================================
+
+  const emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailPattern.test(enteredEmail)) {
+    setEmailError(
+      "Please enter a valid email address."
+    );
+
+    setCitizenIdError("");
+
+    return;
+  }
+
+  // =====================================================
+  // SAVE CITIZEN ID
+  // =====================================================
+
+  sessionStorage.setItem(
+    "swachhlens_citizen_id",
+    enteredCitizenId
+  );
+
+  // =====================================================
+  // SAVE EMAIL
+  // =====================================================
+
+  sessionStorage.setItem(
+    "swachhlens_citizen_email",
+    enteredEmail
+  );
+
+  // =====================================================
+  // CLEAR ERRORS
+  // =====================================================
+
+  setCitizenIdError("");
+  setEmailError("");
+
+  // =====================================================
+  // CONTINUE
+  // =====================================================
+
+  navigate("/citizen-details");
+};
 
   return (
     <div className="citizen-id-page">
@@ -63,6 +129,7 @@ function CitizenId() {
 
       <div className="citizen-id-content">
 
+
         {/* =================================================
             INDIA FLAG
         ================================================= */}
@@ -93,6 +160,7 @@ function CitizenId() {
           </div>
 
           <div>
+
             <h2>
               SWACHHLENS
             </h2>
@@ -100,6 +168,7 @@ function CitizenId() {
             <span>
               AI Waste Intelligence
             </span>
+
           </div>
 
         </div>
@@ -124,13 +193,14 @@ function CitizenId() {
           </h3>
 
           <p>
-            Enter your Citizen ID to continue
-            with citizen verification.
+            Enter your Citizen ID and registered
+            email to continue with citizen verification.
           </p>
 
           <p className="odia-main-text">
             ନାଗରିକ ଯାଞ୍ଚ ଜାରି ରଖିବା ପାଇଁ
-            ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ।
+            ଆପଣଙ୍କ Citizen ID ଏବଂ ପଞ୍ଜୀକୃତ
+            ଇମେଲ୍ ପ୍ରବେଶ କରନ୍ତୁ।
           </p>
 
         </div>
@@ -185,6 +255,7 @@ function CitizenId() {
               </div>
 
               <div>
+
                 <h2>
                   Enter Your Citizen ID
                 </h2>
@@ -192,6 +263,7 @@ function CitizenId() {
                 <span>
                   ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ
                 </span>
+
               </div>
 
             </div>
@@ -201,7 +273,7 @@ function CitizenId() {
 
               Already registered with
               SWACHHLENS? Enter your Citizen ID
-              below to continue.
+              and registered email below to continue.
 
             </p>
 
@@ -209,12 +281,15 @@ function CitizenId() {
 
               SWACHHLENS ରେ ପୂର୍ବରୁ ପଞ୍ଜୀକୃତ
               ଅଛନ୍ତି? ଜାରି ରଖିବା ପାଇଁ ତଳେ
-              ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ।
+              ଆପଣଙ୍କ Citizen ID ଏବଂ ପଞ୍ଜୀକୃତ
+              ଇମେଲ୍ ପ୍ରବେଶ କରନ୍ତୁ।
 
             </p>
 
 
-            {/* INPUT */}
+            {/* =================================================
+                CITIZEN ID INPUT
+            ================================================= */}
 
             <div className="citizen-input-wrapper">
 
@@ -226,11 +301,13 @@ function CitizenId() {
                 type="text"
                 value={citizenIdInput}
                 onChange={(e) => {
+
                   setCitizenIdInput(
                     e.target.value
                   );
 
                   setCitizenIdError("");
+
                 }}
                 placeholder="Enter your Citizen ID"
                 autoComplete="off"
@@ -239,7 +316,9 @@ function CitizenId() {
             </div>
 
 
-            {/* ERROR */}
+            {/* =================================================
+                CITIZEN ID ERROR
+            ================================================= */}
 
             {citizenIdError && (
               <div className="citizen-id-error">
@@ -253,8 +332,74 @@ function CitizenId() {
               </div>
             )}
 
+{/* =================================================
+    EMAIL ADDRESS LABEL
+================================================= */}
 
-            {/* BUTTON */}
+<div className="citizen-email-label">
+
+  <span>
+    📧
+  </span>
+
+  <span>
+    Email Address / ଇମେଲ୍ ଠିକଣା
+  </span>
+
+</div>
+
+
+{/* =================================================
+    EMAIL INPUT
+================================================= */}
+
+<div className="citizen-email-wrapper">
+
+  <span>
+    📧
+  </span>
+
+  <input
+    type="email"
+    value={emailInput}
+    onChange={(e) => {
+
+      setEmailInput(
+        e.target.value
+      );
+
+      setEmailError("");
+
+    }}
+    placeholder="Enter your registered email"
+    autoComplete="email"
+  />
+
+</div>
+
+
+{/* =================================================
+    EMAIL ERROR
+================================================= */}
+
+{emailError && (
+
+  <div className="citizen-email-error">
+
+    <span>
+      ⚠️
+    </span>
+
+    <span>
+      {emailError}
+    </span>
+
+  </div>
+
+)}
+            {/* =================================================
+                BUTTON
+            ================================================= */}
 
             <button
               type="button"

@@ -1,6 +1,6 @@
 /* =========================================================
    SWACHHLENS
-   CITIZEN ID VERIFICATION
+   CITIZEN ID + EMAIL VERIFICATION
    WHITE + PINK + RAINBOW PREMIUM DESIGN
 ========================================================= */
 
@@ -609,6 +609,7 @@
 
 /* =========================================================
    INPUT WRAPPER
+   CITIZEN ID
 ========================================================= */
 
 .citizen-input-wrapper {
@@ -676,12 +677,164 @@
 
 
 /* =========================================================
+   NEW EMAIL INPUT
+========================================================= */
+
+.citizen-email-wrapper {
+  width: 100%;
+
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 16px;
+
+  margin-top: 14px;
+
+  border-radius: 18px;
+
+  background:
+    #ffffff;
+
+  border: 2px solid #ffc1dd;
+
+  box-shadow:
+    inset 0 2px 8px rgba(255, 100, 175, 0.08);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.citizen-email-wrapper:focus-within {
+  transform: translateY(-2px);
+
+  border-color: #c151ff;
+
+  box-shadow:
+    0 0 0 5px rgba(193, 81, 255, 0.08),
+    0 12px 25px rgba(193, 81, 255, 0.12);
+}
+
+.citizen-email-wrapper > span {
+  width: 26px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 21px;
+}
+
+.citizen-email-wrapper input {
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-size: 1rem;
+
+  font-weight: 750;
+
+  color: #722052;
+}
+
+.citizen-email-wrapper input::placeholder {
+  color: #c987ae;
+}
+
+
+/* =========================================================
+   EMAIL LABEL
+========================================================= */
+
+.citizen-email-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 16px;
+
+  margin-bottom: 7px;
+
+  font-size: 0.82rem;
+
+  font-weight: 850;
+
+  color: #9c3974;
+}
+
+.citizen-email-label span {
+  color: #d54a91;
+}
+
+
+/* =========================================================
+   VERIFICATION NOTE
+========================================================= */
+
+.verification-note {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 13px;
+
+  padding: 10px 13px;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff5fb,
+      #fdf5ff
+    );
+
+  border: 1px solid #f1b8da;
+
+  color: #9d4c7d;
+
+  font-size: 0.78rem;
+
+  line-height: 1.5;
+
+  font-weight: 700;
+}
+
+.verification-note-icon {
+  flex-shrink: 0;
+
+  font-size: 18px;
+
+  animation:
+    miniBounce 2.2s ease-in-out infinite;
+}
+
+
+/* =========================================================
    ERROR
 ========================================================= */
 
 .citizen-id-error {
   display: flex;
+
   align-items: center;
+
   gap: 8px;
 
   margin-top: 12px;
@@ -700,6 +853,43 @@
   font-size: 0.85rem;
 
   font-weight: 800;
+}
+
+
+/* =========================================================
+   EMAIL ERROR
+========================================================= */
+
+.citizen-email-error {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 9px;
+
+  padding: 9px 13px;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff0f6,
+      #fff4fb
+    );
+
+  border: 1px solid #ff9bc8;
+
+  color: #d82b78;
+
+  font-size: 0.82rem;
+
+  font-weight: 800;
+
+  animation:
+    errorShake 0.3s ease-in-out;
 }
 
 
@@ -812,6 +1002,22 @@
   transform:
     translateY(2px)
     scale(0.98);
+}
+
+
+/* =========================================================
+   DISABLED BUTTON
+========================================================= */
+
+.citizen-primary-button:disabled,
+.citizen-secondary-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+
+  transform: none;
+
+  filter: grayscale(0.15);
 }
 
 
@@ -1073,6 +1279,63 @@
 
 
 /* =========================================================
+   EXTRA FLOATING BACKGROUND GLOW
+========================================================= */
+
+.citizen-id-page::before {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  top: 20%;
+  left: -180px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 71, 169, 0.14),
+      transparent 70%
+    );
+
+  pointer-events: none;
+
+  animation:
+    backgroundFloatOne 8s ease-in-out infinite;
+}
+
+.citizen-id-page::after {
+  content: "";
+
+  position: absolute;
+
+  width: 400px;
+  height: 400px;
+
+  right: -200px;
+  bottom: 10%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(176, 75, 255, 0.12),
+      transparent 70%
+    );
+
+  pointer-events: none;
+
+  animation:
+    backgroundFloatTwo 10s ease-in-out infinite;
+}
+
+
+/* =========================================================
    ANIMATIONS
 ========================================================= */
 
@@ -1200,6 +1463,68 @@
     transform:
       translateY(-6px)
       rotate(2deg);
+  }
+}
+
+
+/* =========================================================
+   EMAIL ERROR ANIMATION
+========================================================= */
+
+@keyframes errorShake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-4px);
+  }
+
+  50% {
+    transform: translateX(4px);
+  }
+
+  75% {
+    transform: translateX(-3px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   BACKGROUND FLOATING ANIMATIONS
+========================================================= */
+
+@keyframes backgroundFloatOne {
+  0%,
+  100% {
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(80px, -40px)
+      scale(1.15);
+  }
+}
+
+@keyframes backgroundFloatTwo {
+  0%,
+  100% {
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(-70px, 40px)
+      scale(1.12);
   }
 }
 
@@ -1369,6 +1694,65 @@
     font-size: 0.88rem;
   }
 
+
+  /* =====================================================
+     MOBILE EMAIL
+  ===================================================== */
+
+  .citizen-email-label {
+    margin-top: 13px;
+
+    margin-bottom: 6px;
+
+    font-size: 0.75rem;
+  }
+
+  .citizen-email-wrapper {
+    height: 53px;
+
+    margin-top: 10px;
+
+    padding:
+      0
+      13px;
+
+    border-radius: 15px;
+
+    gap: 9px;
+  }
+
+  .citizen-email-wrapper > span {
+    width: 23px;
+
+    font-size: 19px;
+  }
+
+  .citizen-email-wrapper input {
+    font-size: 0.84rem;
+  }
+
+  .verification-note {
+    padding: 9px 11px;
+
+    font-size: 0.69rem;
+
+    border-radius: 12px;
+  }
+
+  .verification-note-icon {
+    font-size: 16px;
+  }
+
+  .citizen-id-error,
+  .citizen-email-error {
+    font-size: 0.74rem;
+
+    padding:
+      8px
+      10px;
+  }
+
+
   .citizen-primary-button,
   .citizen-secondary-button {
     min-height: 53px;
@@ -1432,6 +1816,14 @@
   .citizen-primary-button,
   .citizen-secondary-button {
     font-size: 0.78rem;
+  }
+
+  .citizen-email-wrapper input {
+    font-size: 0.78rem;
+  }
+
+  .citizen-email-label {
+    font-size: 0.7rem;
   }
 
 }

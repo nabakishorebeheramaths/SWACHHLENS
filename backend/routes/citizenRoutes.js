@@ -1133,7 +1133,338 @@ router.post("/location", async (req, res) => {
     });
   }
 });
+// =========================================================
+// VERIFY CITIZEN ID + EMAIL
+//
+// POST /api/citizen/verify
+//
+// BOTH MUST MATCH:
+// 1. Citizen ID
+// 2. Registered Email
+//
+// Email must also be verified.
+//
+// Existing citizen data is NOT changed.
+// =========================================================
 
+router.post("/verify", async (req, res) => {
+  try {
+    // =====================================================
+    // RECEIVE REQUEST DATA
+    // =====================================================
+
+    const {
+      citizenId,
+      email,
+    } = req.body;
+
+    // =====================================================
+    // DEBUG
+    // =====================================================
+
+    console.log(
+      "========================================"
+    );
+
+    console.log(
+      "CITIZEN ID + EMAIL VERIFICATION REQUEST"
+    );
+
+    console.log(
+      "========================================"
+    );
+
+    console.log(
+      "Citizen ID:",
+      citizenId
+    );
+
+    console.log(
+      "Email:",
+      email
+    );
+
+    // =====================================================
+    // CITIZEN ID VALIDATION
+    // =====================================================
+
+    if (!citizenId?.trim()) {
+      return res.status(400).json({
+        success: false,
+        verified: false,
+        message:
+          "Citizen ID is required.",
+      });
+    }
+
+    // =====================================================
+    // EMAIL VALIDATION
+    // =====================================================
+
+    if (!email?.trim()) {
+      return res.status(400).json({
+        success: false,
+        verified: false,
+        message:
+          "Email is required.",
+      });
+    }
+
+    // =====================================================
+    // NORMALIZE VALUES
+    // =====================================================
+
+    const normalizedCitizenId =
+      citizenId
+        .trim()
+        .toLowerCase();
+
+    const normalizedEmail =
+      email
+        .trim()
+        .toLowerCase();
+
+    // =====================================================
+    // CITIZEN ID FORMAT VALIDATION
+    //
+    // Expected:
+    // swl001
+    // swl002
+    // swl003
+    // =====================================================
+
+    if (
+      !/^swl\d{3}$/.test(
+        normalizedCitizenId
+      )
+    ) {
+      return res.status(400).json({
+        success: false,
+        verified: false,
+        message:
+          "Invalid Citizen ID format.",
+      });
+    }
+
+    // =====================================================
+    // EMAIL FORMAT VALIDATION
+    // =====================================================
+
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (
+      !emailRegex.test(
+        normalizedEmail
+      )
+    ) {
+      return res.status(400).json({
+        success: false,
+        verified: false,
+        message:
+          "Please provide a valid email address.",
+      });
+    }
+
+    // =====================================================
+    // FIND CITIZEN
+    //
+    // BOTH CITIZEN ID + EMAIL MUST MATCH
+    // =====================================================
+
+    const citizen =
+      await Citizen.findOne({
+        citizenId:
+          normalizedCitizenId,
+
+        email:
+          normalizedEmail,
+      }).lean();
+
+    // =====================================================
+    // CITIZEN NOT FOUND
+    // =====================================================
+
+    if (!citizen) {
+      console.log(
+        "❌ Citizen ID + Email combination not found."
+      );
+
+      return res.status(401).json({
+        success: false,
+        verified: false,
+        message:
+          "Citizen ID and registered email do not match.",
+        messageOdia:
+          "Citizen ID ଏବଂ ପଞ୍ଜୀକୃତ ଇମେଲ୍ ମେଳ ଖାଉନାହିଁ।",
+      });
+    }
+
+    // =====================================================
+    // EMAIL VERIFICATION CHECK
+    // =====================================================
+
+    if (
+      citizen.emailVerified !== true
+    ) {
+      console.log(
+        "❌ Citizen email is not verified."
+      );
+
+      return res.status(403).json({
+        success: false,
+        verified: false,
+        message:
+          "This email address is not verified.",
+        messageOdia:
+          "ଏହି ଇମେଲ୍ ଠିକଣା ଯାଞ୍ଚ ହୋଇନାହିଁ।",
+      });
+    }
+
+    // =====================================================
+    // SUCCESS
+    // =====================================================
+
+    console.log(
+      "========================================"
+    );
+
+    console.log(
+      "✅ CITIZEN VERIFIED SUCCESSFULLY"
+    );
+
+    console.log(
+      "Citizen ID:",
+      citizen.citizenId
+    );
+
+    console.log(
+      "Email:",
+      citizen.email
+    );
+
+    console.log(
+      "========================================"
+    );
+
+    // =====================================================
+    // RETURN VERIFIED CITIZEN
+    // =====================================================
+
+    return res.status(200).json({
+      success: true,
+      verified: true,
+
+      message:
+        "Citizen ID and email verified successfully.",
+
+      messageOdia:
+        "Citizen ID ଏବଂ ଇମେଲ୍ ସଫଳତାର ସହିତ ଯାଞ୍ଚ ହୋଇଛି।",
+
+      citizen: {
+        id:
+          citizen._id,
+
+        citizenId:
+          citizen.citizenId,
+
+        fullName:
+          citizen.fullName,
+
+        email:
+          citizen.email,
+
+        emailVerified:
+          citizen.emailVerified,
+
+        isAbove18:
+          typeof citizen.isAbove18 === "boolean"
+            ? citizen.isAbove18
+            : null,
+
+        country:
+          citizen.country,
+
+        state:
+          citizen.state,
+
+        stateCode:
+          citizen.stateCode || "",
+
+        district:
+          citizen.district,
+
+        districtCode:
+          citizen.districtCode || "",
+
+        block:
+          citizen.block,
+
+        blockCode:
+          citizen.blockCode || "",
+
+        villageLocality:
+          citizen.villageLocality,
+
+        villageCode:
+          citizen.villageCode || "",
+
+        latitude:
+          citizen.latitude ?? null,
+
+        longitude:
+          citizen.longitude ?? null,
+
+        locationSubmitted:
+          citizen.locationSubmitted === true,
+
+        locationSubmittedAt:
+          citizen.locationSubmittedAt || null,
+
+        createdAt:
+          citizen.createdAt || null,
+
+        updatedAt:
+          citizen.updatedAt || null,
+      },
+    });
+  } catch (error) {
+    // =====================================================
+    // ERROR LOG
+    // =====================================================
+
+    console.error(
+      "========================================"
+    );
+
+    console.error(
+      "❌ CITIZEN ID + EMAIL VERIFICATION ERROR"
+    );
+
+    console.error(
+      "========================================"
+    );
+
+    console.error(error);
+
+    // =====================================================
+    // GENERAL SERVER ERROR
+    // =====================================================
+
+    return res.status(500).json({
+      success: false,
+      verified: false,
+
+      message:
+        "Failed to verify citizen.",
+
+      error:
+        process.env.NODE_ENV === "development"
+          ? error.message
+          : undefined,
+    });
+  }
+});
 // =========================================================
 // EXPORT
 // =========================================================

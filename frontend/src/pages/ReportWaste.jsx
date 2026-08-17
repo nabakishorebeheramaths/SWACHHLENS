@@ -2218,7 +2218,43 @@ setLocationSaved(false);
 
       return null;
     };
+// =====================================================
+// REPORT COMPLETION CHECK
+// =====================================================
 
+const getReportMissingSteps = () => {
+  const missingSteps = [];
+
+  if (!imageFile) {
+    missingSteps.push("Upload waste image");
+  }
+
+  if (!aiAnalysisDone) {
+    missingSteps.push("Complete AI image analysis");
+  }
+
+  if (!wasteType) {
+    missingSteps.push("Select waste type");
+  }
+
+  if (!visibleSeverity) {
+    missingSteps.push("Select waste severity");
+  }
+
+  if (!locationSaved) {
+    missingSteps.push("Choose and save waste location");
+  }
+
+  if (!description.trim()) {
+    missingSteps.push("Enter waste situation description");
+  }
+
+  if (!citizenSituationSaved) {
+    missingSteps.push("Complete and save Citizen Situation");
+  }
+
+  return missingSteps;
+};
   // =====================================================
   // RESET FORM
   // =====================================================
@@ -2297,7 +2333,19 @@ setLocationSaved(false);
 
     setMessage("");
     setError("");
+  // =================================================
+  // CHECK REMAINING REPORT STEPS
+  // =================================================
 
+  const missingSteps = getReportMissingSteps();
+
+  if (missingSteps.length > 0) {
+    setError(
+      `Please complete: ${missingSteps.join(", ")}.`
+    );
+
+    return;
+  }
     // =================================================
     // BASIC VALIDATION
     // =================================================
@@ -2454,6 +2502,34 @@ const verifiedEmail =
     .getItem("swachhlens_citizen_email")
     ?.trim()
     .toLowerCase();
+// =================================================
+// VERIFIED CITIZEN ID
+// =================================================
+
+const verifiedCitizenId =
+  sessionStorage
+    .getItem("swachhlens_citizen_id")
+    ?.trim();
+
+if (!verifiedCitizenId) {
+  throw new Error(
+    "Citizen ID is missing. Please enter your Citizen ID first."
+  );
+}
+
+console.log(
+  "🆔 FINAL CITIZEN ID:",
+  verifiedCitizenId
+);
+
+// IMPORTANT:
+// Always send Citizen ID as the authoritative
+// citizen identifier.
+
+formData.append(
+  "citizenId",
+  verifiedCitizenId
+);
 
 if (!verifiedEmail) {
   throw new Error(
@@ -2484,11 +2560,14 @@ if (citizen) {
     ...citizen,
 
     // IMPORTANT:
-    // Never allow stale citizen.email
-    // to override the verified email.
+    // CitizenId.jsx ka ID authoritative hai.
+    citizenId: verifiedCitizenId,
 
+    // IMPORTANT:
+    // Verified email authoritative hai.
     email: verifiedEmail,
   };
+
 
   formData.append(
     "citizen",
