@@ -19,7 +19,7 @@ import Admin from "./pages/Admin";
 import ResponseRequest from "./pages/ResponseRequest";
 import SwachhlensAdmin from "./pages/SwachhlensAdmin";
 import About from "./pages/About";
-
+import CitizenId from "./pages/CitizenId";
 import "./App.css";
 
 
@@ -104,7 +104,10 @@ function App() {
   element={<ReportWaste />}
 />
 
-
+<Route
+  path="/citizen-id"
+  element={<CitizenId />}
+/>
         {/* ===================================================
             REPORT ANALYSIS & STATUS
             AFTER WASTE REPORT SUBMISSION

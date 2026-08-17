@@ -1,0 +1,448 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./CitizenId.css";
+
+function CitizenId() {
+  const navigate = useNavigate();
+
+  const [citizenIdInput, setCitizenIdInput] = useState("");
+  const [citizenIdError, setCitizenIdError] = useState("");
+
+  const handleContinue = () => {
+    const enteredCitizenId =
+      citizenIdInput.trim();
+
+    if (!enteredCitizenId) {
+      setCitizenIdError(
+        "Please enter your Citizen ID."
+      );
+      return;
+    }
+
+    sessionStorage.setItem(
+      "swachhlens_citizen_id",
+      enteredCitizenId
+    );
+
+    setCitizenIdError("");
+
+    navigate("/citizen-details");
+  };
+
+  return (
+    <div className="citizen-id-page">
+
+      {/* =====================================================
+          FLOATING DECORATIONS
+      ===================================================== */}
+
+      <div className="floating-decoration decoration-one">
+        ♻️
+      </div>
+
+      <div className="floating-decoration decoration-two">
+        🌱
+      </div>
+
+      <div className="floating-decoration decoration-three">
+        🧹
+      </div>
+
+      <div className="floating-decoration decoration-four">
+        💚
+      </div>
+
+      <div className="floating-decoration decoration-five">
+        ✨
+      </div>
+
+
+      {/* =====================================================
+          MAIN CONTENT
+      ===================================================== */}
+
+      <div className="citizen-id-content">
+
+        {/* =================================================
+            INDIA FLAG
+        ================================================= */}
+
+        <div className="india-flag">
+
+          <span className="flag-saffron"></span>
+
+          <span className="flag-white">
+            <span className="ashoka-wheel">
+              ☸
+            </span>
+          </span>
+
+          <span className="flag-green"></span>
+
+        </div>
+
+
+        {/* =================================================
+            BRAND
+        ================================================= */}
+
+        <div className="citizen-brand">
+
+          <div className="brand-icon">
+            ♻️
+          </div>
+
+          <div>
+            <h2>
+              SWACHHLENS
+            </h2>
+
+            <span>
+              AI Waste Intelligence
+            </span>
+          </div>
+
+        </div>
+
+
+        {/* =================================================
+            MAIN HEADING
+        ================================================= */}
+
+        <div className="citizen-heading">
+
+          <div className="heading-icon">
+            🆔
+          </div>
+
+          <h1>
+            Citizen Verification
+          </h1>
+
+          <h3>
+            ନାଗରିକ ଯାଞ୍ଚ
+          </h3>
+
+          <p>
+            Enter your Citizen ID to continue
+            with citizen verification.
+          </p>
+
+          <p className="odia-main-text">
+            ନାଗରିକ ଯାଞ୍ଚ ଜାରି ରଖିବା ପାଇଁ
+            ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ।
+          </p>
+
+        </div>
+
+
+        {/* =================================================
+            CLEAN SOCIETY MESSAGE
+        ================================================= */}
+
+        <div className="clean-message">
+
+          <span className="clean-message-icon">
+            🧹
+          </span>
+
+          <div>
+
+            <strong>
+              Make Your Society Clean
+            </strong>
+
+            <span>
+              ଆପଣଙ୍କ ସମାଜକୁ ସ୍ୱଚ୍ଛ ରଖନ୍ତୁ
+            </span>
+
+          </div>
+
+          <span className="clean-message-icon">
+            🌱
+          </span>
+
+        </div>
+
+
+        {/* =================================================
+            PLATES
+        ================================================= */}
+
+        <div className="citizen-plates">
+
+
+          {/* =================================================
+              PLATE 1 — EXISTING CITIZEN
+          ================================================= */}
+
+          <div className="citizen-plate">
+
+            <div className="plate-top">
+
+              <div className="plate-icon">
+                🆔
+              </div>
+
+              <div>
+                <h2>
+                  Enter Your Citizen ID
+                </h2>
+
+                <span>
+                  ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ
+                </span>
+              </div>
+
+            </div>
+
+
+            <p className="plate-description">
+
+              Already registered with
+              SWACHHLENS? Enter your Citizen ID
+              below to continue.
+
+            </p>
+
+            <p className="plate-odia">
+
+              SWACHHLENS ରେ ପୂର୍ବରୁ ପଞ୍ଜୀକୃତ
+              ଅଛନ୍ତି? ଜାରି ରଖିବା ପାଇଁ ତଳେ
+              ଆପଣଙ୍କ Citizen ID ପ୍ରବେଶ କରନ୍ତୁ।
+
+            </p>
+
+
+            {/* INPUT */}
+
+            <div className="citizen-input-wrapper">
+
+              <span>
+                🆔
+              </span>
+
+              <input
+                type="text"
+                value={citizenIdInput}
+                onChange={(e) => {
+                  setCitizenIdInput(
+                    e.target.value
+                  );
+
+                  setCitizenIdError("");
+                }}
+                placeholder="Enter your Citizen ID"
+                autoComplete="off"
+              />
+
+            </div>
+
+
+            {/* ERROR */}
+
+            {citizenIdError && (
+              <div className="citizen-id-error">
+
+                ⚠️
+
+                <span>
+                  {citizenIdError}
+                </span>
+
+              </div>
+            )}
+
+
+            {/* BUTTON */}
+
+            <button
+              type="button"
+              className="citizen-primary-button"
+              onClick={handleContinue}
+            >
+
+              <span>
+                Enter & Continue
+              </span>
+
+              <span>
+                →
+              </span>
+
+            </button>
+
+            <p className="button-odia">
+              ପ୍ରବେଶ କରି ଜାରି ରଖନ୍ତୁ
+            </p>
+
+          </div>
+
+
+          {/* =================================================
+              OR DIVIDER
+          ================================================= */}
+
+          <div className="citizen-or">
+
+            <span></span>
+
+            <div>
+              ✨ OR / କିମ୍ବା ✨
+            </div>
+
+            <span></span>
+
+          </div>
+
+
+          {/* =================================================
+              PLATE 2 — NEW USER
+          ================================================= */}
+
+          <div className="citizen-plate new-user-plate">
+
+            <div className="plate-top">
+
+              <div className="plate-icon new-icon">
+                👤
+              </div>
+
+              <div>
+
+                <h2>
+                  Are You a New User?
+                </h2>
+
+                <span>
+                  ଆପଣ ଜଣେ ନୂତନ ବ୍ୟବହାରକାରୀ କି?
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <p className="plate-description">
+
+              Don't have a Citizen ID yet?
+              Verify yourself first and create
+              your citizen profile.
+
+            </p>
+
+
+            <p className="plate-odia">
+
+              ଏପର୍ଯ୍ୟନ୍ତ Citizen ID ନାହିଁ?
+              ପ୍ରଥମେ ଆପଣଙ୍କୁ ଯାଞ୍ଚ କରି
+              ନାଗରିକ ପ୍ରୋଫାଇଲ୍ ସୃଷ୍ଟି କରନ୍ତୁ।
+
+            </p>
+
+
+            <button
+              type="button"
+              className="citizen-secondary-button"
+              onClick={() =>
+                navigate("/citizen-details")
+              }
+            >
+
+              <span>
+                👤 Continue to Verify Citizen
+              </span>
+
+              <span>
+                →
+              </span>
+
+            </button>
+
+
+            <p className="button-odia">
+              ନାଗରିକ ଯାଞ୍ଚ ପାଇଁ ଜାରି ରଖନ୍ତୁ
+            </p>
+
+          </div>
+
+        </div>
+
+
+        {/* =================================================
+            BOTTOM CLEAN INDIA
+        ================================================= */}
+
+        <div className="clean-india-section">
+
+          <div className="clean-india-icon">
+            🇮🇳
+          </div>
+
+          <div>
+
+            <strong>
+              Clean India • Green India
+            </strong>
+
+            <span>
+              ସ୍ୱଚ୍ଛ ଭାରତ • ସବୁଜ ଭାରତ
+            </span>
+
+          </div>
+
+          <div className="clean-india-icon">
+            🌱
+          </div>
+
+        </div>
+
+
+        {/* =================================================
+            SECURITY
+        ================================================= */}
+
+        <div className="citizen-security">
+
+          🔐
+
+          <span>
+            Your information is securely
+            handled by SWACHHLENS.
+          </span>
+
+          <span className="security-odia">
+            ଆପଣଙ୍କ ସୂଚନା SWACHHLENS ଦ୍ୱାରା
+            ସୁରକ୍ଷିତ ଭାବରେ ପରିଚାଳିତ ହୁଏ।
+          </span>
+
+        </div>
+
+
+        {/* =================================================
+            FOOTER
+        ================================================= */}
+
+        <div className="citizen-footer">
+
+          <span>
+            ♻️ SWACHHLENS
+          </span>
+
+          <span>
+            •
+          </span>
+
+          <span>
+            Clean Today, Better Tomorrow
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+  );
+}
+
+export default CitizenId;
