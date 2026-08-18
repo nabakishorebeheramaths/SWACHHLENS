@@ -227,18 +227,14 @@ function SatelliteMap({
       .map((item) => {
         const latitude =
           item.latitude ??
-          item.location?.coordinates
-            ?.latitude ??
-          item.wasteLocation?.coordinates
-            ?.latitude ??
+          item.location?.coordinates?.latitude ??
+          item.wasteLocation?.coordinates?.latitude ??
           item.coordinates?.latitude;
 
         const longitude =
           item.longitude ??
-          item.location?.coordinates
-            ?.longitude ??
-          item.wasteLocation?.coordinates
-            ?.longitude ??
+          item.location?.coordinates?.longitude ??
+          item.wasteLocation?.coordinates?.longitude ??
           item.coordinates?.longitude;
 
         return {
@@ -261,7 +257,7 @@ function SatelliteMap({
     return (
       <div className="map-placeholder">
         <div className="map-placeholder-icon">
-          ðŸ—ºï¸
+          🗺️
         </div>
 
         <strong>
@@ -293,7 +289,7 @@ function SatelliteMap({
       ================================================= */}
 
       <TileLayer
-        attribution="Tiles Â© Esri â€” Source: Esri, Maxar, Earthstar Geographics"
+        attribution="Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics"
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
       />
 
@@ -338,7 +334,7 @@ function SatelliteMap({
                 </span>
 
                 <small>
-                  ðŸ“{" "}
+                  📍{" "}
                   {item.latitude.toFixed(6)}
                   {", "}
                   {item.longitude.toFixed(6)}
@@ -487,7 +483,7 @@ function ReportAnalysisStatus() {
   ] = useState("");
 
  // ===================================================
-// MAP REPORT ID â†’ EXACT LOCATION
+// MAP REPORT ID → EXACT LOCATION
 // ===================================================
 
 const handleMapReportLocation =
@@ -530,17 +526,17 @@ const handleMapReportLocation =
       const data =
         await response.json();
         console.log(
-  "ðŸ—ºï¸ OVERVIEW LOCATIONS:",
+  "🗺️ OVERVIEW LOCATIONS:",
   data.locations
 );
 
 console.log(
-  "ðŸ“‹ RECENT REPORTS:",
+  "📋 RECENT REPORTS:",
   data.recentReports
 );
 
       console.log(
-        "ðŸ“ MAP REPORT LOCATION RESPONSE:",
+        "📍 MAP REPORT LOCATION RESPONSE:",
         data
       );
 
@@ -608,7 +604,7 @@ console.log(
       }
 
       console.log(
-        "ðŸŽ¯ EXACT REPORT LOCATION:",
+        "🎯 EXACT REPORT LOCATION:",
         {
           reportId:
             data.reportId ||
@@ -792,7 +788,7 @@ reports.forEach((report) => {
       ? data.locations
       : [],
 
-  // ðŸ‘‡ ADD THIS
+  // 👇 ADD THIS
    wasteTypeDistribution:
     Array.isArray(data.wasteTypeDistribution)
       ? data.wasteTypeDistribution
@@ -973,7 +969,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   // ===================================================
 
   const reportId =
-    report?.reportId || "â€”";
+    report?.reportId || "—";
 
   // ===================================================
   // REPORT IMAGE
@@ -1015,7 +1011,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
       ? verification.isWaste
         ? "Yes"
         : "No"
-      : "â€”";
+      : "—";
 
   // ===================================================
   // AI CATEGORY
@@ -1025,7 +1021,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
     verification.category ||
     ai.wasteClassification ||
     ai.category ||
-    "â€”";
+    "—";
 
   // ===================================================
   // AI CONFIDENCE
@@ -1038,7 +1034,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
           verification.confidence *
           100
         ).toFixed(1)}%`
-      : "â€”";
+      : "—";
 
   // ===================================================
   // AI REASON
@@ -1048,7 +1044,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
     verification.reason ||
     ai.recommendedAction ||
     ai.reason ||
-    "â€”";
+    "—";
 
   // ===================================================
   // LOCATION
@@ -1077,20 +1073,14 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
         const latitude =
           item.latitude ??
-          item.location?.coordinates
-            ?.latitude ??
-          item.wasteLocation
-            ?.coordinates
-            ?.latitude ??
+          item.location?.coordinates?.latitude ??
+          item.wasteLocation?.coordinates?.latitude ??
           item.coordinates?.latitude;
 
         const longitude =
           item.longitude ??
-          item.location?.coordinates
-            ?.longitude ??
-          item.wasteLocation
-            ?.coordinates
-            ?.longitude ??
+          item.location?.coordinates?.longitude ??
+          item.wasteLocation?.coordinates?.longitude ??
           item.coordinates?.longitude;
 
         return {
@@ -1126,7 +1116,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
     (dateValue) => {
 
       if (!dateValue)
-        return "â€”";
+        return "—";
 
       const date =
         new Date(dateValue);
@@ -1136,7 +1126,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
           date.getTime()
         )
       ) {
-        return "â€”";
+        return "—";
       }
 
       const now =
@@ -1257,7 +1247,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
               </div>
 
               <div className="report-analysis-icon">
-                ðŸ”Ž
+                🔎
               </div>
 
               <h1>
@@ -1271,9 +1261,9 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
               </p>
 
               <p>
-                (à¬†à¬ªà¬£à¬™à­à¬• Report ID à¬à¬¬à¬‚ à¬‡à¬®à­‡à¬²à­
-                à¬¦à­à­±à¬¾à¬°à¬¾ SWACHHLENS à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿà¬°
-                à¬¸à­à¬¥à¬¿à¬¤à¬¿ à¬¦à­‡à¬–à¬¨à­à¬¤à­à¥¤)
+                (ଆପଣଙ୍କ Report ID ଏବଂ ଇମେଲ୍
+                ଦ୍ୱାରା SWACHHLENS ରିପୋର୍ଟର
+                ସ୍ଥିତି ଦେଖନ୍ତୁ।)
               </p>
 
             </div>
@@ -1300,7 +1290,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   <span className="live-label">LIVE</span>
 
   <span className="live-clock">
-    ðŸ• {currentIST} IST
+    🕐 {currentIST} IST
   </span>
 </div>
               </div>
@@ -1310,7 +1300,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
                <div className="live-stat-card">
   <div className="live-stat-icon">
-    ðŸ“Š
+    📊
   </div>
 
   <div className="live-stat-content">
@@ -1328,7 +1318,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
 
                <div className="live-stat-card">
-  <div className="live-stat-icon">ðŸ“¥</div>
+  <div className="live-stat-icon">📥</div>
 
   <div className="live-stat-content">
     <span>Reports Received</span>
@@ -1344,7 +1334,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 </div>
 
 <div className="live-stat-card">
-  <div className="live-stat-icon">âœ…</div>
+  <div className="live-stat-icon">✅</div>
 
   <div className="live-stat-content">
     <span>Resolved</span>
@@ -1360,7 +1350,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 </div>
 
 <div className="live-stat-card">
-  <div className="live-stat-icon">âš¡</div>
+  <div className="live-stat-icon">⚡</div>
 
   <div className="live-stat-content">
     <span>Submitted Today</span>
@@ -1425,7 +1415,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
           <div className="empty-activity">
 
             <span>
-              ðŸ“­
+              📭
             </span>
 
             <p>
@@ -1531,7 +1521,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 <div className="map-location-info">
 
   <div className="map-location-info-icon">
-    ðŸ“
+    📍
   </div>
 
   <div className="map-location-info-content">
@@ -1546,7 +1536,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
     </p>
 
     <span>
-      ðŸ”Ž Enter a Report ID below to locate and
+      🔎 Enter a Report ID below to locate and
       view your reported waste area on the map.
     </span>
 
@@ -1563,7 +1553,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
     <div className="map-report-search-header">
 
       <span>
-        ðŸ“ LOCATE REPORT
+        📍 LOCATE REPORT
       </span>
 
       <h4>
@@ -1607,7 +1597,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
         {mapReportLoading
           ? "Locating..."
-          : "ðŸ“ Locate on Map"}
+          : "📍 Locate on Map"}
 
       </button>
 
@@ -1618,7 +1608,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
       <div className="map-report-search-error">
 
-        âŒ {mapReportError}
+        ❌ {mapReportError}
 
       </div>
 
@@ -1779,7 +1769,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
   <div className="overview-warning">
 
-    âš ï¸ {overviewError}
+    ⚠️ {overviewError}
 
   </div>
 
@@ -1798,7 +1788,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   <div className="search-card-top">
 
     <div className="search-card-icon">
-      ðŸ”
+      🔐
     </div>
 
 
@@ -1929,7 +1919,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
       ) : (
 
         <>
-          ðŸ”Ž
+          🔎
           Search My Report
         </>
 
@@ -1948,7 +1938,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
     <div className="premium-search-error">
 
-      âŒ {searchError}
+      ❌ {searchError}
 
     </div>
 
@@ -1961,7 +1951,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
   <div className="search-security-note">
 
-    ðŸ”’ Your report information is protected
+    🔒 Your report information is protected
     and can only be accessed using the
     matching Report ID and Email.
 
@@ -1991,9 +1981,9 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                 </p>
 
                 <p>
-                  (à¬†à¬ªà¬£ à¬¨à­‚à¬† à­Ÿà­à¬œà¬°à­ à¬•à¬¿?
-                  SWACHHLENS à¬°à­‡ à¬†à¬ªà¬£à¬™à­à¬•
-                  à¬ªà­à¬°à¬¥à¬® à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ à¬•à¬°à¬¨à­à¬¤à­à¥¤)
+                  (ଆପଣ ନୂଆ ୟୁଜର୍ କି?
+                  SWACHHLENS ରେ ଆପଣଙ୍କ
+                  ପ୍ରଥମ ରିପୋର୍ଟ କରନ୍ତୁ।)
                 </p>
 
                 <button
@@ -2003,7 +1993,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     navigate("/")
                   }
                 >
-                  Make Your First Report â†’
+                  Make Your First Report →
                 </button>
 
               </div>
@@ -2024,9 +2014,9 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                 </p>
 
                 <p>
-                  (à¬†à¬ªà¬£à¬™à­à¬• à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ à¬¬à¬¿à¬¶à­à¬³à­‡à¬·à¬£ à¬¦à­‡à¬–à¬¿à¬¬à¬¾
-                  à¬ªà¬¾à¬‡à¬ à¬‰à¬ªà¬°à­‡ à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ ID à¬à¬¬à¬‚
-                  à¬‡à¬®à­‡à¬²à­ à¬ªà­à¬°à¬¬à­‡à¬¶ à¬•à¬°à¬¨à­à¬¤à­à¥¤)
+                  (ଆପଣଙ୍କ ରିପୋର୍ଟ ବିଶ୍ଳେଷଣ ଦେଖିବା
+                  ପାଇଁ ଉପରେ ରିପୋର୍ଟ ID ଏବଂ
+                  ଇମେଲ୍ ପ୍ରବେଶ କରନ୍ତୁ।)
                 </p>
 
               </div>
@@ -2051,7 +2041,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
             <div className="report-analysis-header">
 
               <div className="report-analysis-icon">
-                ðŸ“Š
+                📊
               </div>
 
               <h1>
@@ -2064,9 +2054,9 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
               </p>
 
               <p>
-                (à¬†à¬ªà¬£à¬™à­à¬• à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ
-                SWACHHLENS à¬°à­ à¬¸à¬«à¬³à¬¤à¬¾à¬° à¬¸à¬¹
-                à¬ªà­à¬°à¬¾à¬ªà­à¬¤ à¬¹à­‹à¬‡à¬›à¬¿à¥¤)
+                (ଆପଣଙ୍କ ଆବର୍ଜନା ରିପୋର୍ଟ
+                SWACHHLENS ରୁ ସଫଳତାର ସହ
+                ପ୍ରାପ୍ତ ହୋଇଛି।)
               </p>
 
             </div>
@@ -2091,7 +2081,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
               </span>
 
               <strong>
-                {report?.email || "â€”"}
+                {report?.email || "—"}
               </strong>
 
               <span>
@@ -2114,7 +2104,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                         hour12: true,
                       }
                     )
-                  : "â€”"}
+                  : "—"}
               </strong>
 
             </div>
@@ -2128,7 +2118,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
               <div className="report-image-section">
 
                 <h2>
-                  ðŸ–¼ï¸ Reported Waste Image
+                  🖼️ Reported Waste Image
                 </h2>
 
                 <div className="report-image-card">
@@ -2170,7 +2160,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
             <div className="analysis-section">
 
               <h2>
-                ðŸ“‹ Report Information
+                📋 Report Information
               </h2>
 
               <div className="analysis-grid">
@@ -2183,7 +2173,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
                   <strong>
                     {report.citizen?.citizenId ||
-                      "â€”"}
+                      "—"}
                   </strong>
 
                 </div>
@@ -2196,7 +2186,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                   </span>
 
                   <strong>
-                    {report.wasteType || "â€”"}
+                    {report.wasteType || "—"}
                   </strong>
 
                 </div>
@@ -2210,7 +2200,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
                   <strong>
                     {report.visibleSeverity ||
-                      "â€”"}
+                      "—"}
                   </strong>
 
                 </div>
@@ -2255,7 +2245,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 <div className="analysis-section">
 
   <h2>
-    ðŸ¤– SWACHHLENS AI Analysis
+    🤖 SWACHHLENS AI Analysis
   </h2>
 
 
@@ -2266,7 +2256,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   <div className="analysis-subsection">
 
     <h3>
-      ðŸ” AI Verification
+      🔍 AI Verification
     </h3>
 
     <div className="analysis-grid">
@@ -2306,7 +2296,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
         <strong>
           {verification.category ||
             ai.wasteClassification ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2322,7 +2312,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
           {ai.wasteClassification ||
             verification.category ||
             report.wasteType ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2337,7 +2327,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
         <strong>
           {verification.visibleSeverity ||
             report.visibleSeverity ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2351,7 +2341,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
         <strong>
           {ai.analysisStatus ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2366,7 +2356,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
         <strong>
           {verification.reason ||
             aiReason ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2383,7 +2373,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   <div className="analysis-subsection">
 
     <h3>
-      â™»ï¸ Waste Analysis Details
+      ♻️ Waste Analysis Details
     </h3>
 
     <div className="analysis-grid">
@@ -2397,7 +2387,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
         <strong>
           {ai.estimatedQuantity ||
             verification.estimatedQuantity ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2420,7 +2410,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
             ? verification.hazardDetected
               ? "Yes"
               : "No"
-            : "â€”"}
+            : "—"}
         </strong>
 
       </div>
@@ -2443,7 +2433,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
             ? verification.roadBlockage
               ? "Yes"
               : "No"
-            : "â€”"}
+            : "—"}
         </strong>
 
       </div>
@@ -2466,7 +2456,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                 report?.riskScore ??
                   verification.riskScore
               )
-            : "â€”"}
+            : "—"}
         </strong>
 
       </div>
@@ -2481,7 +2471,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
         <strong>
           {report?.priority ||
             verification.priority ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2496,7 +2486,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
         <strong>
           {ai.prediction ||
             verification.prediction ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2510,7 +2500,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   <strong className="ai-long-text">
     {verification.description ||
       report.description ||
-      "â€”"}
+      "—"}
   </strong>
 
 </div>
@@ -2527,7 +2517,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   <div className="analysis-subsection">
 
     <h3>
-      ðŸ§  AI Response & Recommendation
+      🧠 AI Response & Recommendation
     </h3>
 
     <div className="analysis-grid">
@@ -2541,7 +2531,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
         <strong>
           {ai.recommendedAction ||
             verification.recommendedAction ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2556,7 +2546,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
         <strong>
           {ai.prediction ||
             verification.prediction ||
-            "â€”"}
+            "—"}
         </strong>
 
       </div>
@@ -2573,7 +2563,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   <div className="analysis-subsection">
 
     <h3>
-      ðŸ•’ Analysis Information
+      🕒 Analysis Information
     </h3>
 
     <div className="analysis-grid">
@@ -2614,7 +2604,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                   hour12: true,
                 }
               )
-            : "â€”"}
+            : "—"}
         </strong>
 
       </div>
@@ -2632,7 +2622,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
             <div className="analysis-section">
 
               <h2>
-                ðŸ“ Waste Location
+                📍 Waste Location
               </h2>
 
               <div className="analysis-location">
@@ -2649,7 +2639,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                   <strong>
                     State:
                   </strong>{" "}
-                  {location.state || "â€”"}
+                  {location.state || "—"}
                 </p>
 
                 <p>
@@ -2657,14 +2647,14 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     District:
                   </strong>{" "}
                   {location.district ||
-                    "â€”"}
+                    "—"}
                 </p>
 
                 <p>
                   <strong>
                     Block:
                   </strong>{" "}
-                  {location.block || "â€”"}
+                  {location.block || "—"}
                 </p>
 
                 <p>
@@ -2672,7 +2662,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     Village / Locality:
                   </strong>{" "}
                   {location.locality ||
-                    "â€”"}
+                    "—"}
                 </p>
 
                 {location.gpsPlaceName && (
@@ -2729,7 +2719,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
               <div className="analysis-section">
 
                 <h2>
-                  ðŸ‘¤ Citizen Situation
+                  👤 Citizen Situation
                 </h2>
 
                 <div className="analysis-grid">
@@ -2743,7 +2733,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     <strong>
                       {citizenSituation
                         .nearWasteLocation ||
-                        "â€”"}
+                        "—"}
                     </strong>
 
                   </div>
@@ -2758,7 +2748,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     <strong>
                       {citizenSituation
                         .affectingDailyLife ||
-                        "â€”"}
+                        "—"}
                     </strong>
 
                   </div>
@@ -2773,7 +2763,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     <strong>
                       {citizenSituation
                         .blockingPublicSpace ||
-                        "â€”"}
+                        "—"}
                     </strong>
 
                   </div>
@@ -2788,7 +2778,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     <strong>
                       {citizenSituation
                         .sanitationProblem ||
-                        "â€”"}
+                        "—"}
                     </strong>
 
                   </div>
@@ -2803,7 +2793,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     <strong>
                       {citizenSituation
                         .longTermProblem ||
-                        "â€”"}
+                        "—"}
                     </strong>
 
                   </div>
@@ -2818,7 +2808,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                     <strong>
                       {citizenSituation
                         .urgentAttention ||
-                        "â€”"}
+                        "—"}
                     </strong>
 
                   </div>
@@ -2832,7 +2822,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
   <strong className="ai-long-text">
     {ai.prediction ||
       verification.prediction ||
-      "â€”"}
+      "—"}
   </strong>
 
 
@@ -2851,7 +2841,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
             <div className="analysis-status">
 
               <div className="status-dot">
-                âœ“
+                ✓
               </div>
 
               <div>
@@ -2866,9 +2856,9 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                 </p>
 
                 <p>
-                  (à¬†à¬ªà¬£à¬™à­à¬• à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ
-                  SWACHHLENS à¬¦à­à­±à¬¾à¬°à¬¾ à¬¸à¬«à¬³à¬¤à¬¾à¬° à¬¸à¬¹
-                  à¬—à­à¬°à¬¹à¬£ à¬•à¬°à¬¾à¬¯à¬¾à¬‡à¬›à¬¿à¥¤)
+                  (ଆପଣଙ୍କ ଆବର୍ଜନା ରିପୋର୍ଟ
+                  SWACHHLENS ଦ୍ୱାରା ସଫଳତାର ସହ
+                  ଗ୍ରହଣ କରାଯାଇଛି।)
                 </p>
 
               </div>
@@ -2892,7 +2882,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
               }}
             >
-              ðŸ”Ž Search Another Report
+              🔎 Search Another Report
             </button>
 
 
@@ -2907,7 +2897,7 @@ console.log("REPORT IMAGE URL:", data.report?.imageUrl);
                 navigate("/")
               }
             >
-              â† Back to Home
+              ← Back to Home
             </button>
 
           </>
