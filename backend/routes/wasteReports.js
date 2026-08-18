@@ -1,9 +1,14 @@
-const express = require("express");
+﻿const express = require("express");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const cloudinary = require("cloudinary").v2;
 
-
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 const router = express.Router();
 
 const WasteReport = require("../models/WasteReport");
@@ -299,7 +304,7 @@ const getOrCreateCitizenId = async (citizen) => {
   await citizen.save();
 
   console.log(
-    "†” NEW CITIZEN ID GENERATED:",
+    "â€ â€ NEW CITIZEN ID GENERATED:",
     generatedCitizenId
   );
 
@@ -689,7 +694,7 @@ router.post(
       );
 
       console.log(
-        "“ PARSED LOCATION:",
+        "â€œÂ PARSED LOCATION:",
         location
       );
 
@@ -1024,7 +1029,7 @@ router.post(
       }
 
       console.log(
-        "“ FINAL WASTE LOCATION:",
+        "â€œÂ FINAL WASTE LOCATION:",
         {
           country:
             finalCountry,
@@ -1117,12 +1122,12 @@ router.post(
         );
 
       console.log(
-        "†” GENERATED CITIZEN ID:",
+        "â€ â€ GENERATED CITIZEN ID:",
         citizenCustomId
       );
 
       console.log(
-        "†” GENERATED REPORT ID:",
+        "â€ â€ GENERATED REPORT ID:",
         reportId
       );
 
@@ -1130,8 +1135,22 @@ router.post(
       // IMAGE URL
       // =====================================================
 
+      const cloudinaryResult =
+        await cloudinary.uploader.upload(
+          req.file.path,
+          {
+            folder: "swachhlens/waste",
+            resource_type: "image",
+          }
+        );
+
       const imageUrl =
-        `/uploads/waste/${req.file.filename}`;
+        cloudinaryResult.secure_url;
+
+      console.log(
+        "CLOUDINARY IMAGE URL:",
+        imageUrl
+      );
 
       // =====================================================
       // DESCRIPTION
@@ -1777,7 +1796,7 @@ imagePath: req.file.path,
     );
   } else {
     console.error(
-      `  REPORT CREATED BUT EMAIL FAILED: ${emailResult.message}`
+      `Â Â REPORT CREATED BUT EMAIL FAILED: ${emailResult.message}`
     );
   }
 } catch (emailError) {
@@ -1785,7 +1804,7 @@ imagePath: req.file.path,
   // Email failure must NOT delete/fail the already-created report.
 
   console.error(
-    "  REPORT EMAIL ERROR:",
+    "Â Â REPORT EMAIL ERROR:",
     emailError.message
   );
 
@@ -1807,7 +1826,7 @@ imagePath: req.file.path,
       );
 
       console.log(
-        "… WASTE REPORT CREATED"
+        "â€¦ WASTE REPORT CREATED"
       );
 
       console.log(
@@ -1816,7 +1835,7 @@ imagePath: req.file.path,
       );
 
       console.log(
-        "“„ REPORT ID:",
+        "â€œâ€ž REPORT ID:",
         report.reportId
       );
 
@@ -1859,7 +1878,7 @@ imagePath: req.file.path,
 
         imageUrl:
   report.imageUrl
-    ? `${process.env.BACKEND_URL || `http://localhost:${PORT}`}${report.imageUrl}`
+    ? `${process.env.BACKEND_URL || "http://localhost:5000"}${report.imageUrl}`
     : "",
 
           wasteType:
@@ -2101,17 +2120,17 @@ const todayReports =
   });
 
 console.log(
-  "“… IST TODAY REPORT COUNT:",
+  "â€œâ€¦ IST TODAY REPORT COUNT:",
   todayReports
 );
 
 console.log(
-  "• IST DAY START UTC:",
+  "â€¢Â IST DAY START UTC:",
   todayStartUTC
 );
 
 console.log(
-  "• IST DAY END UTC:",
+  "â€¢Â IST DAY END UTC:",
   todayEndUTC
 );
     // =====================================================
@@ -2909,3 +2928,4 @@ module.exports = {
   analyzeWasteImage,
   upload,
 };
+

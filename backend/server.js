@@ -1,11 +1,7 @@
-const express = require("express");
+﻿const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require("path");
-
-// =========================================================
-// LOAD ENVIRONMENT FIRST
-// =========================================================
 
 require("dotenv").config();
 
@@ -13,70 +9,39 @@ require("dotenv").config();
 // ROUTES
 // =========================================================
 
-const otpRoutes =
-  require("./routes/otpRoutes");
+const otpRoutes = require("./routes/otpRoutes");
+const locationRoutes = require("./routes/locationRoutes");
+const wasteReportsRoutes = require("./routes/wasteReports");
+const citizenRoutes = require("./routes/citizenRoutes");
+const organizationRoutes = require("./routes/organizationRoutes");
+const responseRoutes = require("./routes/responseRoutes");
+const adminAuthRoutes = require("./routes/adminAuthRoutes");
 
-const locationRoutes =
-  require("./routes/locationRoutes");
-
-const wasteReportsRoutes =
-  require("./routes/wasteReports");
-
-const citizenRoutes =
-  require("./routes/citizenRoutes");
-
-// =========================================================
-// ORGANIZATION ROUTES
-// =========================================================
-
-const organizationRoutes =
-  require("./routes/organizationRoutes");
-
-// =========================================================
-// RESPONSE ROUTES
-// =========================================================
-
-const responseRoutes =
-  require("./routes/responseRoutes");
-// =========================================================
-// ADMIN AUTH ROUTES
-// =========================================================
-
-const adminAuthRoutes =
-  require("./routes/adminAuthRoutes");
 // =========================================================
 // ROUTER COMPATIBILITY
 // =========================================================
 
-const getRouter = (
-  routeModule,
-  routeName
-) => {
-  if (
-    typeof routeModule ===
-    "function"
-  ) {
+const getRouter = (routeModule, routeName) => {
+  if (typeof routeModule === "function") {
     return routeModule;
   }
 
   if (
     routeModule &&
-    typeof routeModule.router ===
-      "function"
+    typeof routeModule.router === "function"
   ) {
     return routeModule.router;
   }
 
   if (
     routeModule &&
-    typeof routeModule.default ===
-      "function"
+    typeof routeModule.default === "function"
   ) {
     return routeModule.default;
   }
 
   console.error(
-    `❌ ${routeName} is not exporting a valid Express router.`
+    `ERROR: ${routeName} is not exporting a valid Express router.`
   );
 
   throw new TypeError(
@@ -84,21 +49,11 @@ const getRouter = (
   );
 };
 
-// =========================================================
-// NORMALIZE ROUTERS
-// =========================================================
-
 const otpRouter =
-  getRouter(
-    otpRoutes,
-    "otpRoutes"
-  );
+  getRouter(otpRoutes, "otpRoutes");
 
 const locationRouter =
-  getRouter(
-    locationRoutes,
-    "locationRoutes"
-  );
+  getRouter(locationRoutes, "locationRoutes");
 
 const wasteReportsRouter =
   getRouter(
@@ -128,16 +83,14 @@ const responseRouter =
 // APP
 // =========================================================
 
-const app =
-  express();
+const app = express();
 
 // =========================================================
 // CONFIG
 // =========================================================
 
 const PORT =
-  process.env.PORT ||
-  5000;
+  process.env.PORT || 5000;
 
 const FRONTEND_URL =
   process.env.FRONTEND_URL ||
@@ -155,7 +108,7 @@ const GEMINI_API_KEY =
 
 if (!mongoURI) {
   console.error(
-    "❌ MONGODB_URI is missing in .env"
+    "ERROR: MONGODB_URI is missing in .env"
   );
 
   process.exit(1);
@@ -163,11 +116,11 @@ if (!mongoURI) {
 
 if (!GEMINI_API_KEY) {
   console.warn(
-    "⚠️ GEMINI_API_KEY is missing in .env"
+    "WARNING: GEMINI_API_KEY is missing in .env"
   );
 } else {
   console.log(
-    "🔑 Gemini API Key: LOADED"
+    "Gemini API Key: LOADED"
   );
 }
 
@@ -233,58 +186,36 @@ app.use(
   citizenRouter
 );
 
-// =========================================================
-// ORGANIZATION API
-// =========================================================
-
 app.use(
   "/api/organizations",
   organizationRouter
 );
 
-// =========================================================
-// RESPONSE API
-// =========================================================
-
 app.use(
   "/api/response",
   responseRouter
 );
-// =========================================================
-// ADMIN AUTH API
-// =========================================================
 
 app.use(
   "/api/admin-auth",
   adminAuthRoutes
 );
+
 // =========================================================
 // HEALTH
 // =========================================================
 
 app.get(
   "/",
-  (
-    req,
-    res
-  ) => {
+  (req, res) => {
     res.status(200).json({
       success: true,
-
-      project:
-        "SWACHHLENS",
-
+      project: "SWACHHLENS",
       message:
         "SWACHHLENS Backend is Running!",
-
-      version:
-        "1.0.0",
-
-      status:
-        "online",
-
-      frontend:
-        FRONTEND_URL,
+      version: "1.0.0",
+      status: "online",
+      frontend: FRONTEND_URL,
     });
   }
 );
@@ -295,49 +226,28 @@ app.get(
 
 app.get(
   "/api",
-  (
-    req,
-    res
-  ) => {
+  (req, res) => {
     res.status(200).json({
       success: true,
-
       message:
         "SWACHHLENS API is operational.",
 
       services: {
-        wasteReports:
-          "active",
-
-        locations:
-          "active",
-
-        emailOTP:
-          "active",
-
-        citizen:
-          "active",
-
-        organizations:
-          "active",
-
-        response:
-          "active",
+        wasteReports: "active",
+        locations: "active",
+        emailOTP: "active",
+        citizen: "active",
+        organizations: "active",
+        response: "active",
 
         aiAnalysis:
           GEMINI_API_KEY
             ? "active"
             : "not configured",
 
-        riskEngine:
-          "active",
-
-        predictionEngine:
-          "active",
-
-        responsePlanner:
-          "active",
-
+        riskEngine: "active",
+        predictionEngine: "active",
+        responsePlanner: "active",
         cleanupVerification:
           "coming soon",
       },
@@ -350,18 +260,12 @@ app.get(
 // =========================================================
 
 app.use(
-  (
-    req,
-    res
-  ) => {
+  (req, res) => {
     res.status(404).json({
       success: false,
-
       message:
         "API endpoint not found.",
-
-      path:
-        req.originalUrl,
+      path: req.originalUrl,
     });
   }
 );
@@ -371,20 +275,14 @@ app.use(
 // =========================================================
 
 app.use(
-  (
-    err,
-    req,
-    res,
-    next
-  ) => {
+  (err, req, res, next) => {
     console.error(
-      "❌ Server Error:",
+      "ERROR: Server Error:",
       err
     );
 
     res.status(500).json({
       success: false,
-
       message:
         err?.message ||
         "Internal server error.",
@@ -396,103 +294,95 @@ app.use(
 // START SERVER
 // =========================================================
 
-const startServer =
-  async () => {
-    try {
-      console.log(
-        "🔄 Connecting to MongoDB..."
-      );
+const startServer = async () => {
+  try {
+    console.log(
+      "Connecting to MongoDB..."
+    );
 
-      await mongoose.connect(
-        mongoURI,
-        {
-          serverSelectionTimeoutMS:
-            10000,
-        }
-      );
+    await mongoose.connect(
+      mongoURI,
+      {
+        serverSelectionTimeoutMS: 10000,
+      }
+    );
 
-      console.log(
-        "🍃 MongoDB Connected Successfully"
-      );
+    console.log(
+      "MongoDB Connected Successfully"
+    );
 
-      app.listen(
-        PORT,
-        () => {
-          console.log("");
+    app.listen(
+      PORT,
+      () => {
+        console.log("");
+        console.log(
+          "========================================"
+        );
+        console.log(
+          "SWACHHLENS"
+        );
+        console.log(
+          "AI Waste-Response Intelligence System"
+        );
+        console.log(
+          "========================================"
+        );
 
-          console.log(
-            "========================================"
-          );
+        console.log(
+          `Server: http://localhost:${PORT}`
+        );
 
-          console.log(
-            "♻️ SWACHHLENS"
-          );
+        console.log(
+          `API: http://localhost:${PORT}/api`
+        );
 
-          console.log(
-            "🤖 AI Waste-Response Intelligence System"
-          );
+        console.log(
+          `Locations: http://localhost:${PORT}/api/locations`
+        );
 
-          console.log(
-            "========================================"
-          );
+        console.log(
+          `Reports: http://localhost:${PORT}/api/waste-reports`
+        );
 
-          console.log(
-            `🚀 Server: http://localhost:${PORT}`
-          );
+        console.log(
+          `OTP: http://localhost:${PORT}/api/otp`
+        );
 
-          console.log(
-            `📡 API: http://localhost:${PORT}/api`
-          );
+        console.log(
+          `Citizen: http://localhost:${PORT}/api/citizen`
+        );
 
-          console.log(
-            `📍 Locations: http://localhost:${PORT}/api/locations`
-          );
+        console.log(
+          `Organizations: http://localhost:${PORT}/api/organizations`
+        );
 
-          console.log(
-            `♻️ Reports: http://localhost:${PORT}/api/waste-reports`
-          );
+        console.log(
+          `Response: http://localhost:${PORT}/api/response`
+        );
 
-          console.log(
-            `📧 OTP: http://localhost:${PORT}/api/otp`
-          );
+        console.log(
+          `AI: http://localhost:${PORT}/api/waste-reports/analyze-image`
+        );
 
-          console.log(
-            `👤 Citizen: http://localhost:${PORT}/api/citizen`
-          );
+        console.log(
+          `Uploads: http://localhost:${PORT}/uploads`
+        );
 
-          console.log(
-            `🏛️ Organizations: http://localhost:${PORT}/api/organizations`
-          );
+        console.log(
+          "========================================"
+        );
 
-          console.log(
-            `🤝 Response: http://localhost:${PORT}/api/response`
-          );
-
-          console.log(
-            `🤖 AI: http://localhost:${PORT}/api/waste-reports/analyze-image`
-          );
-
-          console.log(
-            `🖼️ Uploads: http://localhost:${PORT}/uploads`
-          );
-
-          console.log(
-            "========================================"
-          );
-
-          console.log("");
-        }
-      );
-    } catch (
+        console.log("");
+      }
+    );
+  } catch (error) {
+    console.error(
+      "MongoDB Connection Error:",
       error
-    ) {
-      console.error(
-        "❌ MongoDB Connection Error:",
-        error
-      );
+    );
 
-      process.exit(1);
-    }
-  };
+    process.exit(1);
+  }
+};
 
 startServer();

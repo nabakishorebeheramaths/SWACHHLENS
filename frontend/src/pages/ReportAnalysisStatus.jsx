@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+﻿import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   MapContainer,
@@ -261,7 +261,7 @@ function SatelliteMap({
     return (
       <div className="map-placeholder">
         <div className="map-placeholder-icon">
-          🗺️
+          ðŸ—ºï¸
         </div>
 
         <strong>
@@ -293,7 +293,7 @@ function SatelliteMap({
       ================================================= */}
 
       <TileLayer
-        attribution="Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics"
+        attribution="Tiles Â© Esri â€” Source: Esri, Maxar, Earthstar Geographics"
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
       />
 
@@ -338,7 +338,7 @@ function SatelliteMap({
                 </span>
 
                 <small>
-                  📍{" "}
+                  ðŸ“{" "}
                   {item.latitude.toFixed(6)}
                   {", "}
                   {item.longitude.toFixed(6)}
@@ -487,7 +487,7 @@ function ReportAnalysisStatus() {
   ] = useState("");
 
  // ===================================================
-// MAP REPORT ID → EXACT LOCATION
+// MAP REPORT ID â†’ EXACT LOCATION
 // ===================================================
 
 const handleMapReportLocation =
@@ -530,17 +530,17 @@ const handleMapReportLocation =
       const data =
         await response.json();
         console.log(
-  "🗺️ OVERVIEW LOCATIONS:",
+  "ðŸ—ºï¸ OVERVIEW LOCATIONS:",
   data.locations
 );
 
 console.log(
-  "📋 RECENT REPORTS:",
+  "ðŸ“‹ RECENT REPORTS:",
   data.recentReports
 );
 
       console.log(
-        "📍 MAP REPORT LOCATION RESPONSE:",
+        "ðŸ“ MAP REPORT LOCATION RESPONSE:",
         data
       );
 
@@ -608,7 +608,7 @@ console.log(
       }
 
       console.log(
-        "🎯 EXACT REPORT LOCATION:",
+        "ðŸŽ¯ EXACT REPORT LOCATION:",
         {
           reportId:
             data.reportId ||
@@ -792,7 +792,7 @@ reports.forEach((report) => {
       ? data.locations
       : [],
 
-  // 👇 ADD THIS
+  // ðŸ‘‡ ADD THIS
    wasteTypeDistribution:
     Array.isArray(data.wasteTypeDistribution)
       ? data.wasteTypeDistribution
@@ -901,6 +901,8 @@ reports.forEach((report) => {
 
           return;
         }
+console.log("REPORT API DATA:", data.report);
+console.log("REPORT IMAGE URL:", data.report?.imageUrl);
 
         sessionStorage.setItem(
           "swachhlens_latest_report",
@@ -971,7 +973,7 @@ reports.forEach((report) => {
   // ===================================================
 
   const reportId =
-    report?.reportId || "—";
+    report?.reportId || "â€”";
 
   // ===================================================
   // REPORT IMAGE
@@ -1013,7 +1015,7 @@ reports.forEach((report) => {
       ? verification.isWaste
         ? "Yes"
         : "No"
-      : "—";
+      : "â€”";
 
   // ===================================================
   // AI CATEGORY
@@ -1023,7 +1025,7 @@ reports.forEach((report) => {
     verification.category ||
     ai.wasteClassification ||
     ai.category ||
-    "—";
+    "â€”";
 
   // ===================================================
   // AI CONFIDENCE
@@ -1036,7 +1038,7 @@ reports.forEach((report) => {
           verification.confidence *
           100
         ).toFixed(1)}%`
-      : "—";
+      : "â€”";
 
   // ===================================================
   // AI REASON
@@ -1046,7 +1048,7 @@ reports.forEach((report) => {
     verification.reason ||
     ai.recommendedAction ||
     ai.reason ||
-    "—";
+    "â€”";
 
   // ===================================================
   // LOCATION
@@ -1124,7 +1126,7 @@ reports.forEach((report) => {
     (dateValue) => {
 
       if (!dateValue)
-        return "—";
+        return "â€”";
 
       const date =
         new Date(dateValue);
@@ -1134,7 +1136,7 @@ reports.forEach((report) => {
           date.getTime()
         )
       ) {
-        return "—";
+        return "â€”";
       }
 
       const now =
@@ -1255,7 +1257,7 @@ reports.forEach((report) => {
               </div>
 
               <div className="report-analysis-icon">
-                🔎
+                ðŸ”Ž
               </div>
 
               <h1>
@@ -1269,9 +1271,9 @@ reports.forEach((report) => {
               </p>
 
               <p>
-                (ଆପଣଙ୍କ Report ID ଏବଂ ଇମେଲ୍
-                ଦ୍ୱାରା SWACHHLENS ରିପୋର୍ଟର
-                ସ୍ଥିତି ଦେଖନ୍ତୁ।)
+                (à¬†à¬ªà¬£à¬™à­à¬• Report ID à¬à¬¬à¬‚ à¬‡à¬®à­‡à¬²à­
+                à¬¦à­à­±à¬¾à¬°à¬¾ SWACHHLENS à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿà¬°
+                à¬¸à­à¬¥à¬¿à¬¤à¬¿ à¬¦à­‡à¬–à¬¨à­à¬¤à­à¥¤)
               </p>
 
             </div>
@@ -1298,7 +1300,7 @@ reports.forEach((report) => {
   <span className="live-label">LIVE</span>
 
   <span className="live-clock">
-    🕐 {currentIST} IST
+    ðŸ• {currentIST} IST
   </span>
 </div>
               </div>
@@ -1308,7 +1310,7 @@ reports.forEach((report) => {
 
                <div className="live-stat-card">
   <div className="live-stat-icon">
-    📊
+    ðŸ“Š
   </div>
 
   <div className="live-stat-content">
@@ -1326,7 +1328,7 @@ reports.forEach((report) => {
 
 
                <div className="live-stat-card">
-  <div className="live-stat-icon">📥</div>
+  <div className="live-stat-icon">ðŸ“¥</div>
 
   <div className="live-stat-content">
     <span>Reports Received</span>
@@ -1342,7 +1344,7 @@ reports.forEach((report) => {
 </div>
 
 <div className="live-stat-card">
-  <div className="live-stat-icon">✅</div>
+  <div className="live-stat-icon">âœ…</div>
 
   <div className="live-stat-content">
     <span>Resolved</span>
@@ -1358,7 +1360,7 @@ reports.forEach((report) => {
 </div>
 
 <div className="live-stat-card">
-  <div className="live-stat-icon">⚡</div>
+  <div className="live-stat-icon">âš¡</div>
 
   <div className="live-stat-content">
     <span>Submitted Today</span>
@@ -1423,7 +1425,7 @@ reports.forEach((report) => {
           <div className="empty-activity">
 
             <span>
-              📭
+              ðŸ“­
             </span>
 
             <p>
@@ -1529,7 +1531,7 @@ reports.forEach((report) => {
 <div className="map-location-info">
 
   <div className="map-location-info-icon">
-    📍
+    ðŸ“
   </div>
 
   <div className="map-location-info-content">
@@ -1544,7 +1546,7 @@ reports.forEach((report) => {
     </p>
 
     <span>
-      🔎 Enter a Report ID below to locate and
+      ðŸ”Ž Enter a Report ID below to locate and
       view your reported waste area on the map.
     </span>
 
@@ -1561,7 +1563,7 @@ reports.forEach((report) => {
     <div className="map-report-search-header">
 
       <span>
-        📍 LOCATE REPORT
+        ðŸ“ LOCATE REPORT
       </span>
 
       <h4>
@@ -1605,7 +1607,7 @@ reports.forEach((report) => {
 
         {mapReportLoading
           ? "Locating..."
-          : "📍 Locate on Map"}
+          : "ðŸ“ Locate on Map"}
 
       </button>
 
@@ -1616,7 +1618,7 @@ reports.forEach((report) => {
 
       <div className="map-report-search-error">
 
-        ❌ {mapReportError}
+        âŒ {mapReportError}
 
       </div>
 
@@ -1777,7 +1779,7 @@ reports.forEach((report) => {
 
   <div className="overview-warning">
 
-    ⚠️ {overviewError}
+    âš ï¸ {overviewError}
 
   </div>
 
@@ -1796,7 +1798,7 @@ reports.forEach((report) => {
   <div className="search-card-top">
 
     <div className="search-card-icon">
-      🔐
+      ðŸ”
     </div>
 
 
@@ -1927,7 +1929,7 @@ reports.forEach((report) => {
       ) : (
 
         <>
-          🔎
+          ðŸ”Ž
           Search My Report
         </>
 
@@ -1946,7 +1948,7 @@ reports.forEach((report) => {
 
     <div className="premium-search-error">
 
-      ❌ {searchError}
+      âŒ {searchError}
 
     </div>
 
@@ -1959,7 +1961,7 @@ reports.forEach((report) => {
 
   <div className="search-security-note">
 
-    🔒 Your report information is protected
+    ðŸ”’ Your report information is protected
     and can only be accessed using the
     matching Report ID and Email.
 
@@ -1989,9 +1991,9 @@ reports.forEach((report) => {
                 </p>
 
                 <p>
-                  (ଆପଣ ନୂଆ ୟୁଜର୍ କି?
-                  SWACHHLENS ରେ ଆପଣଙ୍କ
-                  ପ୍ରଥମ ରିପୋର୍ଟ କରନ୍ତୁ।)
+                  (à¬†à¬ªà¬£ à¬¨à­‚à¬† à­Ÿà­à¬œà¬°à­ à¬•à¬¿?
+                  SWACHHLENS à¬°à­‡ à¬†à¬ªà¬£à¬™à­à¬•
+                  à¬ªà­à¬°à¬¥à¬® à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ à¬•à¬°à¬¨à­à¬¤à­à¥¤)
                 </p>
 
                 <button
@@ -2001,7 +2003,7 @@ reports.forEach((report) => {
                     navigate("/")
                   }
                 >
-                  Make Your First Report →
+                  Make Your First Report â†’
                 </button>
 
               </div>
@@ -2022,9 +2024,9 @@ reports.forEach((report) => {
                 </p>
 
                 <p>
-                  (ଆପଣଙ୍କ ରିପୋର୍ଟ ବିଶ୍ଳେଷଣ ଦେଖିବା
-                  ପାଇଁ ଉପରେ ରିପୋର୍ଟ ID ଏବଂ
-                  ଇମେଲ୍ ପ୍ରବେଶ କରନ୍ତୁ।)
+                  (à¬†à¬ªà¬£à¬™à­à¬• à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ à¬¬à¬¿à¬¶à­à¬³à­‡à¬·à¬£ à¬¦à­‡à¬–à¬¿à¬¬à¬¾
+                  à¬ªà¬¾à¬‡à¬ à¬‰à¬ªà¬°à­‡ à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ ID à¬à¬¬à¬‚
+                  à¬‡à¬®à­‡à¬²à­ à¬ªà­à¬°à¬¬à­‡à¬¶ à¬•à¬°à¬¨à­à¬¤à­à¥¤)
                 </p>
 
               </div>
@@ -2049,7 +2051,7 @@ reports.forEach((report) => {
             <div className="report-analysis-header">
 
               <div className="report-analysis-icon">
-                📊
+                ðŸ“Š
               </div>
 
               <h1>
@@ -2062,9 +2064,9 @@ reports.forEach((report) => {
               </p>
 
               <p>
-                (ଆପଣଙ୍କ ଆବର୍ଜନା ରିପୋର୍ଟ
-                SWACHHLENS ରୁ ସଫଳତାର ସହ
-                ପ୍ରାପ୍ତ ହୋଇଛି।)
+                (à¬†à¬ªà¬£à¬™à­à¬• à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ
+                SWACHHLENS à¬°à­ à¬¸à¬«à¬³à¬¤à¬¾à¬° à¬¸à¬¹
+                à¬ªà­à¬°à¬¾à¬ªà­à¬¤ à¬¹à­‹à¬‡à¬›à¬¿à¥¤)
               </p>
 
             </div>
@@ -2089,7 +2091,7 @@ reports.forEach((report) => {
               </span>
 
               <strong>
-                {report?.email || "—"}
+                {report?.email || "â€”"}
               </strong>
 
               <span>
@@ -2112,7 +2114,7 @@ reports.forEach((report) => {
                         hour12: true,
                       }
                     )
-                  : "—"}
+                  : "â€”"}
               </strong>
 
             </div>
@@ -2126,7 +2128,7 @@ reports.forEach((report) => {
               <div className="report-image-section">
 
                 <h2>
-                  🖼️ Reported Waste Image
+                  ðŸ–¼ï¸ Reported Waste Image
                 </h2>
 
                 <div className="report-image-card">
@@ -2135,7 +2137,21 @@ reports.forEach((report) => {
                     src={reportImageUrl}
                     alt={`Waste Report ${reportId}`}
                     className="report-image-preview"
+                    onLoad={() => {
+                      console.log(
+                        "REPORT IMAGE LOADED:",
+                        reportImageUrl
+                      );
+                    }}
                     onError={(e) => {
+                      console.error(
+                        "REPORT IMAGE FAILED:",
+                        reportImageUrl
+                      );
+                      console.error(
+                        "IMAGE ERROR:",
+                        e
+                      );
                       e.currentTarget.style.display =
                         "none";
                     }}
@@ -2154,7 +2170,7 @@ reports.forEach((report) => {
             <div className="analysis-section">
 
               <h2>
-                📋 Report Information
+                ðŸ“‹ Report Information
               </h2>
 
               <div className="analysis-grid">
@@ -2167,7 +2183,7 @@ reports.forEach((report) => {
 
                   <strong>
                     {report.citizen?.citizenId ||
-                      "—"}
+                      "â€”"}
                   </strong>
 
                 </div>
@@ -2180,7 +2196,7 @@ reports.forEach((report) => {
                   </span>
 
                   <strong>
-                    {report.wasteType || "—"}
+                    {report.wasteType || "â€”"}
                   </strong>
 
                 </div>
@@ -2194,7 +2210,7 @@ reports.forEach((report) => {
 
                   <strong>
                     {report.visibleSeverity ||
-                      "—"}
+                      "â€”"}
                   </strong>
 
                 </div>
@@ -2239,7 +2255,7 @@ reports.forEach((report) => {
 <div className="analysis-section">
 
   <h2>
-    🤖 SWACHHLENS AI Analysis
+    ðŸ¤– SWACHHLENS AI Analysis
   </h2>
 
 
@@ -2250,7 +2266,7 @@ reports.forEach((report) => {
   <div className="analysis-subsection">
 
     <h3>
-      🔍 AI Verification
+      ðŸ” AI Verification
     </h3>
 
     <div className="analysis-grid">
@@ -2290,7 +2306,7 @@ reports.forEach((report) => {
         <strong>
           {verification.category ||
             ai.wasteClassification ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2306,7 +2322,7 @@ reports.forEach((report) => {
           {ai.wasteClassification ||
             verification.category ||
             report.wasteType ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2321,7 +2337,7 @@ reports.forEach((report) => {
         <strong>
           {verification.visibleSeverity ||
             report.visibleSeverity ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2335,7 +2351,7 @@ reports.forEach((report) => {
 
         <strong>
           {ai.analysisStatus ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2350,7 +2366,7 @@ reports.forEach((report) => {
         <strong>
           {verification.reason ||
             aiReason ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2367,7 +2383,7 @@ reports.forEach((report) => {
   <div className="analysis-subsection">
 
     <h3>
-      ♻️ Waste Analysis Details
+      â™»ï¸ Waste Analysis Details
     </h3>
 
     <div className="analysis-grid">
@@ -2381,7 +2397,7 @@ reports.forEach((report) => {
         <strong>
           {ai.estimatedQuantity ||
             verification.estimatedQuantity ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2404,7 +2420,7 @@ reports.forEach((report) => {
             ? verification.hazardDetected
               ? "Yes"
               : "No"
-            : "—"}
+            : "â€”"}
         </strong>
 
       </div>
@@ -2427,7 +2443,7 @@ reports.forEach((report) => {
             ? verification.roadBlockage
               ? "Yes"
               : "No"
-            : "—"}
+            : "â€”"}
         </strong>
 
       </div>
@@ -2450,7 +2466,7 @@ reports.forEach((report) => {
                 report?.riskScore ??
                   verification.riskScore
               )
-            : "—"}
+            : "â€”"}
         </strong>
 
       </div>
@@ -2465,7 +2481,7 @@ reports.forEach((report) => {
         <strong>
           {report?.priority ||
             verification.priority ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2480,7 +2496,7 @@ reports.forEach((report) => {
         <strong>
           {ai.prediction ||
             verification.prediction ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2494,7 +2510,7 @@ reports.forEach((report) => {
   <strong className="ai-long-text">
     {verification.description ||
       report.description ||
-      "—"}
+      "â€”"}
   </strong>
 
 </div>
@@ -2511,7 +2527,7 @@ reports.forEach((report) => {
   <div className="analysis-subsection">
 
     <h3>
-      🧠 AI Response & Recommendation
+      ðŸ§  AI Response & Recommendation
     </h3>
 
     <div className="analysis-grid">
@@ -2525,7 +2541,7 @@ reports.forEach((report) => {
         <strong>
           {ai.recommendedAction ||
             verification.recommendedAction ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2540,7 +2556,7 @@ reports.forEach((report) => {
         <strong>
           {ai.prediction ||
             verification.prediction ||
-            "—"}
+            "â€”"}
         </strong>
 
       </div>
@@ -2557,7 +2573,7 @@ reports.forEach((report) => {
   <div className="analysis-subsection">
 
     <h3>
-      🕒 Analysis Information
+      ðŸ•’ Analysis Information
     </h3>
 
     <div className="analysis-grid">
@@ -2598,7 +2614,7 @@ reports.forEach((report) => {
                   hour12: true,
                 }
               )
-            : "—"}
+            : "â€”"}
         </strong>
 
       </div>
@@ -2616,7 +2632,7 @@ reports.forEach((report) => {
             <div className="analysis-section">
 
               <h2>
-                📍 Waste Location
+                ðŸ“ Waste Location
               </h2>
 
               <div className="analysis-location">
@@ -2633,7 +2649,7 @@ reports.forEach((report) => {
                   <strong>
                     State:
                   </strong>{" "}
-                  {location.state || "—"}
+                  {location.state || "â€”"}
                 </p>
 
                 <p>
@@ -2641,14 +2657,14 @@ reports.forEach((report) => {
                     District:
                   </strong>{" "}
                   {location.district ||
-                    "—"}
+                    "â€”"}
                 </p>
 
                 <p>
                   <strong>
                     Block:
                   </strong>{" "}
-                  {location.block || "—"}
+                  {location.block || "â€”"}
                 </p>
 
                 <p>
@@ -2656,7 +2672,7 @@ reports.forEach((report) => {
                     Village / Locality:
                   </strong>{" "}
                   {location.locality ||
-                    "—"}
+                    "â€”"}
                 </p>
 
                 {location.gpsPlaceName && (
@@ -2713,7 +2729,7 @@ reports.forEach((report) => {
               <div className="analysis-section">
 
                 <h2>
-                  👤 Citizen Situation
+                  ðŸ‘¤ Citizen Situation
                 </h2>
 
                 <div className="analysis-grid">
@@ -2727,7 +2743,7 @@ reports.forEach((report) => {
                     <strong>
                       {citizenSituation
                         .nearWasteLocation ||
-                        "—"}
+                        "â€”"}
                     </strong>
 
                   </div>
@@ -2742,7 +2758,7 @@ reports.forEach((report) => {
                     <strong>
                       {citizenSituation
                         .affectingDailyLife ||
-                        "—"}
+                        "â€”"}
                     </strong>
 
                   </div>
@@ -2757,7 +2773,7 @@ reports.forEach((report) => {
                     <strong>
                       {citizenSituation
                         .blockingPublicSpace ||
-                        "—"}
+                        "â€”"}
                     </strong>
 
                   </div>
@@ -2772,7 +2788,7 @@ reports.forEach((report) => {
                     <strong>
                       {citizenSituation
                         .sanitationProblem ||
-                        "—"}
+                        "â€”"}
                     </strong>
 
                   </div>
@@ -2787,7 +2803,7 @@ reports.forEach((report) => {
                     <strong>
                       {citizenSituation
                         .longTermProblem ||
-                        "—"}
+                        "â€”"}
                     </strong>
 
                   </div>
@@ -2802,7 +2818,7 @@ reports.forEach((report) => {
                     <strong>
                       {citizenSituation
                         .urgentAttention ||
-                        "—"}
+                        "â€”"}
                     </strong>
 
                   </div>
@@ -2816,7 +2832,7 @@ reports.forEach((report) => {
   <strong className="ai-long-text">
     {ai.prediction ||
       verification.prediction ||
-      "—"}
+      "â€”"}
   </strong>
 
 
@@ -2835,7 +2851,7 @@ reports.forEach((report) => {
             <div className="analysis-status">
 
               <div className="status-dot">
-                ✓
+                âœ“
               </div>
 
               <div>
@@ -2850,9 +2866,9 @@ reports.forEach((report) => {
                 </p>
 
                 <p>
-                  (ଆପଣଙ୍କ ଆବର୍ଜନା ରିପୋର୍ଟ
-                  SWACHHLENS ଦ୍ୱାରା ସଫଳତାର ସହ
-                  ଗ୍ରହଣ କରାଯାଇଛି।)
+                  (à¬†à¬ªà¬£à¬™à­à¬• à¬†à¬¬à¬°à­à¬œà¬¨à¬¾ à¬°à¬¿à¬ªà­‹à¬°à­à¬Ÿ
+                  SWACHHLENS à¬¦à­à­±à¬¾à¬°à¬¾ à¬¸à¬«à¬³à¬¤à¬¾à¬° à¬¸à¬¹
+                  à¬—à­à¬°à¬¹à¬£ à¬•à¬°à¬¾à¬¯à¬¾à¬‡à¬›à¬¿à¥¤)
                 </p>
 
               </div>
@@ -2876,7 +2892,7 @@ reports.forEach((report) => {
 
               }}
             >
-              🔎 Search Another Report
+              ðŸ”Ž Search Another Report
             </button>
 
 
@@ -2891,7 +2907,7 @@ reports.forEach((report) => {
                 navigate("/")
               }
             >
-              ← Back to Home
+              â† Back to Home
             </button>
 
           </>
