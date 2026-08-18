@@ -1,6 +1,6 @@
-﻿const fs = require("fs");
+const fs = require("fs");
 const crypto = require("crypto");
-
+const path = require("path");
 // =====================================================
 // BREVO HTTP EMAIL API
 // =====================================================
@@ -76,7 +76,8 @@ const sendViaBrevo = async ({
     }
 
     console.log(
-      `âœ… Brevo email sent to: ${to}`
+      "Brevo email sent to:",
+      to
     );
 
     return {
@@ -84,23 +85,21 @@ const sendViaBrevo = async ({
       messageId:
         data?.messageId || null,
     };
-
   } catch (error) {
     console.error(
-      "âŒ Brevo Email Error:",
+      "SEND BREVO EMAIL ERROR:",
       error
     );
 
     return {
       success: false,
       message:
-        error.message ||
+        error?.message ||
         "Failed to send email.",
       messageId: null,
     };
   }
 };
-
 // =====================================================
 // OTP STORE
 // =====================================================
@@ -143,7 +142,7 @@ const sendEmailOTP = async (email) => {
         border-radius: 12px;
       ">
 
-        <h2>â™»ï¸ SWACHHLENS</h2>
+        <h2> SWACHHLENS</h2>
 
         <h3>Email Verification</h3>
 
@@ -173,7 +172,7 @@ const sendEmailOTP = async (email) => {
         <hr />
 
         <small>
-          SWACHHLENS â€” AI Waste-Response
+          SWACHHLENS - AI Waste-Response
           Intelligence System
         </small>
 
@@ -183,9 +182,31 @@ const sendEmailOTP = async (email) => {
 
   try {
     console.log(
-      `ðŸ“¤ Sending OTP to: ${normalizedEmail}`
+      `“¤ Sending OTP to: ${normalizedEmail}`
     );
+if (imagePath) {
+  console.log("EMAIL IMAGE PATH:", imagePath);
+  console.log(
+    "EMAIL IMAGE EXISTS:",
+    fs.existsSync(imagePath)
+  );
+}
 
+if (
+  imagePath &&
+  fs.existsSync(imagePath)
+) {
+  console.log(
+    "EMAIL IMAGE SIZE:",
+    fs.statSync(imagePath).size,
+    "bytes"
+  );
+}
+console.log("🖼️ EMAIL IMAGE PATH:", imagePath);
+console.log(
+  "🖼️ IMAGE EXISTS:",
+  imagePath ? fs.existsSync(imagePath) : false
+);
     const emailResult =
   await sendViaBrevo({
     to: normalizedEmail,
@@ -224,11 +245,11 @@ if (!emailResult.success) {
     );
 
     console.log(
-      `âœ… OTP sent successfully to ${normalizedEmail}`
+      `… OTP sent successfully to ${normalizedEmail}`
     );
 
     console.log(
-      `ðŸ“¨ Message ID: ${emailResult.messageId}`
+      `“¨ Message ID: ${emailResult.messageId}`
     );
 
     return {
@@ -243,7 +264,7 @@ if (!emailResult.success) {
     );
 
     console.error(
-      `âŒ OTP SEND FAILED for ${normalizedEmail}`
+      `Œ OTP SEND FAILED for ${normalizedEmail}`
     );
 
     console.error(
@@ -364,7 +385,7 @@ const sendWasteReportEmail = async ({
       normalizedEmail,
 
     subject:
-      `SWACHHLENS Report Confirmation â€” ${reportId}`,
+      `SWACHHLENS Report Confirmation - ${reportId}`,
   attachments: imagePath
     ? [
         {
@@ -467,7 +488,7 @@ AI Waste-Response Intelligence System
         <h2 style="
           margin-bottom: 5px;
         ">
-          â™»ï¸ SWACHHLENS
+           SWACHHLENS
         </h2>
 
         <p style="
@@ -482,7 +503,7 @@ AI Waste-Response Intelligence System
         <!-- SUCCESS -->
 
         <h3>
-          âœ… Waste Report Successfully Registered
+          … Waste Report Successfully Registered
         </h3>
 
         <p>
@@ -527,7 +548,7 @@ AI Waste-Response Intelligence System
 <!-- REPORTED WASTE IMAGE -->
 
 <h3>
-  ðŸ–¼ï¸ Reported Waste Image
+   Reported Waste Image
 </h3>
 
 <div style="
@@ -552,7 +573,7 @@ AI Waste-Response Intelligence System
         <!-- REPORT DETAILS -->
 
         <h3>
-          ðŸ“‹ Report Details
+          “‹ Report Details
         </h3>
 
         <table style="
@@ -694,7 +715,7 @@ AI Waste-Response Intelligence System
         <!-- DESCRIPTION -->
 
         <h3>
-          ðŸ“ AI Analysis Summary
+          “ AI Analysis Summary
         </h3>
 
         <p style="
@@ -709,7 +730,7 @@ AI Waste-Response Intelligence System
         <!-- RECOMMENDED ACTION -->
 
         <h3>
-          ðŸ’¡ Recommended Action
+          ’¡ Recommended Action
         </h3>
 
         <p style="
@@ -727,7 +748,7 @@ AI Waste-Response Intelligence System
         <!-- LOCATION -->
 
         <h3>
-          ðŸ“ Waste Location
+          “ Waste Location
         </h3>
 
         <p>
@@ -755,7 +776,7 @@ AI Waste-Response Intelligence System
         ">
 
           <strong>
-            ðŸ¤ Your Information Is Our Responsibility
+            ¤ Your Information Is Our Responsibility
           </strong>
 
           <p>
@@ -797,7 +818,7 @@ AI Waste-Response Intelligence System
                     font-weight: bold;
                   "
                 >
-                  ðŸ”Ž Track Your Report
+                  ”Ž Track Your Report
                 </a>
 
               </div>
@@ -814,7 +835,7 @@ AI Waste-Response Intelligence System
           color: #777;
           text-align: center;
         ">
-          SWACHHLENS â€” AI Waste-Response Intelligence System
+          SWACHHLENS - AI Waste-Response Intelligence System
         </p>
 
       </div>
@@ -828,11 +849,11 @@ AI Waste-Response Intelligence System
   try {
 
     console.log(
-      `ðŸ“¤ Sending waste report email to: ${normalizedEmail}`
+      `“¤ Sending waste report email to: ${normalizedEmail}`
     );
 
     console.log(
-      `ðŸ†” Report ID: ${reportId}`
+      `†” Report ID: ${reportId}`
     );
 
    const emailResult =
@@ -842,15 +863,19 @@ AI Waste-Response Intelligence System
     text: mailOptions.text,
     html: mailOptions.html,
 
-    attachments:
-      imagePath && fs.existsSync(imagePath)
-        ? [
-            {
-              name: "reported-waste-image.jpg",
-              content: fs.readFileSync(imagePath).toString("base64"),
-            },
-          ]
-        : [],
+ attachments:
+  imagePath && fs.existsSync(imagePath)
+    ? [
+        {
+          name: "reported-waste-image.jpg",
+          content: fs
+            .readFileSync(imagePath)
+            .toString("base64"),
+          contentId: "swachhlens-waste-image",
+          disposition: "inline",
+        },
+      ]
+    : [],
   });
 
 if (!emailResult.success) {
@@ -861,11 +886,11 @@ if (!emailResult.success) {
 }
 
     console.log(
-      `âœ… Waste report email sent successfully to ${normalizedEmail}`
+      `… Waste report email sent successfully to ${normalizedEmail}`
     );
 
     console.log(
-      `ðŸ“¨ Message ID: ${emailResult.messageId}`
+      `“¨ Message ID: ${emailResult.messageId}`
     );
 
     return {
@@ -877,7 +902,7 @@ if (!emailResult.success) {
   } catch (error) {
 
     console.error(
-      `âŒ WASTE REPORT EMAIL FAILED for ${normalizedEmail}`
+      `Œ WASTE REPORT EMAIL FAILED for ${normalizedEmail}`
     );
 
     console.error(

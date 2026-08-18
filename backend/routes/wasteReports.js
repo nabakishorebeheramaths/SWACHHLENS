@@ -1,7 +1,8 @@
-﻿const express = require("express");
+const express = require("express");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+
 
 const router = express.Router();
 
@@ -298,7 +299,7 @@ const getOrCreateCitizenId = async (citizen) => {
   await citizen.save();
 
   console.log(
-    "ðŸ†” NEW CITIZEN ID GENERATED:",
+    "†” NEW CITIZEN ID GENERATED:",
     generatedCitizenId
   );
 
@@ -431,7 +432,7 @@ router.post(
       }
 
       console.log(
-        "ðŸ”¥ AI IMAGE ANALYZE ENDPOINT HIT"
+        "[AI] AI IMAGE ANALYZE ENDPOINT HIT"
       );
 
       const aiResult =
@@ -626,11 +627,11 @@ router.post(
       );
 
       console.log(
-        "ðŸ”¥ CREATE WASTE REPORT ROUTE HIT"
+        "[AI] CREATE WASTE REPORT ROUTE HIT"
       );
 
       console.log(
-        "ðŸ“¦ RAW BACKEND BODY:",
+        "[BODY] RAW BACKEND BODY:",
         req.body
       );
 
@@ -683,17 +684,17 @@ router.post(
         );
 
       console.log(
-        "ðŸ‘¤ PARSED CITIZEN:",
+        "[USER] PARSED CITIZEN:",
         citizen
       );
 
       console.log(
-        "ðŸ“ PARSED LOCATION:",
+        "“ PARSED LOCATION:",
         location
       );
 
       console.log(
-        "ðŸ§‘ CITIZEN SITUATION:",
+        "CITIZEN SITUATION:",
         citizenSituation
       );
 
@@ -752,7 +753,7 @@ router.post(
         );
 
       console.log(
-        "ðŸ‘¤ FINAL CITIZEN ID:",
+        "[USER] FINAL CITIZEN ID:",
         citizenCustomId
       );
 
@@ -774,7 +775,7 @@ router.post(
       // =====================================================
 
       console.log(
-        "ðŸ§  Starting AI verification..."
+        "Starting AI verification..."
       );
 
       const imageBuffer =
@@ -791,7 +792,7 @@ router.post(
         });
 
       console.log(
-        "ðŸ§  AI RESULT:",
+        "AI RESULT:",
         aiResult
       );
 
@@ -1023,7 +1024,7 @@ router.post(
       }
 
       console.log(
-        "ðŸ“ FINAL WASTE LOCATION:",
+        "“ FINAL WASTE LOCATION:",
         {
           country:
             finalCountry,
@@ -1116,12 +1117,12 @@ router.post(
         );
 
       console.log(
-        "ðŸ†” GENERATED CITIZEN ID:",
+        "†” GENERATED CITIZEN ID:",
         citizenCustomId
       );
 
       console.log(
-        "ðŸ†” GENERATED REPORT ID:",
+        "†” GENERATED REPORT ID:",
         reportId
       );
 
@@ -1700,13 +1701,7 @@ try {
       reportId:
         report.reportId,
 
-      imagePath:
-        require("path").join(
-          process.cwd(),
-          "uploads",
-          "waste",
-          require("path").basename(report.imageUrl || "")
-        ),
+imagePath: req.file.path,
 
       wasteType:
         report.wasteType,
@@ -1778,11 +1773,11 @@ try {
 
   if (emailResult.success) {
     console.log(
-      `ðŸ“§ REPORT CONFIRMATION EMAIL SENT: ${email}`
+      `REPORT CONFIRMATION EMAIL SENT: ${email}`
     );
   } else {
     console.error(
-      `âš ï¸ REPORT CREATED BUT EMAIL FAILED: ${emailResult.message}`
+      `  REPORT CREATED BUT EMAIL FAILED: ${emailResult.message}`
     );
   }
 } catch (emailError) {
@@ -1790,7 +1785,7 @@ try {
   // Email failure must NOT delete/fail the already-created report.
 
   console.error(
-    "âš ï¸ REPORT EMAIL ERROR:",
+    "  REPORT EMAIL ERROR:",
     emailError.message
   );
 
@@ -1812,16 +1807,16 @@ try {
       );
 
       console.log(
-        "âœ… WASTE REPORT CREATED"
+        "… WASTE REPORT CREATED"
       );
 
       console.log(
-        "ðŸ‘¤ CITIZEN ID:",
+        "[USER] CITIZEN ID:",
         citizenCustomId
       );
 
       console.log(
-        "ðŸ“„ REPORT ID:",
+        "“„ REPORT ID:",
         report.reportId
       );
 
@@ -1862,8 +1857,10 @@ try {
           email:
             report.email,
 
-          imageUrl:
-            report.imageUrl,
+        imageUrl:
+  report.imageUrl
+    ? `${process.env.BACKEND_URL || `http://localhost:${PORT}`}${report.imageUrl}`
+    : "",
 
           wasteType:
             report.wasteType,
@@ -1911,7 +1908,7 @@ try {
       );
 
       console.error(
-        "âŒ CREATE WASTE REPORT ERROR:"
+        "CREATE WASTE REPORT ERROR:"
       );
 
       console.error(
@@ -2104,17 +2101,17 @@ const todayReports =
   });
 
 console.log(
-  "ðŸ“… IST TODAY REPORT COUNT:",
+  "“… IST TODAY REPORT COUNT:",
   todayReports
 );
 
 console.log(
-  "ðŸ• IST DAY START UTC:",
+  "• IST DAY START UTC:",
   todayStartUTC
 );
 
 console.log(
-  "ðŸ• IST DAY END UTC:",
+  "• IST DAY END UTC:",
   todayEndUTC
 );
     // =====================================================

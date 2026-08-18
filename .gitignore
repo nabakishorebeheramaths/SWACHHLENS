@@ -35,3 +35,4 @@ Thumbs.db
 # LOCATION SOURCE EXCEL FILES
 backend/data/*.xls
 backend/data/*.xlsx
+*.encoding-backup
