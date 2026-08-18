@@ -1,2802 +1,1905 @@
-# SWACHHLENS — SYSTEM ARCHITECTURE
-
-
+﻿# SWACHHLENS — SYSTEM ARCHITECTURE
 
 AI WASTE-RESPONSE INTELLIGENCE SYSTEM
 
-
-
-Version: 1.0
-
-Architecture Document
-
-Status: Production-Oriented Prototype Architecture
-
-
-
+Version: 2.0
+Architecture Classification: Production-Oriented Prototype
+Document Type: System Architecture & Technical Design
+Project: SWACHHLENS
+Domain: AI-Assisted Waste Intelligence and Response Coordination
 
 
 ======================================================================
-
 1. EXECUTIVE ARCHITECTURE SUMMARY
-
 ======================================================================
-
-
 
 SWACHHLENS is an AI-assisted waste reporting and response intelligence
-
-platform that transforms citizen-reported waste incidents into
-
-structured, location-aware and actionable response workflows.
-
-
-
-The platform combines:
-
-
-
-&#x20;   Citizen Reporting
-
-&#x20;           +
-
-&#x20;   Identity Verification
-
-&#x20;           +
-
-&#x20;   Incident Context
-
-&#x20;           +
-
-&#x20;   Geographic Intelligence
-
-&#x20;           +
-
-&#x20;   Photographic Evidence
-
-&#x20;           +
-
-&#x20;   AI Waste Analysis
-
-&#x20;           +
-
-&#x20;   Persistent Data Management
-
-&#x20;           +
-
-&#x20;   Transactional Communication
-
-&#x20;           +
-
-&#x20;   Organization Intelligence
-
-&#x20;           +
-
-&#x20;   Human-Guided Response Coordination
-
-
-
-The architecture is intentionally designed as a layered system so that
-
-the presentation, application logic, AI intelligence, data storage,
-
-communication, geographic services and response workflow can evolve
-
-independently.
-
-
-
-The central architectural principle is:
-
-
-
-&#x20;   AI ASSISTS DECISIONS
-
-&#x20;   HUMAN WORKFLOW CONTROLS ACTION
-
-&#x20;   DATABASE PRESERVES SYSTEM STATE
-
-
-
-
-
-======================================================================
-
-2. ARCHITECTURAL OBJECTIVES
-
-======================================================================
-
-
-
-The SWACHHLENS architecture is designed to achieve the following goals:
-
-
-
-1. Provide a simple citizen-first waste reporting experience.
-
-
-
-2. Verify citizen email ownership before progressing through the
-
-&#x20;  reporting workflow.
-
-
-
-3. Capture structured incident information instead of relying only on
-
-&#x20;  free-form descriptions.
-
-
-
-4. Preserve photographic evidence as a durable cloud resource.
-
-
-
-5. Apply AI-assisted analysis to submitted waste evidence.
-
-
-
-6. Produce structured intelligence including waste type, category,
-
-&#x20;  severity, confidence, risk and priority.
-
-
-
-7. Associate every incident with structured geographic information.
-
-
-
-8. Persist citizens, reports, locations, organizations and response
-
-&#x20;  requests in a central database.
-
-
-
-9. Provide a dedicated Report Analysis and Status experience.
-
-
-
-10. Provide a Response Center for operational decision-making.
-
-
-
-11. Use AI and location information to suggest suitable response
-
-&#x20;   organizations.
-
-
-
-12. Require an explicit selection of exactly one organization before
-
-&#x20;   the final response request.
-
-
-
-13. Support feedback and optional appointment requests.
-
-
-
-14. Maintain a traceable lifecycle from initial report to response.
-
-
-
-15. Keep sensitive credentials outside source-controlled application
-
-&#x20;   code.
-
-
-
-16. Support future municipal-scale analytics and predictive
-
-&#x20;   intelligence.
-
-
-
-
-
-======================================================================
-
-3. SYSTEM CONTEXT
-
-======================================================================
-
-
-
-&#x20;                        +----------------------+
-
-&#x20;                        |       CITIZEN        |
-
-&#x20;                        |                      |
-
-&#x20;                        | Report Waste         |
-
-&#x20;                        | Upload Evidence      |
-
-&#x20;                        | Verify Email         |
-
-&#x20;                        +----------+-----------+
-
-&#x20;                                   |
-
-&#x20;                                   v
-
-&#x20;                   +-------------------------------+
-
-&#x20;                   |       SWACHHLENS PORTAL       |
-
-&#x20;                   |                               |
-
-&#x20;                   | React + Vite                  |
-
-&#x20;                   | Citizen Reporting             |
-
-&#x20;                   | Report Status                 |
-
-&#x20;                   | Response Center               |
-
-&#x20;                   +---------------+---------------+
-
-&#x20;                                   |
-
-&#x20;                                   v
-
-&#x20;                   +-------------------------------+
-
-&#x20;                   |      APPLICATION API          |
-
-&#x20;                   |                               |
-
-&#x20;                   | Node.js + Express             |
-
-&#x20;                   | REST API                      |
-
-&#x20;                   +---------------+---------------+
-
-&#x20;                                   |
-
-&#x20;            +----------------------+----------------------+
-
-&#x20;            |                      |                      |
-
-&#x20;            v                      v                      v
-
-&#x20;     +-------------+       +-------------+       +---------------+
-
-&#x20;     | Google      |       | MongoDB     |       | Cloudinary    |
-
-&#x20;     | Gemini      |       | Atlas       |       |               |
-
-&#x20;     |             |       |             |       | Waste Images  |
-
-&#x20;     | AI Analysis |       | Application |       | Evidence      |
-
-&#x20;     +-------------+       | Data        |       +---------------+
-
-&#x20;                           +-------------+
-
-&#x20;                                   |
-
-&#x20;                                   |
-
-&#x20;                                   v
-
-&#x20;                        +----------------------+
-
-&#x20;                        |    RESPONSE CENTER   |
-
-&#x20;                        |                      |
-
-&#x20;                        | Report Lookup        |
-
-&#x20;                        | AI Suggestions       |
-
-&#x20;                        | Location Intelligence|
-
-&#x20;                        | Organization Select  |
-
-&#x20;                        +----------+-----------+
-
-&#x20;                                   |
-
-&#x20;                                   v
-
-&#x20;                        +----------------------+
-
-&#x20;                        | RESPONSE ORGANIZATION|
-
-&#x20;                        |                      |
-
-&#x20;                        | Incident Processing  |
-
-&#x20;                        | Response Workflow    |
-
-&#x20;                        +----------------------+
-
-
-
-&#x20;                        +----------------------+
-
-&#x20;                        |       BREVO          |
-
-&#x20;                        |                      |
-
-&#x20;                        | OTP + Notifications  |
-
-&#x20;                        +----------------------+
-
-
-
-
-
-======================================================================
-
-4. ARCHITECTURE LAYERS
-
-======================================================================
-
-
-
-SWACHHLENS is organized into the following logical layers.
-
-
-
-
-
-4.1 PRESENTATION LAYER
-
-----------------------
-
-
-
-Technology:
-
-
-
-&#x20;   React
-
-&#x20;   Vite
-
-&#x20;   React Router
-
-&#x20;   Axios
-
-&#x20;   Leaflet
-
-&#x20;   React-Leaflet
-
-
-
-Responsibilities:
-
-
-
-&#x20;   - Citizen-facing reporting interface
-
-&#x20;   - Identity and verification screens
-
-&#x20;   - Incident collection
-
-&#x20;   - Situation collection
-
-&#x20;   - Location selection
-
-&#x20;   - Image upload
-
-&#x20;   - Report analysis display
-
-&#x20;   - Report status display
-
-&#x20;   - Response Center
-
-&#x20;   - Organization selection
-
-&#x20;   - Final response request
-
-
-
-
-
-4.2 APPLICATION / API LAYER
-
----------------------------
-
-
-
-Technology:
-
-
-
-&#x20;   Node.js
-
-&#x20;   Express
-
-
-
-Responsibilities:
-
-
-
-&#x20;   - REST API routing
-
-&#x20;   - Request validation
-
-&#x20;   - Workflow orchestration
-
-&#x20;   - Authentication-related operations
-
-&#x20;   - Citizen operations
-
-&#x20;   - OTP operations
-
-&#x20;   - Waste report operations
-
-&#x20;   - Location operations
-
-&#x20;   - Organization operations
-
-&#x20;   - Response workflow operations
-
-&#x20;   - Integration with external services
-
-
-
-
-
-4.3 INTELLIGENCE LAYER
-
-----------------------
-
-
-
-Technology:
-
-
-
-&#x20;   Google Gemini
-
-&#x20;   @google/genai
-
-
-
-Responsibilities:
-
-
-
-&#x20;   - Waste detection
-
-&#x20;   - Waste classification
-
-&#x20;   - Category identification
-
-&#x20;   - Severity assessment
-
-&#x20;   - Confidence estimation
-
-&#x20;   - Risk assessment
-
-&#x20;   - Priority determination
-
-
-
-The intelligence layer is a decision-support component.
-
-
-
-It does not replace persistent application state or human operational
-
-decision-making.
-
-
-
-
-
-4.4 DATA LAYER
-
---------------
-
-
-
-Technology:
-
-
-
-&#x20;   MongoDB Atlas
-
-&#x20;   Mongoose
-
-
-
-Responsibilities:
-
-
-
-&#x20;   - Citizen records
-
-&#x20;   - Waste reports
-
-&#x20;   - Location records
-
-&#x20;   - Organization records
-
-&#x20;   - Response requests
-
-&#x20;   - AI analysis data
-
-&#x20;   - Workflow state
-
-
-
-
-
-4.5 MEDIA LAYER
-
----------------
-
-
-
-Technology:
-
-
-
-&#x20;   Cloudinary
-
-
-
-Responsibilities:
-
-
-
-&#x20;   - Waste image storage
-
-&#x20;   - Durable cloud media management
-
-&#x20;   - Secure image URLs
-
-&#x20;   - Evidence availability for downstream processing
-
-
-
-
-
-4.6 COMMUNICATION LAYER
-
------------------------
-
-
-
-Technology:
-
-
-
-&#x20;   Brevo HTTP API
-
-
-
-Responsibilities:
-
-
-
-&#x20;   - Email OTP delivery
-
-&#x20;   - Waste report notification
-
-&#x20;   - Transactional citizen communication
-
-&#x20;   - Embedded / attached evidence support where configured
-
-
-
-
-
-4.7 GEOGRAPHIC INTELLIGENCE LAYER
-
----------------------------------
-
-
-
-Technology:
-
-
-
-&#x20;   India location hierarchy
-
-&#x20;   Leaflet
-
-&#x20;   React-Leaflet
-
-
-
-Hierarchy:
-
-
-
-&#x20;   Country
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   State
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   District
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   Block
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   Village
-
-&#x20;      |
-
-&#x20;      +--> Latitude
-
-&#x20;      +--> Longitude
-
-
-
-
-
-======================================================================
-
-5. COMPLETE INCIDENT LIFECYCLE
-
-======================================================================
-
-
-
-The complete SWACHHLENS lifecycle is:
-
-
-
-&#x20;   CITIZEN
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   SWACHHLENS WEB PORTAL
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   CITIZEN DETAILS
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   EMAIL OTP VERIFICATION
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   INCIDENT DETAILS
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   CITIZEN SITUATION
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   LOCATION SELECTION
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   WASTE IMAGE EVIDENCE
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   BACKEND API
-
-&#x20;      |
-
-&#x20;      +--------------------------+
-
-&#x20;      |                          |
-
-&#x20;      v                          v
-
-&#x20;   LOCATION SYSTEM           CLOUDINARY
-
-&#x20;      |                     IMAGE STORAGE
-
-&#x20;      |                          |
-
-&#x20;      +------------+-------------+
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;              GEMINI AI
-
-&#x20;                   |
-
-&#x20;                   +--> Waste Detection
-
-&#x20;                   +--> Waste Type
-
-&#x20;                   +--> Category
-
-&#x20;                   +--> Severity
-
-&#x20;                   +--> Confidence
-
-&#x20;                   +--> Risk Score
-
-&#x20;                   +--> Priority
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;            REPORT ENGINE
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;             MONGODB ATLAS
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;        REPORT ANALYSIS \& STATUS
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;            RESPONSE CENTER
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;         REPORT ID LOOKUP
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;      AI / LOCATION SUGGESTIONS
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;       SELECT EXACTLY ONE
-
-&#x20;          ORGANIZATION
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;            FINAL REQUEST
-
-&#x20;                   |
-
-&#x20;            +------+------+
-
-&#x20;            |             |
-
-&#x20;            v             v
-
-&#x20;      REASON / FEEDBACK   OPTIONAL
-
-&#x20;                        APPOINTMENT
-
-&#x20;            |             |
-
-&#x20;            +------+------+
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;             FINAL SUBMIT
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;          RESPONSE WORKFLOW
-
-&#x20;                   |
-
-&#x20;                   v
-
-&#x20;       RESPONSE ORGANIZATION
-
-
-
-
-
-======================================================================
-
-6. FRONTEND ARCHITECTURE
-
-======================================================================
-
-
-
-The frontend is a React-based single-page application.
-
-
-
-Logical structure:
-
-
-
-&#x20;   React Application
-
-&#x20;          |
-
-&#x20;          +--> Citizen Workflow
-
-&#x20;          |
-
-&#x20;          +--> Reporting Workflow
-
-&#x20;          |
-
-&#x20;          +--> Analysis \& Status
-
-&#x20;          |
-
-&#x20;          +--> Response Center
-
-&#x20;          |
-
-&#x20;          +--> Administrative Workflow
-
-&#x20;          |
-
-&#x20;          +--> Geographic Visualization
-
-&#x20;          |
-
-&#x20;          +--> API Service Layer
-
-&#x20;                      |
-
-&#x20;                      v
-
-&#x20;                 Axios Client
-
-&#x20;                      |
-
-&#x20;                      v
-
-&#x20;                 REST Backend
-
-
-
-
-
-The frontend should remain responsible primarily for:
-
-
-
-&#x20;   - Presentation
-
-&#x20;   - User interaction
-
-&#x20;   - Client-side workflow state
-
-&#x20;   - Navigation
-
-&#x20;   - Input collection
-
-&#x20;   - Display of server-generated intelligence
-
-
-
-Business-critical persistence and authoritative workflow state remain
-
-server-side.
-
-
-
-
-
-======================================================================
-
-7. BACKEND ARCHITECTURE
-
-======================================================================
-
-
-
-The backend is the central orchestration layer.
-
-
-
-&#x20;                        EXPRESS SERVER
-
-&#x20;                              |
-
-&#x20;         +--------------------+--------------------+
-
-&#x20;         |                    |                    |
-
-&#x20;         v                    v                    v
-
-&#x20;      ROUTES              SERVICES              MODELS
-
-&#x20;         |                    |                    |
-
-&#x20;         |                    v                    |
-
-&#x20;         |               GEMINI AI                |
-
-&#x20;         |                                         |
-
-&#x20;         +-------------------+---------------------+
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                   EXTERNAL INTEGRATIONS
-
-&#x20;                             |
-
-&#x20;             +---------------+---------------+
-
-&#x20;             |               |               |
-
-&#x20;             v               v               v
-
-&#x20;         Cloudinary        Brevo         MongoDB Atlas
-
-
-
-
-
-Primary route domains include:
-
-
-
-&#x20;   Citizen
-
-&#x20;   OTP
-
-&#x20;   Location
-
-&#x20;   Waste Reports
-
-&#x20;   Organizations
-
-&#x20;   Response
-
-&#x20;   Administrative Operations
-
-
-
-
-
-======================================================================
-
-8. API DOMAIN MODEL
-
-======================================================================
-
-
-
-8.1 CITIZEN DOMAIN
-
-
-
-Responsible for:
-
-
-
-&#x20;   - Citizen creation
-
-&#x20;   - Citizen identification
-
-&#x20;   - Citizen retrieval
-
-&#x20;   - Verification state
-
-&#x20;   - Citizen location
-
-
-
-
-
-8.2 OTP DOMAIN
-
-
-
-Responsible for:
-
-
-
-&#x20;   - OTP generation
-
-&#x20;   - OTP delivery
-
-&#x20;   - OTP expiration
-
-&#x20;   - OTP verification
-
-&#x20;   - Verification state
-
-
-
-
-
-8.3 LOCATION DOMAIN
-
-
-
-Responsible for:
-
-
-
-&#x20;   - States
-
-&#x20;   - Districts
-
-&#x20;   - Blocks
-
-&#x20;   - Villages
-
-&#x20;   - Geographic coordinates
-
-
-
-
-
-8.4 WASTE REPORT DOMAIN
-
-
-
-Responsible for:
-
-
-
-&#x20;   - Evidence upload
-
-&#x20;   - AI analysis
-
-&#x20;   - Waste report creation
-
-&#x20;   - Report retrieval
-
-&#x20;   - Report status
-
-&#x20;   - Report intelligence
-
-
-
-
-
-8.5 ORGANIZATION DOMAIN
-
-
-
-Responsible for:
-
-
-
-&#x20;   - Organization records
-
-&#x20;   - Organization metadata
-
-&#x20;   - Organization retrieval
-
-&#x20;   - Response capability information
-
-
-
-
-
-8.6 RESPONSE DOMAIN
-
-
-
-Responsible for:
-
-
-
-&#x20;   - Report lookup
-
-&#x20;   - Organization suggestions
-
-&#x20;   - Organization selection
-
-&#x20;   - Final request
-
-&#x20;   - Feedback
-
-&#x20;   - Appointment request
-
-&#x20;   - Response workflow
-
-
-
-
-
-======================================================================
-
-9. AI INTELLIGENCE PIPELINE
-
-======================================================================
-
-
-
-The AI pipeline converts photographic evidence into structured
-
-decision-support information.
-
-
-
-&#x20;   WASTE IMAGE
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   IMAGE VALIDATION
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   GEMINI MODEL
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   AI RESPONSE
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   STRUCTURED ANALYSIS
-
-&#x20;        |
-
-&#x20;        +--> Is Waste
-
-&#x20;        |
-
-&#x20;        +--> Confidence
-
-&#x20;        |
-
-&#x20;        +--> Waste Type
-
-&#x20;        |
-
-&#x20;        +--> Category
-
-&#x20;        |
-
-&#x20;        +--> Visible Severity
-
-&#x20;        |
-
-&#x20;        +--> Risk Score
-
-&#x20;        |
-
-&#x20;        +--> Priority
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   VALIDATION / NORMALIZATION
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   WASTE REPORT
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   RESPONSE INTELLIGENCE
-
-
-
-
-
-AI is therefore used as an intelligence accelerator rather than as the
-
-sole authority for operational action.
-
-
-
-
-
-======================================================================
-
-10. AI SAFETY AND VALIDATION PRINCIPLE
-
-======================================================================
-
-
-
-The system should treat AI output as untrusted external intelligence
-
-until validated.
-
-
-
-Conceptually:
-
-
-
-&#x20;   AI OUTPUT
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   VALIDATION
-
-&#x20;      |
-
-&#x20;      +--> Schema validation
-
-&#x20;      |
-
-&#x20;      +--> Confidence checks
-
-&#x20;      |
-
-&#x20;      +--> Business-rule checks
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   NORMALIZED AI DATA
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   APPLICATION WORKFLOW
-
-
-
-
-
-This prevents malformed or unexpected AI responses from directly
-
-controlling critical application state.
-
-
-
-
-
-======================================================================
-
-11. GEOGRAPHIC INTELLIGENCE
-
-======================================================================
-
-
-
-Location is a first-class system capability.
-
-
-
-The geographic model provides:
-
-
-
-&#x20;   State
-
-&#x20;     |
-
-&#x20;     District
-
-&#x20;     |
-
-&#x20;     Block
-
-&#x20;     |
-
-&#x20;     Village
-
-&#x20;     |
-
-&#x20;     Coordinates
-
-
-
-
-
-Location intelligence supports:
-
-
-
-&#x20;   - Accurate incident localization
-
-&#x20;   - Geographic visualization
-
-&#x20;   - Location-aware report information
-
-&#x20;   - Organization recommendation
-
-&#x20;   - Future proximity calculations
-
-&#x20;   - Regional waste analytics
-
-&#x20;   - Geographic hotspot detection
-
-
-
-
-
-Future evolution:
-
-
-
-&#x20;   Incident Locations
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   Spatial Analysis
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   Waste Hotspots
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   Predictive Risk Areas
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   Response Prioritization
-
-
-
-
-
-======================================================================
-
-12. DATA ARCHITECTURE
-
-======================================================================
-
-
-
-Core domain entities:
-
-
-
-&#x20;   +----------------+
-
-&#x20;   |    Citizen     |
-
-&#x20;   +-------+--------+
-
-&#x20;           |
-
-&#x20;           | submits
-
-&#x20;           v
-
-&#x20;   +----------------+
-
-&#x20;   |  WasteReport   |
-
-&#x20;   +-------+--------+
-
-&#x20;           |
-
-&#x20;      +----+----+
-
-&#x20;      |         |
-
-&#x20;      v         v
-
-&#x20;   Location   AI Analysis
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   Organization
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   ResponseRequest
-
-
-
-
-
-Conceptual relationships:
-
-
-
-&#x20;   Citizen
-
-&#x20;      |
-
-&#x20;      +----> WasteReport
-
-&#x20;                  |
-
-&#x20;                  +----> Location
-
-&#x20;                  |
-
-&#x20;                  +----> AI Analysis
-
-&#x20;                  |
-
-&#x20;                  +----> ResponseRequest
-
-&#x20;                             |
-
-&#x20;                             +----> Organization
-
-
-
-
-
-MongoDB Atlas acts as the authoritative persistent data layer.
-
-
-
-
-
-======================================================================
-
-13. EVIDENCE / MEDIA ARCHITECTURE
-
-======================================================================
-
-
-
-Citizen photographic evidence follows a dedicated media pipeline.
-
-
-
-&#x20;   CITIZEN IMAGE
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   MULTIPART REQUEST
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   MULTER / API
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   CLOUDINARY
-
-&#x20;        |
-
-&#x20;        +--> Secure Image URL
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   WASTE REPORT
-
-&#x20;        |
-
-&#x20;        +--> AI ANALYSIS
-
-&#x20;        |
-
-&#x20;        +--> REPORT NOTIFICATION
-
-
-
-
-
-The architecture avoids treating local application storage as the
-
-primary production media store.
-
-
-
-
-
-======================================================================
-
-14. EMAIL COMMUNICATION ARCHITECTURE
-
-======================================================================
-
-
-
-Email communication is handled through the Brevo HTTP API.
-
-
-
-&#x20;   SWACHHLENS BACKEND
-
-&#x20;            |
-
-&#x20;      +-----+------+
-
-&#x20;      |            |
-
-&#x20;      v            v
-
-&#x20;   OTP EMAIL   REPORT EMAIL
-
-&#x20;      |            |
-
-&#x20;      +-----+------+
-
-&#x20;            |
-
-&#x20;            v
-
-&#x20;         BREVO
-
-&#x20;            |
-
-&#x20;            v
-
-&#x20;      CITIZEN EMAIL
-
-
-
-
-
-OTP principle:
-
-
-
-&#x20;   Generate OTP
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   Send through provider
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   Confirm provider acceptance
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   Store OTP state
-
-
-
-
-
-This prevents the system from treating an unsuccessful email operation
-
-as a successful verification workflow.
-
-
-
-
-
-======================================================================
-
-15. RESPONSE INTELLIGENCE ARCHITECTURE
-
-======================================================================
-
-
-
-SWACHHLENS deliberately separates recommendation from final action.
-
-
-
-&#x20;   WASTE REPORT
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   RESPONSE CENTER
-
-&#x20;        |
-
-&#x20;        +--> Incident Context
-
-&#x20;        |
-
-&#x20;        +--> Geographic Context
-
-&#x20;        |
-
-&#x20;        +--> AI Intelligence
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   ORGANIZATION SUGGESTIONS
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   HUMAN REVIEW
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   EXACTLY ONE ORGANIZATION
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   FINAL REQUEST
-
-&#x20;        |
-
-&#x20;        +--> Reason / Feedback
-
-&#x20;        |
-
-&#x20;        +--> Optional Appointment
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   FINAL SUBMIT
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   RESPONSE WORKFLOW
-
-&#x20;        |
-
-&#x20;        v
-
-&#x20;   RESPONSE ORGANIZATION
-
-
-
-
-
-This creates a Human-in-the-Loop architecture.
-
-
-
-AI recommends.
-
-
-
-The responsible operator decides.
-
-
-
-The selected organization executes the operational response.
-
-
-
-
-
-======================================================================
-
-16. SECURITY ARCHITECTURE
-
-======================================================================
-
-
-
-Security boundaries are divided into:
-
-
-
-&#x20;   CLIENT
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   API
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   SERVER-SIDE SERVICES
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   DATABASE / EXTERNAL PROVIDERS
-
-
-
-
-
-Sensitive values must remain server-side.
-
-
-
-Examples:
-
-
-
-&#x20;   - MongoDB credentials
-
-&#x20;   - Gemini API key
-
-&#x20;   - Brevo API key
-
-&#x20;   - Cloudinary credentials
-
-&#x20;   - Administrative secrets
-
-&#x20;   - Email credentials
-
-
-
-
-
-Environment-specific configuration belongs in environment variables.
-
-
-
-The .env file must not be committed to the public source repository.
-
-
-
-
-
-======================================================================
-
-17. TRUST BOUNDARIES
-
-======================================================================
-
-
-
-The system contains several important trust boundaries.
-
-
-
-Boundary 1:
-
-
-
-&#x20;   Citizen Browser
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   Backend API
-
-
-
-All client-provided values must be treated as untrusted input.
-
-
-
-
-
-Boundary 2:
-
-
-
-&#x20;   Backend
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   AI Provider
-
-
-
-AI output must be validated before being used by application logic.
-
-
-
-
-
-Boundary 3:
-
-
-
-&#x20;   Backend
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   External Providers
-
-
-
-External provider responses must be handled as potentially failing
-
-dependencies.
-
-
-
-
-
-Boundary 4:
-
-
-
-&#x20;   Application
-
-&#x20;      |
-
-&#x20;      v
-
-&#x20;   Database
-
-
-
-Database writes represent authoritative application state and should
-
-be performed only after required validation.
-
-
-
-
-
-======================================================================
-
-18. RELIABILITY ARCHITECTURE
-
-======================================================================
-
-
-
-The platform should isolate failures between external dependencies.
-
-
-
-AI failure:
-
-
-
-&#x20;   AI unavailable
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   Controlled analysis failure
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   No invalid AI-dependent state
-
-
-
-
-
-Email failure:
-
-
-
-&#x20;   Email provider failure
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   OTP not considered successfully issued
-
-
-
-
-
-Image failure:
-
-
-
-&#x20;   Cloud image storage failure
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   Evidence persistence failure
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   Report workflow prevented from silently proceeding
-
-
-
-
-
-Database failure:
-
-
-
-&#x20;   Database unavailable
-
-&#x20;       |
-
-&#x20;       v
-
-&#x20;   Controlled API error
-
-
-
-
-
-The core principle is:
-
-
-
-&#x20;   FAIL EXPLICITLY
-
-&#x20;   DO NOT CREATE FALSE SUCCESS
-
-
-
-
-
-======================================================================
-
-19. OBSERVABILITY
-
-======================================================================
-
-
-
-Important operational events include:
-
-
-
-&#x20;   - Server startup
-
-&#x20;   - Database connection
-
-&#x20;   - AI model initialization
-
-&#x20;   - API requests
-
-&#x20;   - Image processing
-
-&#x20;   - AI analysis
-
-&#x20;   - Email delivery
-
-&#x20;   - Report creation
-
-&#x20;   - Response workflow
-
-&#x20;   - External service failures
-
-
-
-
-
-Production evolution should include:
-
-
-
-&#x20;   - Structured logging
-
-&#x20;   - Request correlation IDs
-
-&#x20;   - Centralized log aggregation
-
-&#x20;   - Health checks
-
-&#x20;   - Metrics
-
-&#x20;   - Alerting
-
-&#x20;   - External dependency monitoring
-
-
-
-
-
-======================================================================
-
-20. DEPLOYMENT ARCHITECTURE
-
-======================================================================
-
-
-
-&#x20;                        INTERNET
-
-&#x20;                           |
-
-&#x20;            +--------------+--------------+
-
-&#x20;            |                             |
-
-&#x20;            v                             v
-
-&#x20;     +-------------+              +---------------+
-
-&#x20;     | React/Vite  |              | Node/Express  |
-
-&#x20;     | Frontend    |------------->| Backend API   |
-
-&#x20;     +-------------+              +-------+-------+
-
-&#x20;                                          |
-
-&#x20;                    +---------------------+---------------------+
-
-&#x20;                    |                     |                     |
-
-&#x20;                    v                     v                     v
-
-&#x20;              MongoDB Atlas          Cloudinary              Brevo
-
-&#x20;              Application Data       Image Storage           Email
-
-&#x20;                                          |
-
-&#x20;                                          |
-
-&#x20;                                          v
-
-&#x20;                                    Google Gemini
-
-&#x20;                                    AI Intelligence
-
-
-
-
-
-The frontend and backend are independently deployable components.
-
-
-
-Managed external services provide specialized capabilities for:
-
-
-
-&#x20;   Database
-
-&#x20;   Media
-
-&#x20;   Email
-
-&#x20;   AI
-
-
-
-
-
-======================================================================
-
-21. SCALABILITY STRATEGY
-
-======================================================================
-
-
-
-The architecture supports future horizontal growth.
-
-
-
-Potential scaling mechanisms:
-
-
-
-&#x20;   - Stateless API instances
-
-&#x20;   - Horizontal backend scaling
-
-&#x20;   - Database indexing
-
-&#x20;   - Query optimization
-
-&#x20;   - Geographic caching
-
-&#x20;   - Background job processing
-
-&#x20;   - AI request queues
-
-&#x20;   - Image processing workers
-
-&#x20;   - Centralized observability
-
-&#x20;   - Rate limiting
-
-&#x20;   - API gateway
-
-&#x20;   - Distributed caching
-
-
-
-
-
-Future scalable architecture:
-
-
-
-&#x20;   USERS
-
-&#x20;     |
-
-&#x20;     v
-
-&#x20;   LOAD BALANCER
-
-&#x20;     |
-
-&#x20;     +--------+--------+
-
-&#x20;     |        |        |
-
-&#x20;     v        v        v
-
-&#x20;   API-1    API-2    API-N
-
-&#x20;     |        |        |
-
-&#x20;     +--------+--------+
-
-&#x20;              |
-
-&#x20;       +------+------+
-
-&#x20;       |             |
-
-&#x20;       v             v
-
-&#x20;    DATABASE      JOB QUEUE
-
-&#x20;                      |
-
-&#x20;             +--------+--------+
-
-&#x20;             |        |        |
-
-&#x20;             v        v        v
-
-&#x20;            AI     EMAIL    IMAGE
-
-
-
-
-
-======================================================================
-
-22. FUTURE INTELLIGENCE ARCHITECTURE
-
-======================================================================
-
-
-
-Historical reports can become the foundation of a higher-level
-
-intelligence layer.
-
-
-
-&#x20;   HISTORICAL WASTE REPORTS
-
-&#x20;             |
-
-&#x20;             v
-
-&#x20;      ANALYTICS ENGINE
-
-&#x20;             |
-
-&#x20;             +--> Temporal Patterns
-
-&#x20;             |
-
-&#x20;             +--> Geographic Patterns
-
-&#x20;             |
-
-&#x20;             +--> Waste Categories
-
-&#x20;             |
-
-&#x20;             +--> Severity Trends
-
-&#x20;             |
-
-&#x20;             v
-
-&#x20;      PREDICTIVE INTELLIGENCE
-
-&#x20;             |
-
-&#x20;             +--> Waste Hotspots
-
-&#x20;             |
-
-&#x20;             +--> Risk Forecasting
-
-&#x20;             |
-
-&#x20;             +--> Response Demand
-
-&#x20;             |
-
-&#x20;             +--> Resource Planning
-
-&#x20;             |
-
-&#x20;             v
-
-&#x20;      SMART RESPONSE PRIORITIZATION
-
-
-
-
-
-This provides a path from:
-
-
-
-&#x20;   REPORTING
-
-&#x20;       ->
-
-&#x20;   ANALYSIS
-
-&#x20;       ->
-
-&#x20;   RESPONSE
-
-&#x20;       ->
-
-&#x20;   PREDICTION
-
-&#x20;       ->
-
-&#x20;   PREVENTION
-
-
-
-
-
-======================================================================
-
-23. DOMAIN-DRIVEN RESPONSIBILITY MAP
-
-======================================================================
-
-
-
-+----------------------+-----------------------------------------------+
-
-| COMPONENT            | PRIMARY RESPONSIBILITY                       |
-
-+----------------------+-----------------------------------------------+
-
-| React + Vite         | User interface and workflow presentation     |
-
-| Express API          | Request orchestration and business APIs      |
-
-| Citizen Domain       | Citizen information and verification         |
-
-| OTP Domain           | Email verification workflow                  |
-
-| Location Domain      | Geographic reference information             |
-
-| Waste Report Domain  | Incident and evidence lifecycle              |
-
-| Gemini AI            | AI-assisted waste intelligence               |
-
-| MongoDB Atlas        | Persistent application state                 |
-
-| Cloudinary           | Waste evidence image storage                 |
-
-| Brevo                | Transactional email communication            |
-
-| Organization Domain  | Response organization information            |
-
-| Response Domain      | Response coordination workflow               |
-
-| Leaflet              | Geographic visualization                     |
-
-+----------------------+-----------------------------------------------+
-
-
-
-
-
-======================================================================
-
-24. ARCHITECTURAL QUALITY ATTRIBUTES
-
-======================================================================
-
-
-
-MAINTAINABILITY
-
-
-
-Responsibilities are separated by domain and technical layer.
-
-
-
-
-
-EXTENSIBILITY
-
-
-
-New AI models, notification providers, organization data sources and
-
-analytics capabilities can be introduced without replacing the entire
-
-system.
-
-
-
-
-
-TRACEABILITY
-
-
-
-Report IDs provide a persistent reference through the incident and
-
-response lifecycle.
-
-
-
-
-
-HUMAN OVERSIGHT
-
-
-
-AI provides intelligence and recommendations while final organization
-
-selection remains an explicit workflow decision.
-
-
-
-
-
-LOCATION AWARENESS
-
-
-
-Hierarchical geographic data provides a foundation for localized
-
-response intelligence.
-
-
-
-
-
-CLOUD READINESS
-
-
-
-Managed services provide scalable infrastructure for data, media,
-
-communication and AI.
-
-
-
-
-
-FAULT ISOLATION
-
-
-
-External service failures can be isolated rather than silently
-
-producing incorrect application state.
-
-
-
-
-
-======================================================================
-
-25. ARCHITECTURAL PRINCIPLES
-
-======================================================================
-
-
-
-The SWACHHLENS architecture follows these core principles:
-
-
-
-1. SINGLE SOURCE OF TRUTH
-
-
-
-MongoDB remains the authoritative source for persistent application
-
-and workflow state.
-
-
-
-
-
-2. AI AS DECISION SUPPORT
-
-
-
-AI provides intelligence, not unrestricted control over operational
-
-actions.
-
-
-
-
-
-3. HUMAN-IN-THE-LOOP RESPONSE
-
-
-
-Final organization selection is explicitly performed through the
-
-response workflow.
-
-
-
-
-
-4. EXTERNAL SERVICES AS DEPENDENCIES
-
-
-
-Gemini, Cloudinary and Brevo are treated as replaceable integrations.
-
-
-
-
-
-5. SECURITY BY CONFIGURATION SEPARATION
-
-
-
-Secrets remain outside source-controlled application code.
-
-
-
-
-
-6. EXPLICIT FAILURE
-
-
-
-The system should never represent a failed external operation as a
-
-successful workflow step.
-
-
-
-
-
-7. LOCATION-FIRST INTELLIGENCE
-
-
-
-Geographic context is fundamental to waste-response coordination.
-
-
-
-
-
-8. MODULAR EVOLUTION
-
-
-
-The system is designed so that future analytics and predictive
-
-services can be added without rewriting the core reporting workflow.
-
-
-
-
-
-======================================================================
-
-26. FINAL ARCHITECTURE
-
-======================================================================
-
-
-
-&#x20;                        SWACHHLENS
-
-&#x20;                             |
-
-&#x20;             +---------------+---------------+
-
-&#x20;             |                               |
-
-&#x20;             v                               v
-
-&#x20;       CITIZEN EXPERIENCE              RESPONSE CENTER
-
-&#x20;             |                               |
-
-&#x20;             +---------------+---------------+
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                    REACT + VITE
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                    EXPRESS REST API
-
-&#x20;                             |
-
-&#x20;      +----------------------+----------------------+
-
-&#x20;      |            |             |                 |
-
-&#x20;      v            v             v                 v
-
-&#x20;  LOCATION       GEMINI      CLOUDINARY          BREVO
-
-&#x20;  INTELLIGENCE     AI        IMAGE STORAGE        EMAIL
-
-&#x20;      |            |             |                 |
-
-&#x20;      +------------+-------------+-----------------+
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                        MONGODB ATLAS
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                      WASTE REPORT
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                   RESPONSE INTELLIGENCE
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                 ORGANIZATION SELECTION
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                      FINAL REQUEST
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                   RESPONSE ORGANIZATION
-
-
-
-
-
-======================================================================
-
-27. ARCHITECTURAL VISION
-
-======================================================================
-
-
-
-SWACHHLENS is designed to evolve beyond a conventional waste-reporting
-
+platform designed to transform citizen-reported waste incidents into
+structured, evidence-backed and response-oriented workflows.
+
+The platform connects:
+
+    CITIZENS
+        |
+        v
+    REACT WEB PORTAL
+        |
+        v
+    EXPRESS REST API
+        |
+        +------------------+
+        |                  |
+        v                  v
+    AI ANALYSIS       GEOGRAPHIC SERVICES
+        |                  |
+        +--------+---------+
+                 |
+                 v
+          WASTE REPORT ENGINE
+                 |
+        +--------+---------+
+        |                  |
+        v                  v
+   MONGODB ATLAS       CLOUDINARY
+        |              EVIDENCE IMAGES
+        |
+        v
+   REPORT ANALYSIS
+        |
+        v
+   RESPONSE CENTER
+        |
+        v
+   ORGANIZATION
+   RECOMMENDATION
+        |
+        v
+   EXACTLY ONE
+   ORGANIZATION
+        |
+        v
+   FINAL REQUEST
+        |
+        v
+   RESPONSE WORKFLOW
+
+
+The architecture is intentionally modular so that AI services,
+geographic services, storage, communication providers and response
+organizations can evolve independently without redesigning the complete
 application.
 
 
-
-The long-term architectural vision is:
-
-
-
-&#x20;   CITIZEN REPORT
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   VERIFIED EVIDENCE
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   AI UNDERSTANDING
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   LOCATION INTELLIGENCE
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   STRUCTURED INCIDENT
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   RESPONSE INTELLIGENCE
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   HUMAN DECISION
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   ORGANIZED RESPONSE
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   HISTORICAL DATA
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   PREDICTIVE INTELLIGENCE
-
-&#x20;         |
-
-&#x20;         v
-
-&#x20;   PROACTIVE WASTE MANAGEMENT
-
-
-
-
-
-The ultimate objective is to transform raw citizen observations into
-
-structured intelligence that can support faster, more informed and
-
-more accountable waste-response operations.
-
-
-
-SWACHHLENS therefore represents a complete architecture chain:
-
-
-
-&#x20;   OBSERVE
-
-&#x20;      ->
-
-&#x20;   VERIFY
-
-&#x20;      ->
-
-&#x20;   REPORT
-
-&#x20;      ->
-
-&#x20;   UNDERSTAND
-
-&#x20;      ->
-
-&#x20;   LOCALIZE
-
-&#x20;      ->
-
-&#x20;   PRIORITIZE
-
-&#x20;      ->
-
-&#x20;   RECOMMEND
-
-&#x20;      ->
-
-&#x20;   DECIDE
-
-&#x20;      ->
-
-&#x20;   RESPOND
-
-&#x20;      ->
-
-&#x20;   LEARN
-
-&#x20;      ->
-
-&#x20;   PREDICT
-
-
-
+======================================================================
+2. SYSTEM OBJECTIVE
+======================================================================
+
+The primary objective of SWACHHLENS is to establish a complete digital
+incident lifecycle for waste-related civic reporting.
+
+The system is designed to:
+
+1. Verify citizen identity through email OTP.
+2. Capture structured waste incident information.
+3. Capture citizen situation information.
+4. Capture geographic information.
+5. Collect photographic evidence.
+6. Analyze waste evidence using Google Gemini.
+7. Generate structured AI insights.
+8. Store the incident and associated data.
+9. Present report analysis and status information.
+10. Recommend suitable response organizations.
+11. Require selection of exactly one organization.
+12. Capture final response-request information.
+13. Support optional appointment requests.
+14. Initiate an operational response workflow.
+15. Provide transactional email communication.
+16. Preserve evidence and structured incident information.
 
 
 ======================================================================
+3. ARCHITECTURAL PRINCIPLES
+======================================================================
+
+SWACHHLENS follows the following architectural principles:
+
+3.1 Separation of Concerns
+
+Presentation, API handling, AI orchestration, persistence, geographic
+services, communication and response coordination remain logically
+separated.
+
+3.2 Evidence First
+
+The submitted waste image is treated as primary incident evidence.
+AI analysis operates on submitted evidence rather than replacing it.
+
+3.3 Structured Intelligence
+
+AI output is transformed into structured application data such as:
+
+    Waste Detection
+    Waste Type
+    Category
+    Severity
+    Confidence
+    Risk Score
+    Priority
+    Hazard Assessment
+
+3.4 Human-in-the-Loop Response
+
+AI assists response decisions but does not independently dispatch a
+response organization.
+
+The Response Center provides human-controlled organization selection.
+
+3.5 Exactly-One Organization Model
+
+The response workflow requires the administrator / response coordinator
+to select exactly one organization before final submission.
+
+3.6 External Service Isolation
+
+External providers are accessed through integration boundaries and
+environment configuration rather than hard-coded credentials.
+
+3.7 Progressive Workflow
+
+The citizen journey follows controlled stages so that important
+information is collected before the report becomes operational.
+
+3.8 Failure Awareness
+
+External services such as AI, email, image storage and databases are
+treated as potential failure points.
+
+
+======================================================================
+4. SYSTEM CONTEXT
+======================================================================
+
+                         +----------------------+
+                         |       CITIZEN        |
+                         |                      |
+                         | Identity             |
+                         | Incident Information |
+                         | Situation            |
+                         | Location             |
+                         | Waste Evidence       |
+                         +----------+-----------+
+                                    |
+                                    v
+                    +---------------------------+
+                    |     SWACHHLENS PORTAL     |
+                    |                           |
+                    | React + Vite              |
+                    | Citizen Experience        |
+                    | Administrator Experience  |
+                    +-------------+-------------+
+                                  |
+                                  v
+                    +---------------------------+
+                    |     EXPRESS REST API      |
+                    |                           |
+                    | Authentication            |
+                    | Validation                |
+                    | Domain Routing            |
+                    | Workflow Coordination     |
+                    +------+------+-------------+
+                           |      | 
+              +------------+      +----------------+
+              |                                 |
+              v                                 v
+     +------------------+              +------------------+
+     | GOOGLE GEMINI AI |              | LOCATION SYSTEM  |
+     |                  |              |                  |
+     | Waste Detection  |              | State            |
+     | Classification   |              | District         |
+     | Severity         |              | Block            |
+     | Risk             |              | Village          |
+     | Priority         |              | Coordinates      |
+     +------------------+              +------------------+
+              |
+              v
+     +---------------------------+
+     |     WASTE REPORT ENGINE   |
+     +-------------+-------------+
+                   |
+          +--------+---------+
+          |                  |
+          v                  v
+ +----------------+   +----------------+
+ | MONGODB ATLAS  |   |   CLOUDINARY   |
+ |                |   |                |
+ | Citizens       |   | Waste Images   |
+ | Reports        |   | Evidence       |
+ | Locations      |   | Media Storage  |
+ | Organizations  |   |                |
+ | Requests       |   +----------------+
+ +-------+--------+
+         |
+         v
+ +---------------------------+
+ |      RESPONSE CENTER      |
+ |                           |
+ | Report Lookup             |
+ | AI/Location Suggestions   |
+ | Organization Selection    |
+ | Final Request             |
+ | Appointment Request      |
+ +-------------+-------------+
+               |
+               v
+ +---------------------------+
+ | RESPONSE ORGANIZATION     |
+ |                           |
+ | Incident Processing       |
+ | Response Workflow         |
+ | Operational Coordination |
+ +---------------------------+
+
+Communication boundary:
+
+                    SWACHHLENS API
+                          |
+                          v
+                  +---------------+
+                  | BREVO HTTP API|
+                  +-------+-------+
+                          |
+                          v
+                     CITIZEN EMAIL
+
+
+======================================================================
+5. ARCHITECTURE LAYERS
+======================================================================
+
+5.1 PRESENTATION LAYER
+
+Technology:
+
+    React
+    Vite
+    JavaScript
+    React-Leaflet / Leaflet
+
+Responsibilities:
+
+    Citizen reporting interface
+    Citizen verification interface
+    Incident information collection
+    Location selection
+    Evidence upload
+    Report analysis display
+    Report status display
+    Response Center
+    Administrator interface
+
+
+5.2 API / APPLICATION LAYER
+
+Technology:
+
+    Node.js
+    Express
+
+Responsibilities:
+
+    HTTP request handling
+    Input processing
+    Validation
+    Route coordination
+    Authentication
+    Workflow orchestration
+    AI service invocation
+    Image handling
+    Database operations
+    Response workflow operations
+    Error handling
+
+
+5.3 INTELLIGENCE LAYER
+
+Technology:
+
+    Google Gemini
+
+Responsibilities:
+
+    Waste detection
+    Waste classification
+    Severity assessment
+    Confidence estimation
+    Risk assessment
+    Priority generation
+    Structured AI analysis
+
+
+5.4 DATA LAYER
+
+Primary database:
+
+    MongoDB Atlas
+
+Application data includes:
+
+    Citizen
+    WasteReport
+    Location
+    Organization
+    ResponseRequest
+
+
+5.5 MEDIA / EVIDENCE LAYER
+
+Technology:
+
+    Cloudinary
+
+Responsibilities:
+
+    Waste evidence image storage
+    Persistent media access
+    Separation of media from application database records
+
+
+5.6 COMMUNICATION LAYER
+
+Technology:
+
+    Brevo HTTP API
+
+Responsibilities:
+
+    Email OTP delivery
+    Waste-report notification emails
+    Transactional communication
+
+
+5.7 GEOGRAPHIC LAYER
+
+Technology:
+
+    India location dataset
+    Leaflet
+    React-Leaflet
+    Geographic coordinates
+    Reverse geocoding / location services where applicable
+
+Responsibilities:
+
+    State selection
+    District selection
+    Block selection
+    Village selection
+    Location normalization
+    Map visualization
+    Geographic response support
+
+
+======================================================================
+6. COMPLETE END-TO-END INCIDENT LIFECYCLE
+======================================================================
+
+                         CITIZEN
+                            |
+                            v
+                  +-------------------+
+                  | Citizen Details   |
+                  +---------+---------+
+                            |
+                            v
+                  +-------------------+
+                  | Email OTP Verify  |
+                  +---------+---------+
+                            |
+                            v
+                  +-------------------+
+                  | Incident Details  |
+                  +---------+---------+
+                            |
+                            v
+                  +-------------------+
+                  | Citizen Situation |
+                  +---------+---------+
+                            |
+                            v
+                  +-------------------+
+                  | Location + Image  |
+                  +---------+---------+
+                            |
+                            v
+                  +-------------------+
+                  | Express API       |
+                  +---------+---------+
+                            |
+                +-----------+-----------+
+                |                       |
+                v                       v
+          CLOUDINARY               LOCATION SYSTEM
+          IMAGE STORAGE            Geographic Data
+                |                       |
+                +-----------+-----------+
+                            |
+                            v
+                     GOOGLE GEMINI
+                            |
+                            v
+                   STRUCTURED AI
+                      ANALYSIS
+                            |
+                            v
+                   WASTE REPORT
+                      CREATION
+                            |
+                            v
+                     MONGODB
+                       ATLAS
+                            |
+                            v
+                 REPORT ANALYSIS
+                     & STATUS
+                            |
+                            v
+                  RESPONSE CENTER
+                            |
+                            v
+              AI / LOCATION BASED
+              ORGANIZATION SUGGESTIONS
+                            |
+                            v
+                SELECT EXACTLY ONE
+                   ORGANIZATION
+                            |
+                            v
+                    FINAL REQUEST
+                     /       \
+                    /         \
+                   v           v
+             Feedback      Appointment
+                   \           /
+                    \         /
+                     v       v
+                    FINAL SUBMIT
+                         |
+                         v
+                  RESPONSE WORKFLOW
+                         |
+                         v
+               RESPONSE ORGANIZATION
+
+
+======================================================================
+7. CITIZEN REPORTING ARCHITECTURE
+======================================================================
+
+The citizen reporting process is intentionally progressive.
+
+Stage 1:
+    Citizen details
+
+Stage 2:
+    Email verification
+
+Stage 3:
+    Incident information
+
+Stage 4:
+    Citizen situation
+
+Stage 5:
+    Geographic location
+
+Stage 6:
+    Waste evidence
+
+Stage 7:
+    AI analysis
+
+Stage 8:
+    Report creation
+
+Stage 9:
+    Report analysis and status
+
+
+The workflow prevents incomplete information from becoming a finalized
+incident whenever the application workflow requires earlier stages to be
+completed.
+
+
+======================================================================
+8. EMAIL VERIFICATION ARCHITECTURE
+======================================================================
+
+                         CITIZEN
+                            |
+                            v
+                       EMAIL INPUT
+                            |
+                            v
+                    /api/otp/send
+                            |
+                            v
+                     OTP SERVICE
+                            |
+                            v
+                         BREVO
+                            |
+                            v
+                      CITIZEN EMAIL
+                            |
+                            v
+                      OTP SUBMISSION
+                            |
+                            v
+                   /api/otp/verify
+                            |
+                            v
+                    OTP VALIDATION
+                            |
+                     +------+------+
+                     |             |
+                   VALID         INVALID
+                     |             |
+                     v             v
+              VERIFIED FLOW     ERROR
+
+
+OTP characteristics:
+
+    Cryptographically generated numeric OTP
+    Five-minute validity window
+    Email normalization
+    OTP stored only after successful email delivery
+    Failed delivery does not retain the OTP
+
+
+======================================================================
+9. AI INTELLIGENCE PIPELINE
+======================================================================
+
+                         WASTE IMAGE
+                              |
+                              v
+                     IMAGE VALIDATION
+                              |
+                              v
+                     BACKEND PROCESSING
+                              |
+                              v
+                       GOOGLE GEMINI
+                              |
+                              v
+                     WASTE DETECTION
+                              |
+                              v
+                     CLASSIFICATION
+                              |
+              +---------------+----------------+
+              |               |                |
+              v               v                v
+          SEVERITY        CONFIDENCE       CATEGORY
+              |               |                |
+              +---------------+----------------+
+                              |
+                              v
+                       RISK ASSESSMENT
+                              |
+                              v
+                          PRIORITY
+                              |
+                              v
+                    STRUCTURED RESULT
+                              |
+                              v
+                       WASTE REPORT
+
+
+The AI layer is decision-support infrastructure.
+
+The AI result should not be interpreted as an autonomous legal,
+administrative or emergency dispatch decision.
+
+
+======================================================================
+10. AI SAFETY / VALIDATION BOUNDARY
+======================================================================
+
+The backend validates AI output before allowing the report workflow to
+continue.
+
+Important validation concepts include:
+
+    Waste detection result
+    AI confidence
+    Structured output validity
+    Supported waste categories
+    Supported severity values
+    Risk and priority values
+
+Where configured by the application, non-waste images or insufficient
+AI confidence can be rejected rather than creating an unreliable waste
+incident.
+
+
+======================================================================
+11. GEOGRAPHIC ARCHITECTURE
+======================================================================
+
+                         LOCATION INPUT
+                              |
+                +-------------+-------------+
+                |                           |
+                v                           v
+        MANUAL SELECTION               GPS / MAP
+                |                           |
+                +-------------+-------------+
+                              |
+                              v
+                     LOCATION NORMALIZATION
+                              |
+                              v
+                    INDIA LOCATION DATA
+                              |
+             +----------------+----------------+
+             |                |                |
+             v                v                v
+           STATE          DISTRICT           BLOCK
+             |                |                |
+             +----------------+----------------+
+                              |
+                              v
+                           VILLAGE
+                              |
+                              v
+                    LATITUDE / LONGITUDE
+                              |
+                              v
+                     STORED INCIDENT
+
+
+Geographic hierarchy:
+
+    Country
+       |
+       +-- State
+            |
+            +-- District
+                 |
+                 +-- Block
+                      |
+                      +-- Village
+
+
+======================================================================
+12. IMAGE / EVIDENCE ARCHITECTURE
+======================================================================
+
+                         IMAGE UPLOAD
+                              |
+                              v
+                     EXPRESS MULTIPART API
+                              |
+                              v
+                     IMAGE VALIDATION
+                              |
+                              v
+                         CLOUDINARY
+                              |
+                              +-------> Persistent Image
+                              |
+                              v
+                         WASTE REPORT
+                              |
+                              v
+                     AI ANALYSIS PIPELINE
+
+
+The image is treated as incident evidence.
+
+The application database stores report-level information while the
+media platform stores the actual evidence image.
+
+
+======================================================================
+13. DATA ARCHITECTURE
+======================================================================
+
+                         MONGODB ATLAS
+                              |
+        +----------+----------+----------+----------+
+        |          |          |          |          |
+        v          v          v          v          v
+     CITIZEN   WASTEREPORT LOCATION ORGANIZATION RESPONSE
+                                                        REQUEST
+
+
+13.1 CITIZEN
+
+Represents the reporting citizen and associated identity information.
+
+13.2 WASTEREPORT
+
+Represents the primary waste incident.
+
+Conceptual information includes:
+
+    Report ID
+    Citizen reference
+    Email
+    Waste evidence
+    Waste type
+    Severity
+    Location
+    Citizen situation
+    AI analysis
+    Risk
+    Priority
+    Timestamps
+
+13.3 LOCATION
+
+Represents structured Indian geographic hierarchy and coordinates.
+
+13.4 ORGANIZATION
+
+Represents response organizations available to the response workflow.
+
+13.5 RESPONSEREQUEST
+
+Represents the final organization-selection and response request.
+
+
+======================================================================
+14. RESPONSE CENTER ARCHITECTURE
+======================================================================
+
+                         WASTE REPORT
+                              |
+                              v
+                       REPORT LOOKUP
+                              |
+                              v
+                    INCIDENT INFORMATION
+                              |
+                              v
+                AI / LOCATION BASED
+                ORGANIZATION SUGGESTIONS
+                              |
+                              v
+                   RESPONSE COORDINATOR
+                              |
+                              v
+                SELECT EXACTLY ONE
+                   ORGANIZATION
+                              |
+                              v
+                      FINAL REQUEST
+                              |
+                 +------------+------------+
+                 |                         |
+                 v                         v
+             FEEDBACK                 APPOINTMENT
+                 |                     OPTIONAL
+                 +------------+------------+
+                              |
+                              v
+                         FINAL SUBMIT
+                              |
+                              v
+                     RESPONSE WORKFLOW
+                              |
+                              v
+                  SELECTED ORGANIZATION
+
+
+This creates a human-controlled response boundary between automated
+recommendation and operational organization selection.
+
+
+======================================================================
+15. API ARCHITECTURE
+======================================================================
+
+The backend exposes REST-style APIs grouped by domain.
+
+Base API groups:
+
+    /api/admin-auth
+    /api/citizen
+    /api/locations
+    /api/organizations
+    /api/otp
+    /api/response
+    /api/waste-reports
+
+
+======================================================================
+16. API ENDPOINT CATALOG
+======================================================================
+
+16.1 ADMIN AUTHENTICATION
+
+POST    /api/admin-auth/login
+GET     /api/admin-auth/me
+POST    /api/admin-auth/logout
+
+
+16.2 CITIZEN
+
+GET     /api/citizen/by-email
+POST    /api/citizen/location
+POST    /api/citizen/verify
+
+
+16.3 LOCATION
+
+GET     /api/locations/states
+GET     /api/locations/districts
+GET     /api/locations/blocks
+GET     /api/locations/villages
+
+
+16.4 ORGANIZATIONS
+
+GET     /api/organizations/
+
+
+16.5 OTP
+
+POST    /api/otp/send
+POST    /api/otp/verify
+
+
+16.6 RESPONSE CENTER
+
+GET     /api/response/suggestions/:reportId
+GET     /api/response/report/:reportId
+POST    /api/response/request
+GET     /api/response/admin/requests
+
+
+16.7 WASTE REPORTS
+
+POST    /api/waste-reports/analyze-image
+POST    /api/waste-reports/
+GET     /api/waste-reports/public-overview
+GET     /api/waste-reports/by-report-id
+GET     /api/waste-reports/
+GET     /api/waste-reports/by-email
+GET     /api/waste-reports/by-report-id/location
+GET     /api/waste-reports/:id
+
+
+Total currently identified application endpoints:
+
+    25
+
+
+======================================================================
+17. REQUEST / RESPONSE ARCHITECTURE
+======================================================================
+
+                         CLIENT
+                           |
+                           v
+                     HTTP REQUEST
+                           |
+                           v
+                    EXPRESS ROUTER
+                           |
+                           v
+                    DOMAIN LOGIC
+                           |
+              +------------+------------+
+              |                         |
+              v                         v
+           SUCCESS                    FAILURE
+              |                         |
+              v                         v
+        JSON RESPONSE             ERROR RESPONSE
+
+
+Typical response characteristics:
+
+    success
+    message
+    data
+    identifiers
+    structured error information where applicable
+
+
+HTTP status classes used by the application include:
+
+    200  Successful operation
+    201  Resource created
+    400  Invalid request
+    401  Authentication failure
+    403  Forbidden operation
+    404  Resource not found
+    409  Conflict
+    500  Server / processing error
+
+
+======================================================================
+18. AUTHENTICATION & AUTHORIZATION
+======================================================================
+
+SWACHHLENS contains separate concepts for:
+
+    Citizen verification
+    Administrator authentication
+    Response workflow authorization
+
+Citizen verification:
+
+    Email
+       |
+       v
+    OTP
+       |
+       v
+    Verification state
+
+
+Administrator access:
+
+    Admin credentials
+       |
+       v
+    Authentication
+       |
+       v
+    Protected administrative operations
+
+
+Administrative endpoints must remain protected from unauthorized
+response workflow manipulation.
+
+
+======================================================================
+19. SECURITY ARCHITECTURE
+======================================================================
+
+Security boundaries include:
+
+    Environment-based credentials
+    Admin authentication
+    OTP expiration
+    Email normalization
+    Input validation
+    HTTP status validation
+    CORS configuration
+    Request body limits
+    Error handling
+    Protected administrative routes
+
+
+Secrets must not be committed into source code.
+
+Expected secret categories include:
+
+    Database credentials
+    AI credentials
+    Cloudinary credentials
+    Brevo credentials
+    Administrative credentials
+    Other provider-specific secrets
+
+
+Secrets belong in environment configuration.
+
+
+======================================================================
+20. ERROR HANDLING ARCHITECTURE
+======================================================================
+
+External dependency failures may occur at:
+
+    MongoDB Atlas
+    Google Gemini
+    Cloudinary
+    Brevo
+    Geographic services
+
+
+Application failure path:
+
+       REQUEST
+          |
+          v
+      VALIDATION
+          |
+       +--+--+
+       |     |
+     VALID  INVALID
+       |     |
+       v     v
+    PROCESS  400
+       |
+   +---+-----------------------+
+   |       |        |          |
+   v       v        v          v
+ Mongo   Gemini  Cloudinary  Brevo
+   |       |        |          |
+   +-------+--------+----------+
+           |
+        SUCCESS
+           |
+           v
+       RESPONSE
+
+
+Failures should be logged without exposing sensitive credentials.
+
+
+======================================================================
+21. OBSERVABILITY & LOGGING
+======================================================================
+
+The backend contains operational logging for important workflows.
+
+Recommended observability dimensions:
+
+    Request lifecycle
+    Report ID
+    Citizen ID where appropriate
+    AI processing
+    Image processing
+    Email delivery
+    Database operations
+    Response requests
+    Organization selection
+    External provider failures
+
+
+Production logging should avoid exposing:
+
+    Passwords
+    API keys
+    OTP values
+    Sensitive authentication material
+
+
+Correlation identifiers such as Report ID should be preferred for
+incident tracing.
+
+
+======================================================================
+22. COMMUNICATION ARCHITECTURE
+======================================================================
+
+SWACHHLENS
+    |
+    v
+BREVO HTTP API
+    |
+    +--> Email OTP
+    |
+    +--> Waste Report Notification
+    |
+    +--> Transactional Communication
+    |
+    v
+CITIZEN
+
+
+The email provider is an integration dependency rather than part of
+the core domain model.
+
+
+======================================================================
+23. DEPLOYMENT ARCHITECTURE
+======================================================================
+
+                    INTERNET
+                       |
+          +------------+------------+
+          |                         |
+          v                         v
+    FRONTEND HOST              BACKEND HOST
+    React + Vite               Node + Express
+          |                         |
+          |              +----------+----------+
+          |              |          |          |
+          |              v          v          v
+          |          MongoDB    Gemini     Cloudinary
+          |           Atlas        AI         Media
+          |                         |
+          |                         v
+          |                       Brevo
+          |
+          v
+       CITIZEN
+
+
+Environment-specific configuration should control:
+
+    API base URL
+    Database connection
+    AI credentials
+    Cloudinary configuration
+    Brevo configuration
+    Administrative secrets
+
+
+======================================================================
+24. DEPLOYMENT ENVIRONMENT SEPARATION
+======================================================================
+
+Development:
+
+    Local React development
+    Local Node.js backend
+    Development environment variables
+
+
+Production:
+
+    Hosted frontend
+    Hosted backend
+    Managed MongoDB
+    Managed image storage
+    Managed AI service
+    Transactional email provider
+
+
+The application should avoid coupling production behavior to local
+filesystem assumptions wherever managed storage is required.
+
+
+======================================================================
+25. SCALABILITY ARCHITECTURE
+======================================================================
+
+The architecture supports horizontal growth by separating:
+
+    Web presentation
+    API processing
+    AI processing
+    Database
+    Media storage
+    Email delivery
+
+
+Potential future scaling model:
+
+                         LOAD BALANCER
+                              |
+                 +------------+------------+
+                 |            |            |
+                 v            v            v
+              API-1        API-2        API-N
+                 |            |            |
+                 +------------+------------+
+                              |
+                     MONGODB ATLAS
+                              |
+              +---------------+---------------+
+              |                               |
+              v                               v
+         CLOUDINARY                       AI SERVICE
+
+
+Future asynchronous processing can move AI analysis and notification
+work into background workers or queues if traffic increases.
+
+
+======================================================================
+26. RELIABILITY ARCHITECTURE
+======================================================================
+
+Critical dependency categories:
+
+    Database
+    AI
+    Image Storage
+    Email
+    Geographic Services
+
+
+Reliability strategy:
+
+    Validate before processing
+    Fail safely
+    Preserve report identifiers
+    Avoid storing failed OTPs
+    Return meaningful HTTP errors
+    Log provider failures
+    Keep external integrations modular
+    Avoid exposing secrets
+    Preserve evidence independently from application records
+
+
+======================================================================
+27. DATA CONSISTENCY MODEL
+======================================================================
+
+A waste incident contains multiple logical components:
+
+    Citizen
+    Evidence
+    AI analysis
+    Location
+    Report
+    Response request
+
+
+The report identifier provides the primary business-level reference for
+connecting incident lifecycle operations.
+
+Example conceptual relationship:
+
+    Citizen
+       |
+       +---- WasteReport
+                  |
+                  +---- Evidence
+                  |
+                  +---- AI Analysis
+                  |
+                  +---- Location
+                  |
+                  +---- ResponseRequest
+                              |
+                              +---- Organization
+
+
+======================================================================
+28. HUMAN-IN-THE-LOOP GOVERNANCE
+======================================================================
+
+SWACHHLENS deliberately separates:
+
+    AI recommendation
+
+from:
+
+    Human operational decision
+
+
+AI may assist with:
+
+    Classification
+    Severity
+    Risk
+    Priority
+    Organization suggestions
+
+
+The human response coordinator remains responsible for:
+
+    Reviewing the incident
+    Evaluating suggestions
+    Selecting exactly one organization
+    Providing final request information
+    Submitting the response request
+
+
+This architecture reduces the risk of treating AI output as an
+unreviewed operational command.
+
+
+======================================================================
+29. PRIVACY & DATA PROTECTION
+======================================================================
+
+The system handles citizen and incident information.
+
+Data protection principles:
+
+    Collect only required information
+    Protect credentials
+    Protect OTP values
+    Avoid unnecessary exposure in logs
+    Restrict administrative operations
+    Use managed external services securely
+    Keep provider secrets outside source code
+    Control access to incident information
+
+
+The production deployment should additionally enforce HTTPS and secure
+cookie/session configuration appropriate to the deployed environment.
+
+
+======================================================================
+30. API DESIGN PRINCIPLES
+======================================================================
+
+The API is organized around domain responsibilities.
+
+Domain groups:
+
+    Authentication
+    Citizens
+    Locations
+    Organizations
+    OTP
+    Waste Reports
+    Response
+
+
+Advantages:
+
+    Easier maintenance
+    Clear ownership
+    Easier testing
+    Better debugging
+    Reduced coupling
+    Future service extraction
+
+
+Potential future evolution:
+
+    /api/v2/...
+
+
+without requiring immediate redesign of the current application.
+
+
+======================================================================
+31. RESPONSE ORGANIZATION DECISION MODEL
+======================================================================
+
+                         INCIDENT
+                            |
+                            v
+                    REPORT INFORMATION
+                            |
+                            v
+                 AI / LOCATION SIGNALS
+                            |
+                            v
+                ORGANIZATION SUGGESTIONS
+                            |
+                            v
+                  HUMAN EVALUATION
+                            |
+                            v
+                 EXACTLY ONE SELECTION
+                            |
+                            v
+                   FINAL REQUEST
+                            |
+                            v
+                RESPONSE ORGANIZATION
+
+
+Important principle:
+
+    Suggestion != Selection
+
+AI/location logic may recommend candidates, but the final organization
+selection is explicitly performed through the response workflow.
+
+
+======================================================================
+32. ARCHITECTURAL BOUNDARIES
+======================================================================
+
+CORE APPLICATION
+
+    React UI
+    Express API
+    Domain routes
+    Business workflow
+    Data models
+    Response workflow
+
+
+EXTERNAL DEPENDENCIES
+
+    Google Gemini
+    MongoDB Atlas
+    Cloudinary
+    Brevo
+    Geographic / map services
+
+
+This boundary makes external services replaceable without rewriting the
+entire application.
+
+
+======================================================================
+33. FAILURE SCENARIOS
+======================================================================
+
+Scenario A — AI unavailable
+
+    Image received
+        |
+        v
+    AI request fails
+        |
+        v
+    Report processing error
+        |
+        v
+    Incident remains traceable through logs / request context
+
+
+Scenario B — Email delivery fails
+
+    OTP generated
+        |
+        v
+    Brevo failure
+        |
+        v
+    OTP is not retained as a successful delivery
+
+
+Scenario C — Database unavailable
+
+    API request
+        |
+        v
+    Database failure
+        |
+        v
+    Controlled server error
+        |
+        v
+    Operational logging
+
+
+Scenario D — Invalid image
+
+    Upload
+       |
+       v
+    Validation
+       |
+       v
+    Reject request
+
+
+Scenario E — Unauthorized administrator request
+
+    Request
+       |
+       v
+    Admin authentication
+       |
+       v
+    Reject if unauthorized
+
+
+======================================================================
+34. PERFORMANCE CONSIDERATIONS
+======================================================================
+
+Performance-sensitive operations include:
+
+    Image upload
+    AI inference
+    Database queries
+    Location queries
+    Organization suggestions
+    Email delivery
+
+
+Recommended production optimizations:
+
+    Database indexes
+    Lean MongoDB queries where appropriate
+    Pagination for large datasets
+    Image size controls
+    CDN-backed media
+    Caching for stable geographic data
+    Background jobs for expensive asynchronous tasks
+    Connection pooling
+    Rate limiting
+    Request timeouts
+
+
+======================================================================
+35. FUTURE EVOLUTION
+======================================================================
+
+The architecture can evolve toward:
+
+    Background AI workers
+    Message queues
+    Advanced geospatial search
+    Organization SLA tracking
+    Response status updates
+    Push notifications
+    Mobile applications
+    Analytics dashboards
+    Predictive waste hotspot detection
+    Historical incident intelligence
+    AI-assisted response prioritization
+    Organization performance analytics
+    Municipal integrations
+    Open civic-data integrations
+
+
+Future architecture:
+
+                 CITIZEN
+                    |
+                    v
+              SWACHHLENS
+                    |
+        +-----------+-----------+
+        |           |           |
+        v           v           v
+       AI        GEO DATA    RESPONSE
+        |           |           |
+        +-----------+-----------+
+                    |
+                    v
+              INTELLIGENCE
+                    |
+                    v
+             CIVIC RESPONSE
+
+
+======================================================================
+36. ARCHITECTURE DECISION RECORD
+======================================================================
+
+Decision 01
+
+Use React + Vite for the web interface.
+
+Reason:
+
+    Fast development
+    Component architecture
+    Modern frontend ecosystem
+
+
+Decision 02
+
+Use Node.js + Express for backend APIs.
+
+Reason:
+
+    Lightweight REST architecture
+    JavaScript ecosystem consistency
+    Straightforward integration with external services
+
+
+Decision 03
+
+Use MongoDB Atlas for persistent application data.
+
+Reason:
+
+    Flexible document model
+    Managed infrastructure
+    Suitable for evolving incident structures
+
+
+Decision 04
+
+Use Cloudinary for image storage.
+
+Reason:
+
+    Separates media storage from application database
+    Supports managed media delivery
+
+
+Decision 05
+
+Use Google Gemini for AI waste analysis.
+
+Reason:
+
+    Multimodal evidence analysis
+    Structured intelligence generation
+
+
+Decision 06
+
+Use Brevo HTTP API for transactional email.
+
+Reason:
+
+    Provider-managed email delivery
+    API-based integration
+    Suitable for OTP and notification workflows
+
+
+Decision 07
+
+Require exactly one organization selection.
+
+Reason:
+
+    Creates an explicit operational responsibility boundary
+    Prevents ambiguous final response routing
+
+
+======================================================================
+37. SECURITY HARDENING ROADMAP
+======================================================================
+
+Recommended production hardening:
+
+    HTTPS everywhere
+    Strict CORS allowlist
+    Rate limiting
+    Request validation schemas
+    Security headers
+    Secure cookies
+    Password hashing
+    Secret rotation
+    Audit logging
+    Provider timeout policies
+    Abuse protection
+    Upload validation
+    File size restrictions
+    MIME type validation
+    Database indexes
+    Backup policies
+
+
+======================================================================
+38. TESTING STRATEGY
+======================================================================
+
+Testing layers:
+
+    Unit Tests
+        |
+        v
+    Route Tests
+        |
+        v
+    Integration Tests
+        |
+        v
+    AI Integration Tests
+        |
+        v
+    Database Tests
+        |
+        v
+    End-to-End Tests
+        |
+        v
+    Production Smoke Tests
+
+
+Critical test journeys:
+
+    OTP send
+    OTP verification
+    Citizen creation
+    Location selection
+    Image analysis
+    Waste report creation
+    Report retrieval
+    Organization suggestions
+    Organization selection
+    Final response request
+    Admin authentication
+
+
+======================================================================
+39. OPERATIONAL TRACEABILITY
+======================================================================
+
+The following business identifiers are especially important:
+
+    Citizen ID
+    Report ID
+    Response Request ID
+    Organization ID
+    Email address where operationally required
+
+
+Recommended trace:
+
+    Citizen
+       |
+       v
+    Citizen ID
+       |
+       v
+    Report ID
+       |
+       v
+    AI Analysis
+       |
+       v
+    Organization
+       |
+       v
+    Response Request
+
+
+The Report ID acts as the primary human-readable incident reference.
+
+
+======================================================================
+40. COMPLETE SYSTEM DATA FLOW
+======================================================================
+
+Citizen Data
+     |
+     v
+React Portal
+     |
+     v
+Express API
+     |
+     +----------------------+
+     |                      |
+     v                      v
+MongoDB               Email / OTP
+     |                      |
+     |                     Brevo
+     |
+     +----------------------+
+     |
+     v
+Waste Evidence
+     |
+     v
+Cloudinary
+     |
+     v
+Google Gemini
+     |
+     v
+AI Analysis
+     |
+     v
+WasteReport
+     |
+     v
+Report Analysis
+     |
+     v
+Response Center
+     |
+     v
+Organization Suggestions
+     |
+     v
+Exactly One Organization
+     |
+     v
+Final Request
+     |
+     v
+Response Workflow
+
+
+======================================================================
+41. COMPLETE SYSTEM RESPONSIBILITY MATRIX
+======================================================================
+
+COMPONENT              PRIMARY RESPONSIBILITY
+
+React + Vite           User interaction and presentation
+
+Express                API routing and application orchestration
+
+MongoDB Atlas           Persistent application data
+
+Cloudinary              Waste evidence image storage
+
+Google Gemini           AI evidence analysis
+
+Brevo                   Transactional email
+
+Location System         Geographic hierarchy and location support
+
+Response Center        Human-controlled response coordination
+
+Response Organization  Operational response
+
+
+======================================================================
+42. WORLD-CLASS ARCHITECTURE SUMMARY
+======================================================================
+
+SWACHHLENS is architecturally centered around one principle:
+
+    TURN EVIDENCE INTO ACTIONABLE CIVIC RESPONSE.
+
+The platform does this through a controlled chain:
+
+    VERIFIED CITIZEN
+          |
+          v
+    STRUCTURED INCIDENT
+          |
+          v
+    VERIFIED LOCATION
+          |
+          v
+    PHOTOGRAPHIC EVIDENCE
+          |
+          v
+    AI ANALYSIS
+          |
+          v
+    STRUCTURED WASTE INTELLIGENCE
+          |
+          v
+    PERSISTENT INCIDENT RECORD
+          |
+          v
+    RESPONSE CENTER
+          |
+          v
+    AI / LOCATION ASSISTED SUGGESTIONS
+          |
+          v
+    HUMAN ORGANIZATION SELECTION
+          |
+          v
+    FINAL REQUEST
+          |
+          v
+    RESPONSE WORKFLOW
+
+
+The architecture combines:
+
+    Human participation
+    Artificial intelligence
+    Geographic intelligence
+    Evidence management
+    Structured data
+    Transactional communication
+    Operational response coordination
+
+
+This creates a complete incident-to-response architecture rather than
+a simple waste-reporting form.
+
+
+======================================================================
+43. FINAL ARCHITECTURE STATEMENT
+======================================================================
+
+SWACHHLENS is designed as a modular, evidence-driven and
+human-in-the-loop civic technology platform.
+
+Its architecture separates citizen interaction, application services,
+AI intelligence, geographic processing, persistent storage, evidence
+management, transactional communication and operational response.
+
+The system is therefore capable of evolving from a production-oriented
+prototype into a scalable civic-response platform while preserving its
+core architectural boundaries.
+
+The defining lifecycle is:
+
+    REPORT
+      |
+      v
+    VERIFY
+      |
+      v
+    ANALYZE
+      |
+      v
+    UNDERSTAND
+      |
+      v
+    RECOMMEND
+      |
+      v
+    SELECT
+      |
+      v
+    REQUEST
+      |
+      v
+    RESPOND
+
 
 END OF SYSTEM ARCHITECTURE
-
 ======================================================================
-
