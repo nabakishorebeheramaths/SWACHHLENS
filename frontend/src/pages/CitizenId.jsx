@@ -484,7 +484,7 @@ function CitizenId({ embedded = false, onVerified }) {
       // NORMAL MODE
       // ===================================================
 
-      navigate("/citizen-details");
+      navigate("/report-waste");
     } catch (error) {
       console.error(
         "❌ Citizen verification error:",

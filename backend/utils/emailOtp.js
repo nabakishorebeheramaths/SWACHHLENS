@@ -1,4 +1,4 @@
-const fs = require("fs");
+﻿const fs = require("fs");
 const crypto = require("crypto");
 const path = require("path");
 // =====================================================
@@ -182,7 +182,7 @@ const sendEmailOTP = async (email) => {
 
   try {
     console.log(
-      `“¤ Sending OTP to: ${normalizedEmail}`
+      `📧 Sending OTP to: ${normalizedEmail}`
     );
 if (imagePath) {
   console.log("EMAIL IMAGE PATH:", imagePath);
@@ -386,15 +386,16 @@ const sendWasteReportEmail = async ({
 
     subject:
       `SWACHHLENS Report Confirmation - ${reportId}`,
-  attachments: imagePath
-    ? [
-        {
-          filename: "reported-waste-image.jpg",
-          path: imagePath,
-          cid: "swachhlens-waste-image",
-        },
-      ]
-    : [],
+ attachments: imagePath && fs.existsSync(imagePath)
+  ? [
+      {
+        name: "reported-waste-image.jpg",
+        content: fs
+          .readFileSync(imagePath)
+          .toString("base64"),
+      },
+    ]
+  : [],
     // =================================================
     // PLAIN TEXT EMAIL
     // =================================================
@@ -776,7 +777,7 @@ AI Waste-Response Intelligence System
         ">
 
           <strong>
-            ¤ Your Information Is Our Responsibility
+            Your information is our responsibility.
           </strong>
 
           <p>
@@ -849,7 +850,7 @@ AI Waste-Response Intelligence System
   try {
 
     console.log(
-      `“¤ Sending waste report email to: ${normalizedEmail}`
+      `📧 Sending waste report email to: ${normalizedEmail}`
     );
 
     console.log(
@@ -937,3 +938,7 @@ module.exports = {
   verifyEmailOTP,
   sendWasteReportEmail,
 };
+
+
+
+

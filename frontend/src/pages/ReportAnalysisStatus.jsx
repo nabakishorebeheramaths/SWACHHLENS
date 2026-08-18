@@ -975,13 +975,34 @@ reports.forEach((report) => {
 
   // ===================================================
   // REPORT IMAGE
-  // ===================================================
+  const reportImageUrl = (() => {
+  const rawImageUrl = String(
+    report?.imageUrl || ""
+  ).trim();
 
-  const reportImageUrl =
-    report?.imageUrl
-      ? `${API_BASE_URL}${report.imageUrl}`
-      : "";
+  if (!rawImageUrl) {
+    return "";
+  }
 
+  // Already a complete URL
+  if (
+    rawImageUrl.startsWith("https://") ||
+    rawImageUrl.startsWith("http://")
+  ) {
+    return rawImageUrl;
+  }
+
+  // Relative backend upload path
+  const cleanBase = String(
+    API_BASE_URL || ""
+  ).replace(/\/+$/, "");
+
+  const cleanPath = rawImageUrl.startsWith("/")
+    ? rawImageUrl
+    : `/${rawImageUrl}`;
+
+  return `${cleanBase}${cleanPath}`;
+})();
   // ===================================================
   // AI WASTE DETECTION
   // ===================================================
