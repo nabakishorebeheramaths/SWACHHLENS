@@ -4,13 +4,21 @@ const ADMIN_COOKIE_NAME =
   "swachhlens_admin_token";
 
 const getAdminSecret = () => {
-  return (
-    process.env.SWACHHLENS_ADMIN_SECRET ||
-    "swachhlens-development-secret"
-  );
+  const secret =
+    process.env.SWACHHLENS_ADMIN_SECRET;
+
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "SWACHHLENS_ADMIN_SECRET is required in production."
+      );
+    }
+
+    return "swachhlens-development-secret";
+  }
+
+  return secret;
 };
-
-
 // =========================================================
 // CREATE ADMIN TOKEN
 // =========================================================
@@ -88,17 +96,20 @@ const verifyAdminToken = (
   }
 
   // 8-hour admin session
-  const tokenAge =
-    Date.now() -
-    Number(timestamp);
+ const tokenAge =
+  Date.now() -
+  Number(timestamp);
 
-  if (
-    !Number.isFinite(tokenAge) ||
-    tokenAge >
-      8 * 60 * 60 * 1000
-  ) {
-    return false;
-  }
+const MAX_ADMIN_SESSION_AGE =
+  8 * 60 * 60 * 1000;
+
+if (
+  !Number.isFinite(tokenAge) ||
+  tokenAge < 0 ||
+  tokenAge > MAX_ADMIN_SESSION_AGE
+) {
+  return false;
+}
 
   return true;
 };

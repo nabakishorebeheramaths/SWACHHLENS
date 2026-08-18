@@ -36,3 +36,8 @@ Thumbs.db
 backend/data/*.xls
 backend/data/*.xlsx
 *.encoding-backup
+
+# ADMIN AUTH TEST FILES
+admin-cookies.txt
+admin-login.json
+*.security-backup

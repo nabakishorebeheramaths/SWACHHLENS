@@ -8,7 +8,8 @@ require("dotenv").config();
 // =========================================================
 // ROUTES
 // =========================================================
-
+const helmet = require("helmet");
+const { rateLimit } = require("express-rate-limit");
 const otpRoutes = require("./routes/otpRoutes");
 const locationRoutes = require("./routes/locationRoutes");
 const wasteReportsRoutes = require("./routes/wasteReports");
@@ -84,7 +85,54 @@ const responseRouter =
 // =========================================================
 
 const app = express();
+// =========================================================
+// PRODUCTION SECURITY HARDENING
+// =========================================================
 
+app.disable("x-powered-by");
+
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
+app.use(
+  helmet({
+    crossOriginResourcePolicy: {
+      policy: "cross-origin",
+    },
+    strictTransportSecurity: false,
+  })
+);
+
+// General API protection
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 300,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many requests. Please try again later.",
+  },
+});
+
+app.use("/api", apiLimiter);
+
+// Authentication-sensitive endpoints
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many authentication attempts. Please try again later.",
+  },
+});
+
+app.use("/api/admin-auth/login", authLimiter);
+app.use("/api/otp/send", authLimiter);
+app.use("/api/otp/verify", authLimiter);
 // =========================================================
 // CONFIG
 // =========================================================
@@ -204,7 +252,16 @@ app.use(
 // =========================================================
 // HEALTH
 // =========================================================
-
+app.get("/api/health", async (req, res) => {
+  return res.status(200).json({
+    success: true,
+    service: "SWACHHLENS",
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || "development",
+  });
+});
 app.get(
   "/",
   (req, res) => {
@@ -254,6 +311,10 @@ app.get(
     });
   }
 );
+// =========================================================
+// HEALTH CHECK
+// =========================================================
+
 
 // =========================================================
 // 404
@@ -386,3 +447,4 @@ const startServer = async () => {
 };
 
 startServer();
+
