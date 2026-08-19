@@ -1,4 +1,4 @@
-﻿# SWACHHLENS
+# SWACHHLENS
 
 
 
@@ -22,15 +22,15 @@ Traditional waste reporting often depends on manual complaint handling and incom
 
 
 
-\- Understand the type and severity of a reported waste incident
+- Understand the type and severity of a reported waste incident
 
-\- Prioritize reports consistently
+- Prioritize reports consistently
 
-\- Connect reports with relevant locations and response organizations
+- Connect reports with relevant locations and response organizations
 
-\- Track a report from submission to response
+- Track a report from submission to response
 
-\- Maintain structured information for future analysis
+- Maintain structured information for future analysis
 
 
 
@@ -54,7 +54,7 @@ SWACHHLENS combines a citizen-facing reporting portal with a Node.js backend, Mo
 
 
 
-\*\*Report â†’ Analyze â†’ Identify â†’ Prioritize â†’ Respond â†’ Track\*\*
+**Report → Analyze → Identify → Prioritize → Respond → Track**
 
 
 
@@ -74,17 +74,17 @@ The platform transforms a citizen's waste report into structured information tha
 
 
 
-\- Citizen details and verification
+- Citizen details and verification
 
-\- Email OTP verification
+- Email OTP verification
 
-\- Guided reporting workflow
+- Guided reporting workflow
 
-\- Citizen situation information
+- Citizen situation information
 
-\- Waste incident details
+- Waste incident details
 
-\- Waste image/evidence upload
+- Waste image/evidence upload
 
 
 
@@ -92,15 +92,15 @@ The platform transforms a citizen's waste report into structured information tha
 
 
 
-\- State, district, block and village location data
+- State, district, block and village location data
 
-\- Location selection and validation
+- Location selection and validation
 
-\- GPS/location-assisted reporting
+- GPS/location-assisted reporting
 
-\- Map-based location support
+- Map-based location support
 
-\- Structured Indian location database
+- Structured Indian location database
 
 
 
@@ -108,17 +108,17 @@ The platform transforms a citizen's waste report into structured information tha
 
 
 
-\- AI-based waste image analysis
+- AI-based waste image analysis
 
-\- Waste classification
+- Waste classification
 
-\- Visible severity assessment
+- Visible severity assessment
 
-\- Confidence-based analysis
+- Confidence-based analysis
 
-\- Risk-oriented analysis
+- Risk-oriented analysis
 
-\- Structured AI results integrated into the report workflow
+- Structured AI results integrated into the report workflow
 
 
 
@@ -126,15 +126,15 @@ The platform transforms a citizen's waste report into structured information tha
 
 
 
-\- Unique Citizen ID
+- Unique Citizen ID
 
-\- Unique Waste Report ID
+- Unique Waste Report ID
 
-\- MongoDB-based report persistence
+- MongoDB-based report persistence
 
-\- Analysis and status view
+- Analysis and status view
 
-\- Report retrieval and tracking
+- Report retrieval and tracking
 
 
 
@@ -142,19 +142,19 @@ The platform transforms a citizen's waste report into structured information tha
 
 
 
-\- Report lookup
+- Report lookup
 
-\- AI/location-supported organization suggestions
+- AI/location-supported organization suggestions
 
-\- Organization selection
+- Organization selection
 
-\- Exactly one organization selected before final submission
+- Exactly one organization selected before final submission
 
-\- Final response request
+- Final response request
 
-\- Feedback/reason for organization selection
+- Feedback/reason for organization selection
 
-\- Optional appointment request with the selected organization
+- Optional appointment request with the selected organization
 
 
 
@@ -162,11 +162,11 @@ The platform transforms a citizen's waste report into structured information tha
 
 
 
-\- Response request records
+- Response request records
 
-\- Organization-linked response workflow
+- Organization-linked response workflow
 
-\- Status-oriented reporting structure
+- Status-oriented reporting structure
 
 
 
@@ -180,105 +180,105 @@ The platform transforms a citizen's waste report into structured information tha
 
 ```text
 
-&#x20;                   SWACHHLENS
+                    SWACHHLENS
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;                    Home
+                     Home
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;               Citizen Details
+                Citizen Details
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;               Email OTP Verify
+                Email OTP Verify
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;             Incident / Situation
+              Incident / Situation
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;             Location \& Evidence
+              Location & Evidence
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;               Waste Image Upload
+                Waste Image Upload
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;               AI Waste Analysis
+                AI Waste Analysis
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;                Report Creation
+                 Report Creation
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;            Citizen ID + Report ID
+             Citizen ID + Report ID
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;              Analysis \& Status
+               Analysis & Status
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;                Response Center
+                 Response Center
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;             Organization Suggestions
+              Organization Suggestions
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;            Select One Organization
+             Select One Organization
 
-&#x20;                       â”‚
+                        │
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;                 Final Request
+                  Final Request
 
-&#x20;                       â”‚
+                        │
 
-&#x20;            â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+             ┌──────────┴──────────┐
 
-&#x20;            â–¼                     â–¼
+             ▼                     ▼
 
-&#x20;      Feedback/Reason       Appointment Request
+       Feedback/Reason       Appointment Request
 
-&#x20;            â”‚                     â”‚
+             │                     │
 
-&#x20;            â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+             └──────────┬──────────┘
 
-&#x20;                       â–¼
+                        ▼
 
-&#x20;                  Final Submit
-
+                   Final Submit
+```
